@@ -1,18 +1,20 @@
 <div class="results-banner text-white">
   <h1><%= @video %></h1>
 </div>
-<div class="background-white">
+
+<div class="video-holder">
   <%= form_tag  do %>
 
+  
     <div id="videos-main">
-
       <div class="results-video m-4">
         <div id="player" data-controller="iframe"></div>
       </div>
-
-       
       <% end %>
 </div>
+
+
+
 <script>
   // 2. This code loads the IFrame Player API code asynchronously.
   var tag = document.createElement('script');
@@ -43,7 +45,7 @@
         event.target.playVideo();
       }
 
-      // 5. The API calls this function when the player's state changes.
+ // 5. The API calls this function when the player's state changes.
       //    The function indicates that when playing a video (state=1),
       //    the player should play for six seconds and then stop.
       var done = false;

@@ -8,6 +8,7 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
@@ -20,6 +21,15 @@ ActiveStorage.start()
 
 // External imports
 import "bootstrap";
+
+// Video Player
+window.Rails = require("@rails/ujs")
+require("turbolinks").start()
+require("@rails/activestorage").start()
+require("channels")
+require("trix")
+require("@rails/actiontext")
+require("video.js")
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';

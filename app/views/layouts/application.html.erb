@@ -3,6 +3,10 @@
   <head>
     <title>Freescriber</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+
+     <%# Video Player %>
+    <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -17,5 +21,8 @@
     <%= render 'shared/flashes' %>
 
     <%= yield %>
+
+    <%# Video Player %>
+    <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
   </body>
 </html>

@@ -11,3 +11,11 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+// Video Player
+@import 'flatpickr/dist/flatpickr.css';
+@import 'video.js/dist/video-js.css';
+//@import '@videojs/themes/dist/city/index.css';
+//@import '@videojs/themes/dist/fantasy/index.css';
+//@import '@videojs/themes/dist/forest/index.css';
+@import '@videojs/themes/dist/sea/index.css';
