@@ -7,7 +7,7 @@ class VideosController < ApplicationController
       if params[:query].present?
         @videos = Video.search_by_location_and_name(params[:query])
       else
-        @videoss = Video.all
+        @videos = Video.all
       end
     end
   
@@ -29,7 +29,9 @@ class VideosController < ApplicationController
   
     def new
       @video = Video.new
-      authorize @video
+      yt = YoutubeApi.new()
+      yt.channels_list_by_username('snippet,contentDetails,statistics', for_username: 'GoogleDevelopers')
+
     end
   
     def edit
