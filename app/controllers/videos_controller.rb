@@ -24,7 +24,9 @@ class VideosController < ApplicationController
 
     def new
       @video = Video.new
-      authorize @video
+      yt = YoutubeApi.new()
+      yt.channels_list_by_username('snippet,contentDetails,statistics', for_username: 'GoogleDevelopers')
+
     end
 
     def edit
