@@ -1,0 +1,15 @@
+<div class="container-fluid" id="card-container" >
+<h2>All videos (<%= @videos.count%>)</h2>
+  <div class="grid" data-isotope='{ "itemSelector": ".card", "layoutMode": "fitRows" }'>
+    <% @videos.each do |video| %>
+      <%= link_to video_path(video) do %>
+        <div class="card grid-item" style="width: 18rem;">
+          <%= cl_image_tag video.photo.key, :height=>200, :crop=>"fill", :class => "img-card" %>
+          <div class="card-body">
+            <h5 class="card-title"> <%= video.name %></h5>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
