@@ -19,7 +19,7 @@ class VideosController < ApplicationController
         params[:video][:title],
         params[:video][:description]
       )
-      render json: video
+      redirect_to videos_path
     end
 
     def new
