@@ -1,0 +1,4 @@
+<%= simple_form_for @video do |f| %>
+  <%= f.input :title, as: :file, label: 'Your title please', error: 'title is mandatory, please specify one' %>
+  <%= f.button :submit %>
+<% end %>

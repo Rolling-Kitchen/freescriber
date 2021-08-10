@@ -12,14 +12,15 @@ class VideosController < ApplicationController
     end
 
     def create
-      @video= Video.new(video_params)
-      @video.user = current_user
-      if @video.save!
-        redirect_to video_path(@video)
-      else
-        render :new
-      end
-      authorize @video
+      # Make an API call to the YouTube API.
+      yt = YoutubeApi.new()
+      video = yt.upload_video(
+        params[:video][:video_file],
+        "Standup from 2021-03",
+        "My 5 min standup from March"
+      )
+      render json: video
+      raise
     end
 
     def new

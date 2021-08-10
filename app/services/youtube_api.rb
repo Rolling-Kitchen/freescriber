@@ -39,6 +39,38 @@
            "Its title is '#{item.fetch("snippet").fetch("title")}', and it has " +
             "#{item.fetch("statistics").fetch("viewCount")} views.")
     end
+    
+
+
+def upload_video(file, title, description)
+      # Initialize the API
+      service = Google::Apis::YoutubeV3::YouTubeService.new
+      service.client_options.application_name = @application_name
+      service.authorization = authorize
+
+  status = Google::Apis::YoutubeV3::VideoStatus.new(
+    privacy_status: 'unlisted',
+  )
+  snippet = Google::Apis::YoutubeV3::VideoSnippet.new(
+    title: title,
+    description: description,
+  )
+  video_object = Google::Apis::YoutubeV3::Video.new(
+    status: status,
+    snippet: snippet,
+  )
+  service.insert_video(
+    'id,snippet,status',
+    video_object,
+    notify_subscribers: false,
+    upload_source: file,
+    content_type: 'video/webm',
+    options: {
+      authorization: @credentials
+    }
+  )
+end
+
 
     private_methods
       
@@ -50,16 +82,16 @@
         authorizer = Google::Auth::UserAuthorizer.new(
           client_id, @scope, token_store)
         user_id = 'default'
-        credentials = authorizer.get_credentials(user_id)
-        if credentials.nil?
+        @credentials = authorizer.get_credentials(user_id)
+        if @credentials.nil?
           url = authorizer.get_authorization_url(base_url: redirect_uri)
           puts "Open the following URL in the browser and enter the " +
               "resulting code after authorization"
           puts url
           code = gets
-          credentials = authorizer.get_and_store_credentials_from_code(
+          @credentials = authorizer.get_and_store_credentials_from_code(
             user_id: user_id, code: code, base_url: redirect_uri)
         end
-        credentials
+        @credentials
       end
   end
