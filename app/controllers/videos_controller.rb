@@ -15,18 +15,17 @@ class VideosController < ApplicationController
       # Make an API call to the YouTube API.
       yt = YoutubeApi.new()
       video = yt.upload_video(
-        params[:video][:video_file],
-        "Standup from 2021-03",
-        "My 5 min standup from March"
+        params[:video][:video_file].to_path,
+        params[:video][:title],
+        params[:video][:description]
       )
       render json: video
-      raise
     end
 
     def new
       @video = Video.new
-      yt = YoutubeApi.new()
-      yt.channels_list_by_username('snippet,contentDetails,statistics', for_username: 'GoogleDevelopers')
+      # yt = YoutubeApi.new()
+      # yt.channels_list_by_username('snippet,contentDetails,statistics', for_username: 'GoogleDevelopers')
 
     end
 
@@ -56,6 +55,6 @@ class VideosController < ApplicationController
     end
 
     def video_params
-      params.require(:video).permit(:name, :description, :food_type, :food_price, :menu_package, :location, :photo)
+      params.require(:video).permit(:title, :video_file, :description)
     end
   end
