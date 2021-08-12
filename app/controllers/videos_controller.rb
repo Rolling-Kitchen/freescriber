@@ -12,20 +12,20 @@ class VideosController < ApplicationController
     end
 
     def create
-      @video= Video.new(video_params)
-      @video.user = current_user
-      if @video.save!
-        redirect_to video_path(@video)
-      else
-        render :new
-      end
-      authorize @video
+      # Make an API call to the YouTube API.
+      yt = YoutubeApi.new()
+      video = yt.upload_video(
+        params[:video][:video_file].to_path,
+        params[:video][:title],
+        params[:video][:description]
+      )
+      redirect_to videos_path
     end
 
     def new
       @video = Video.new
-      yt = YoutubeApi.new()
-      yt.channels_list_by_username('snippet,contentDetails,statistics', for_username: 'GoogleDevelopers')
+      # yt = YoutubeApi.new()
+      # yt.channels_list_by_username('snippet,contentDetails,statistics', for_username: 'GoogleDevelopers')
 
     end
 
@@ -55,6 +55,6 @@ class VideosController < ApplicationController
     end
 
     def video_params
-      params.require(:video).permit(:name, :description, :food_type, :food_price, :menu_package, :location, :photo)
+      params.require(:video).permit(:title, :video_file, :description)
     end
   end
