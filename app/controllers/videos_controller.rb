@@ -7,8 +7,8 @@ class VideosController < ApplicationController
     end
 
     def show
-      @subtitle = Subtitle.new()
-      authorize @video
+      @video 
+      @subtitle = @video.subtitle
     end
 
     def create
