@@ -19,9 +19,9 @@
   <body>
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
-
-    <%= yield %>
-
+    <div class="container-fluid" id="card-container" >
+      <%= yield %>
+   </div>
     <%# Video Player %>
     <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
   </body>
