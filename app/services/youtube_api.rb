@@ -31,10 +31,10 @@ class YoutubeApi
 
   
   def channels_list_by_username(part, **params)
-    Initialize the API
-    @service = Google::Apis::YoutubeV3::YouTubeService.new
-    @service.client_options.application_name = @application_name
-    @service.authorization = authorize
+    # Initialize the API
+    # @service = Google::Apis::YoutubeV3::YouTubeService.new
+    # @service.client_options.application_name = @application_name
+    # @service.authorization = authorize
 
     response = @service.list_channels(part, params).to_json
     item = JSON.parse(response).fetch("items")[0]
@@ -56,8 +56,8 @@ class YoutubeApi
     snippet = Google::Apis::YoutubeV3::VideoSnippet.new(
       title: title,
       description: description,
-      defaultAudioLanguage: "en",
-      defaultLanguage: "en"
+      defaultAudioLanguage
+      defaultLanguage,
     )
     video_object = Google::Apis::YoutubeV3::Video.new(
       status: status,
