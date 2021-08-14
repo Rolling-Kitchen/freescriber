@@ -15,7 +15,7 @@ class YoutubeApi
 
     # REPLACE WITH NAME/LOCATION OF YOUR client_secrets.json FILE
     # MAKE SURE TO MAKE THIS PRIVATE LATER
-    @client_secrets_path = '.client_secret.json'
+    @client_secrets_path = './client_secret.json'
 
     # REPLACE FINAL ARGUMENT WITH FILE WHERE CREDENTIALS WILL BE STORED
     @credentials_path = File.join(Dir.home, '.credentials',
