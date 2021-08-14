@@ -9,8 +9,12 @@ class VideosController < ApplicationController
   def show
     @video
     @captions = @video.captions
-    yt = YoutubeApi.new
-    video = yt.get_captions(@video)
+    if @captions != {}
+      yt = YoutubeApi.new
+      video = yt.get_captions(@video)
+    else
+      render html: "<script>alert('Transcript not ready yet. Please come back later.')</script>".html_safe
+    end
   end
 
   def create

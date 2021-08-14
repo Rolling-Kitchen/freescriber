@@ -79,20 +79,21 @@ class YoutubeApi
     @service = Google::Apis::YoutubeV3::YouTubeService.new
     @service.client_options.application_name = @application_name
     @service.authorization = authorize
-    result = @service.list_captions("id", video.video_source)
-    p result
-    @caption_id = result.items[0].id
+    p "script has run"
+    # result = @service.list_captions("id", video.video_source)
+    # p result
+    # @caption_id = result.items[0].id
       
-    captions_string = @service.download_caption(@caption_id)
-    captions_lines = captions_string.split("\n\n")
-    @captions = captions_lines.map do |line| 
-      line_array = line.split("\n")
-      {
-        start: line_array[0].split(",")[0],
-        end: line_array[0].split(",")[1],
-        text: line_array[1]
-      }
-    end
+    # captions_string = @service.download_caption(@caption_id)
+    # captions_lines = captions_string.split("\n\n")
+    # @captions = captions_lines.map do |line| 
+    #   line_array = line.split("\n")
+    #   {
+    #     start: line_array[0].split(",")[0],
+    #     end: line_array[0].split(",")[1],
+    #     text: line_array[1]
+    #   }
+    # end
   end
   
   private
