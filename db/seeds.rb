@@ -8,23 +8,26 @@
 
 #   user = User.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 
-
 p 'creating user'
 
-  User.create!(
+User.destroy_all
+Video.destroy_all
+
+ @user = User.new(
     email: 'user@user.com',
     password: "123123",
     first_name: "j",
     last_name: "crew",
     job: 1,
   )
+  @user.save!
 
 @videos = ["1","2"]
 @videos.each do |video|
   
   p 'created user and creating video now'
 Video.create!(
-  user_id: 1,
+  user: @user,
   title: "title",
   description: "In Rails, an association is a connection between two Active Record models. Why do we need associations between models? Because they make common operations simpler and easier in your code. For example, consider a simple Rails application that includes a model for authors and a model for books. Each author can have many books. Without associations, the model declarations would look like this",
   video_source: "RkNr9zBUaE4",

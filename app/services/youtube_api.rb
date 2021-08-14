@@ -74,6 +74,28 @@ class YoutubeApi
       }
     )
   end
+
+  def get_captions(video)
+    @service = Google::Apis::YoutubeV3::YouTubeService.new
+    @service.client_options.application_name = @application_name
+    @service.authorization = authorize
+    p "script has run"
+    result = @service.list_captions("id", video.video_source)
+    p result
+    @caption_id = result.items[0].id
+      
+    captions_string = @service.download_caption(@caption_id)
+    captions_lines = captions_string.split("\n\n")
+    @captions = captions_lines.map do |line| 
+      line_array = line.split("\n")
+      {
+        start: line_array[0].split(",")[0],
+        end: line_array[0].split(",")[1],
+        text: line_array[1]
+        seconds: line_array[0].split(':').map(&:to_f).inject(0) { |a, b| a * 60 + b }
+      }
+    end
+  end
   
   private
     
