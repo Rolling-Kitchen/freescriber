@@ -19,7 +19,16 @@ class VideosController < ApplicationController
       params[:video][:title],
       params[:video][:description]
     )
-    redirect_to videos_path
+    @video = Video.new(video_params)
+    @video.user = current_user
+    @video.video_source = video.id
+    @video.captions = {}
+    if @video.save!
+      render json: video
+      # redirect_to videos_path
+    else
+      render :new
+    end
   end
 
   def new
@@ -55,6 +64,6 @@ class VideosController < ApplicationController
   end
 
   def video_params
-    params.require(:video).permit(:title, :video_file, :description)
+    params.require(:video).permit(:title, :description)
   end
 end
