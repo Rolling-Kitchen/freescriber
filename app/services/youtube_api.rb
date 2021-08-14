@@ -10,12 +10,12 @@ class YoutubeApi
     require 'json'
 
     # REPLACE WITH VALID @redirect_uri FOR YOUR CLIENT
-    @redirect_uri = 'http://localhost:3000/oauth2callback'
+    @redirect_uri = 'https://freescriber.herokuapp.com/oauth2callback'
     @application_name = 'freescriber'
 
     # REPLACE WITH NAME/LOCATION OF YOUR client_secrets.json FILE
     # MAKE SURE TO MAKE THIS PRIVATE LATER
-    @client_secrets_path = '.client_secret.json'
+    @client_secrets_path = './client_secret.json'
 
     # REPLACE FINAL ARGUMENT WITH FILE WHERE CREDENTIALS WILL BE STORED
     @credentials_path = File.join(Dir.home, '.credentials',
@@ -118,7 +118,7 @@ class YoutubeApi
         puts "Open the following URL in the browser and enter the " +
             "resulting code after authorization"
         puts url
-        code = gets
+        code = ENV['YOUTUBE_TOKEN']
         @credentials = authorizer.get_and_store_credentials_from_code(
           user_id: user_id, code: code, base_url: @redirect_uri)
       end

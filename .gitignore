@@ -42,3 +42,4 @@ yarn-debug.log*
 
 # ignore
 .client_secret.json
+client_secret.json
