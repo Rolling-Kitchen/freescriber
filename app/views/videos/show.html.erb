@@ -1,64 +1,6 @@
-<div class="results-banner text-white">
-  <h1><%= @video %></h1>
-</div>
-<div class="background-white">
-  <%= form_tag  do %>
+<%= render 'videos/video-player' %>
 
-    <div id="videos-main">
-
-      <div class="results-video m-4">
-        <div id="player" data-controller="iframe"></div>
-      </div>
-
-       
-      <% end %>
-</div>
-<script>
-  // 2. This code loads the IFrame Player API code asynchronously.
-  var tag = document.createElement('script');
-
-  tag.src = "https://www.youtube.com/iframe_api";
-  var firstScriptTag = document.getElementsByTagName('script')[0];
-  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-  // 3. This function creates an <iframe> (and YouTube player)
-  //    after the API code downloads.
-  const flashcardsList = document.querySelector('.flashcards-list');
-  var items = flashcardsList.getElementsByTagName("li");
-  var player;
-  function onYouTubeIframeAPIReady() {
-    player = new YT.Player('player', {
-      height: '490',
-      width: '800',
-      videoId: 'lZ1qk89pdE8',
-      events: {
-        'onReady': onPlayerReady,
-        'onStateChange': onPlayerStateChange
-      }
-    });
-  }
-
- // 4. The API will call this function when the video player is ready.
-      function onPlayerReady(event) {
-        event.target.playVideo();
-      }
-
-      // 5. The API calls this function when the player's state changes.
-      //    The function indicates that when playing a video (state=1),
-      //    the player should play for six seconds and then stop.
-      var done = false;
-      function onPlayerStateChange(event) {
-        if (event.data == YT.PlayerState.PLAYING && !done) {
-          setTimeout(stopVideo, 6000);
-          done = true;
-        }
-      }
-      function stopVideo() {
-        player.stopVideo();
-      }
-    </script>
-
-  <div>
+<div>
     <h2>Video ID:</h2>
     <p><%= @video_id %></p>
   </div>
@@ -69,4 +11,4 @@
   <div>
     <h2>Captions:</h2>
     <p><%= @captions %></p>
-  </div>
+</div>
