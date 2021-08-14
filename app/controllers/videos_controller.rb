@@ -9,10 +9,8 @@ class VideosController < ApplicationController
   def show
     @video
     @captions = @video.captions
-    authorize @video
-    @video_id = params[:video_id]
-    client = Google::Apis::YoutubeV3::YouTubeService.new
-    client.authorization = authorize
+    yt = YoutubeApi.new
+    video = yt.get_captions(@video)
   end
 
   def create
