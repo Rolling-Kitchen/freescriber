@@ -56,7 +56,7 @@ class YoutubeApi
     snippet = Google::Apis::YoutubeV3::VideoSnippet.new(
       title: title,
       description: description,
-      defaultAudioLanguage:"en",
+      defaultAudioLanguage: "en",
       defaultLanguage: "en"
     )
     video_object = Google::Apis::YoutubeV3::Video.new(
