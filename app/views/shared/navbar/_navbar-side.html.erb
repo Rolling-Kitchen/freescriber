@@ -14,21 +14,22 @@
 <div class="sidebar-heading mt-2">Dashboard</div>
 
     <li class="nav-item active">
-        <a class="nav-link" href="index.html">
-        <i class="fas fa-file-import"></i>
-            <span>Import</span></a>
-    </li>           
-
-    <li class="nav-item active">
-        <a class="nav-link" href="index.html">
-        <i class="fas fa-upload"></i>
-            <span>Upload</span></a>
+         <%= link_to "Show Videos", videos_path, class: "nav-link" %>
     </li>  
 
     <li class="nav-item active">
-        <a class="nav-link" href="index.html">
-        <i class="fas fa-microphone-alt"></i>
-            <span>Record</span></a>
+        <%# <i class="fas fa-file-import"></i> %>
+        <%= link_to "Import", new_video_path, class: "nav-link" %>
+    </li>           
+
+    <li class="nav-item active">
+        <%# <i class="fas fa-upload"></i> %>
+         <%= link_to "Upload", new_video_path, class: "nav-link" %>
+    </li>  
+
+    <li class="nav-item active">
+        <%# <i class="fas fa-microphone-alt"></i> %>
+        <%= link_to "Record", new_video_path, class: "nav-link" %>
     </li>  
             
 <%= render 'shared/divider/horizontal' %>          
