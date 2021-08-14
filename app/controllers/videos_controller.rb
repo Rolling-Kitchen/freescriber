@@ -24,8 +24,7 @@ class VideosController < ApplicationController
     @video.video_source = video.id
     @video.captions = {}
     if @video.save!
-      render json: video
-      # redirect_to videos_path
+      redirect_to videos_path
     else
       render :new
     end

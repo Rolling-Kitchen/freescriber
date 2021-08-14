@@ -19,7 +19,7 @@ class YoutubeApi
 
     # REPLACE FINAL ARGUMENT WITH FILE WHERE CREDENTIALS WILL BE STORED
     @credentials_path = File.join(Dir.home, '.credentials',
-                                "youtube-1.yaml")
+                                "youtube-2.yaml")
 
     # @scope FOR WHICH THIS SCRIPT REQUESTS AUTHORIZATION
     @scope = 'https://www.googleapis.com/auth/youtube.force-ssl'
