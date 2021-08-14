@@ -8,12 +8,13 @@ class VideosController < ApplicationController
 
   def show
     @video
-    @captions = @video.captions
-    if @captions != {}
+    # raise
+    if @video.captions === {}
       yt = YoutubeApi.new
-      video = yt.get_captions(@video)
+      @video.captions = yt.get_captions(@video)
+      @video.save
     else
-      render html: "<script>alert('Transcript not ready yet. Please come back later.')</script>".html_safe
+      nil
     end
   end
 
@@ -30,8 +31,7 @@ class VideosController < ApplicationController
     @video.video_source = video.id
     @video.captions = {}
     if @video.save!
-      render json: video
-      # redirect_to videos_path
+      redirect_to videos_path
     else
       render :new
     end
