@@ -9,6 +9,9 @@ class VideosController < ApplicationController
     def show
       @subtitle = Subtitle.new()
       authorize @video
+      @video_id = params[:video_id]
+      client = Google::Apis::YoutubeV3::YouTubeService.new
+      client.authorization = authorize
     end
 
     def create
@@ -49,26 +52,6 @@ class VideosController < ApplicationController
     end
 
     private
-
-    def get_subs
-      @video_id = params[:video_id]
-      client = Google::Apis::YoutubeV3::YouTubeService.new
-      client.authorization = authorize
-      result = client.list_captions("id", @video_id)
-      p result
-      @caption_id = result.items[0].id
-      
-      captions_string = client.download_caption(@caption_id)
-      captions_lines = captions_string.split("\n\n")
-      @captions = captions_lines.map do |line| 
-        line_array = line.split("\n")
-        {
-          start: line_array[0].split(",")[0],
-          end: line_array[0].split(",")[1],
-          text: line_array[1]
-        }
-      end
-    end
 
     def set_video
       @video = Video.find(params[:id])
