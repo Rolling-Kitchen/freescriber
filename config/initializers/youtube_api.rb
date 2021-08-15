@@ -1,1 +1,2 @@
-File.write('./client_secret.json', ENV["GOOGLE_CLOUD_CREDENTIALS"])
+# What is this? 
+# File.write('./client_secret.json', ENV["GOOGLE_CLOUD_CREDENTIALS"])
