@@ -41,28 +41,6 @@ class VideosController < ApplicationController
     @video = Video.new
   end
 
-  def edit
-    raise AuthorizationError unless @video.user == current_user && current_user.is_restaurant?
-
-    authorize @video
-  end
-
-  def update
-    raise AuthorizationError unless @video.user == current_user && current_user.is_restaurant?
-
-    @video.update(video_params)
-    redirect_to video_path(@video)
-    authorize @video
-  end
-
-  def destroy
-    raise AuthorizationError unless @video.user == current_user && current_user.is_restaurant?
-
-    authorize @video
-    @video.destroy
-    redirect_to root_path
-  end
-
   private
 
   def set_video
