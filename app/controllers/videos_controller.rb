@@ -2,7 +2,6 @@ class VideosController < ApplicationController
   before_action :set_video, only: %i[show edit update destroy]
 
   def index
-    # Policy scope - defaults to resolve.all and shows all.
     @videos = Video.all
   end
 
