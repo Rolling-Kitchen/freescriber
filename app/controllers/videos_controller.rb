@@ -2,12 +2,14 @@ class VideosController < ApplicationController
   before_action :set_video, only: %i[show edit update destroy]
 
   def index
-    @videos = Video.all
+    @videos = policy_scope(Video)
+
+    # @videos = Video.all
   end
 
   def show
-    @video
-    # raise
+    @video = Video.find(params[:id])
+    authorize @video
     if @video.captions === {}
       yt = YoutubeApi.new
       @video.captions = yt.get_captions(@video)
