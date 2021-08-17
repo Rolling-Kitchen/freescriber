@@ -91,7 +91,8 @@ class YoutubeApi
           start: line_array[0].split(",")[0],
           end: line_array[0].split(",")[1],
           text: line_array[1],
-          seconds: line_array[0].split(",")[0].split(':').map(&:to_f).inject(0) { |a, b| a * 60 + b }
+          start_seconds: line_array[0].split(",")[0].split(':').map(&:to_f).inject(0) { |a, b| a * 60 + b },
+          end_seconds: line_array[0].split(",")[1].split(':').map(&:to_f).inject(0) { |a, b| a * 60 + b }
         }
       end
       p "I've fetched the captions!"

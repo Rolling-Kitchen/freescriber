@@ -16,12 +16,14 @@
           "Sorry! Transcript not available yet"
       <% else %>
         <% @video.captions.each do |caption| %>
-            <%= content_tag("a"," #{caption["text"]}", data: { seconds: caption["seconds"]}, class: "timecode") %>
+            <%= content_tag("a"," #{caption["text"]}", data: { start_seconds: caption["start_seconds"], end_seconds: caption["end_seconds"]}, class: "timecode") %>
         <% end %>
       <% end %>
     </div>
   </div>
   <script>
+              const all_subtitles = document.getElementsByClassName("timecode");
+
     // 2. This code loads the IFrame Player API code asynchronously.
     var tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
@@ -44,32 +46,73 @@
           'onStateChange': onPlayerStateChange
         }
       });
-            var all_subtitles = document.getElementsByClassName("timecode");
             Array.prototype.forEach.call(all_subtitles, function(element) {
               element.addEventListener('click', function() {
-                console.log('timecode is: ' + element.dataset.seconds);
-               player.seekTo(element.dataset.seconds, true);
+                console.log('timecode is: ' + element.dataset.startSeconds);
+               player.seekTo(element.dataset.startSeconds, true);
  });
             });    
     }
     
     
-    
-    // User clicks the individual line
-    // Link sends the time of the line in seconds
-    // Function seeks to the point in the video in seconds.
-    
-    
+
+
      // 4. The API will call this function when the video player is ready.
         function onPlayerReady(event) {
           // event.target.playVideo();
         }
     
-     // 5. The API calls this function when the player's state changes.
-        //    The function indicates that when playing a video (state=1),
-        //    the player should play for six seconds and then stop.
-        var done = false;
+// https://stackoverflow.com/questions/37904499/sync-embedded-youtube-video-time-stamp-to-custom-progress-bar
+
+      function get_subtitle(current_time){
+        for (let index = 0; index < all_subtitles.length; index++) {
+          if (all_subtitles[index].dataset.startSeconds >= (current_time-1) ) {
+            console.log(all_subtitles[index])
+            return all_subtitles[index]; 
+          };
+        };
+        
+      };
+      function subtitle_sync()
+      {
+  
+        var current_time = player.getCurrentTime();
+        let current_subtitle = get_subtitle(current_time);
+        if (current_subtitle.classList.contains("current_subtitle")) {
+          
+        } else {
+            Array.prototype.forEach.call(all_subtitles, function(element) {
+              element.classList.remove("current_subtitle");
+              })
+
+              current_subtitle.className += " current_subtitle";
+        }
+
+
+        timeout_setter = setTimeout(subtitle_sync, 1000);
+      }
+
         function onPlayerStateChange(event) {
-    
+        switch(event.data) {
+          case 0:
+            console.log('video ended');
+                        Array.prototype.forEach.call(all_subtitles, function(element) {
+              element.classList.remove("current_subtitle");
+              })
+
+            break;
+          case 1:
+              subtitle_sync();
+            break;
+          case 2:
+            console.log('video paused at '+player.getCurrentTime());
+        }
         }
   </script>
+
+
+      <style>
+    .current_subtitle{
+      background-color: yellow;
+    }    
+    </style>
