@@ -3,8 +3,11 @@ class VideosController < ApplicationController
 
   def index
     @videos = policy_scope(Video)
-
-    # @videos = Video.all
+    if params[:query].present?
+      @videos = Video.search_by_title_or_transcript(params[:query])
+    else
+      @videos = Video.all
+    end
   end
 
   def show
