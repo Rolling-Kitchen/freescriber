@@ -16,10 +16,9 @@ class YoutubeApi
     # REPLACE WITH NAME/LOCATION OF YOUR client_secrets.json FILE
     # MAKE SURE TO MAKE THIS PRIVATE LATER
     @client_secrets_path = './client_secret.json'
-
     # REPLACE FINAL ARGUMENT WITH FILE WHERE CREDENTIALS WILL BE STORED
     @credentials_path = File.join(Dir.home, '.credentials',
-                                "youtube-2.yaml")
+                                "youtube-prod.yaml")
 
     # @scope FOR WHICH THIS SCRIPT REQUESTS AUTHORIZATION
     @scope = 'https://www.googleapis.com/auth/youtube.force-ssl'
@@ -79,11 +78,10 @@ class YoutubeApi
     @service = Google::Apis::YoutubeV3::YouTubeService.new
     @service.client_options.application_name = @application_name
     @service.authorization = authorize
-    p video.video_source
+    # Check if the video has captions
     result = @service.list_captions("id", video.video_source)
-    p result
-    p result.length
-    if result.length >0
+    # if it has captions, try to fetch them and add them to the video model
+    if result.items.length >0
       caption_id = result.items[0].id      
       captions_string = @service.download_caption(caption_id)
       captions_lines = captions_string.split("\n\n")
@@ -96,8 +94,11 @@ class YoutubeApi
           seconds: line_array[0].split(",")[0].split(':').map(&:to_f).inject(0) { |a, b| a * 60 + b }
         }
       end
+      p "I've fetched the captions!"
       return captions        
     else
+      # If there are no captions, return nothing
+      p "There are no captions available yet"
       return {}
     end
   end
@@ -117,7 +118,9 @@ class YoutubeApi
         url = authorizer.get_authorization_url(base_url: @redirect_uri)
         puts "Open the following URL in the browser and enter the " +
             "resulting code after authorization"
+        code = ENV['YOUTUBE_TOKEN']
         puts url
+        # code = gets
         code = ENV['YOUTUBE_TOKEN']
         @credentials = authorizer.get_and_store_credentials_from_code(
           user_id: user_id, code: code, base_url: @redirect_uri)
