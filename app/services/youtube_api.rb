@@ -110,6 +110,7 @@ class YoutubeApi
     @service.authorization = authorize
     result = @service.list_videos('snippet', id: video.video_source)
     p result.items[0].snippet.thumbnails.high.url
+    return result.items[0].snippet.thumbnails.high.url
   end
 
   private
