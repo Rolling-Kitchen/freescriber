@@ -14,15 +14,6 @@ class VideosController < ApplicationController
     end
   end
 
-  def search
-    if params[:query].present?
-      @videos = Video.search_by_title_or_transcript(params[:query])
-    else
-      @videos = Video.all
-    end
-    redirect_to videos_path(test: @videos)
-  end
-
   def show
     @video
     # raise
