@@ -3,7 +3,7 @@ class VideosController < ApplicationController
   before_action :set_video, only: %i[show edit update destroy]
 
   def index
-    @videos = Video.all
+    @videos = policy_scope(Video)
     if params[:query].present?
       @videos = Video.search_by_title_or_transcript(params[:query])
     else
@@ -15,8 +15,8 @@ class VideosController < ApplicationController
   end
 
   def show
-    @video
-    # raise
+    @video = Video.find(params[:id])
+    authorize @video
     if @video.captions === {}
       yt = YoutubeApi.new
       @video.captions = yt.get_captions(@video)

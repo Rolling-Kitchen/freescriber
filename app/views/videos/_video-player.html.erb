@@ -14,66 +14,97 @@
     </div>
   </div>
   <div class="col-md-12 col-lg-4">
-    <div class="card card-body" style="overflow: auto;max-height: 550px;">
+    <div class="card card-body" style="overflow: auto;max-height: 550px;" id="caption_container">
       <h5 class="m-b-0">The Transcript</h5>
         <% if @video.captions.length === 0 %>
           "Sorry! Transcript not available yet"
       <% else %>
         <% @video.captions.each do |caption| %>
-            <%= content_tag("a"," #{caption["text"]}", data: { seconds: caption["seconds"]}, class: "timecode") %>
+            <%= content_tag("a"," #{caption["text"]}", data: { start_seconds: caption["start_seconds"], end_seconds: caption["end_seconds"]}, class: "timecode") %>
         <% end %>
       <% end %>
     </div>
   </div>
-  <script>
+<script>
     // 2. This code loads the IFrame Player API code asynchronously.
-    var tag = document.createElement('script');
+    var tag = document.createElement("script");
     tag.src = "https://www.youtube.com/iframe_api";
-    var firstScriptTag = document.getElementsByTagName('script')[0];
+    var firstScriptTag = document.getElementsByTagName("script")[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-    
+
     // 3. This function creates an <iframe> (and YouTube player)
     //    after the API code downloads.
     var player;
+    const all_captions = document.getElementsByClassName("timecode");
+    const caption_container = document.getElementById('caption_container');
+
     function onYouTubeIframeAPIReady() {
-      player = new YT.Player('player', {
-        height: '490',
-        width: '800',
-        videoId: '<%=@video.video_source %>',
+      player = new YT.Player("player", {
+        height: "490",
+        width: "800",
+        videoId: "<%=@video.video_source %>",
         enablejsapi: 1,
         modestbranding: 1,
         rel: 0,
         events: {
-          'onReady': onPlayerReady,
-          'onStateChange': onPlayerStateChange
-        }
+          onReady: onPlayerReady,
+          onStateChange: onPlayerStateChange,
+          onError: onPlayerError
+        },
       });
-            var all_subtitles = document.getElementsByClassName("timecode");
-            Array.prototype.forEach.call(all_subtitles, function(element) {
-              element.addEventListener('click', function() {
-                console.log('timecode is: ' + element.dataset.seconds);
-               player.seekTo(element.dataset.seconds, true);
- });
-            });    
+      Array.prototype.forEach.call(all_captions, function (element) {
+        element.addEventListener("click", function () {
+          console.log("timecode is: " + element.dataset.startSeconds);
+          player.seekTo(element.dataset.startSeconds, true);
+        });
+      });
     }
-    
-    
-    
-    // User clicks the individual line
-    // Link sends the time of the line in seconds
-    // Function seeks to the point in the video in seconds.
-    
-    
-     // 4. The API will call this function when the video player is ready.
-        function onPlayerReady(event) {
-          // event.target.playVideo();
+  function onPlayerError(event) {
+    window.location.reload(true); 
+  }
+    // 4. The API will call this function when the video player is ready.
+    function onPlayerReady(event) {
+      // event.target.playVideo();
+    }
+
+    // https://stackoverflow.com/questions/37904499/sync-embedded-youtube-video-time-stamp-to-custom-progress-bar
+    function get_subtitle(current_time) {
+      for (let index = 0; index < all_captions.length; index++) {
+        if (all_captions[index].dataset.startSeconds >= current_time - 2) {
+          console.log(all_captions[index]);
+          return all_captions[index];
         }
-    
-     // 5. The API calls this function when the player's state changes.
-        //    The function indicates that when playing a video (state=1),
-        //    the player should play for six seconds and then stop.
-        var done = false;
-        function onPlayerStateChange(event) {
-    
-        }
-  </script>
+      }
+    }
+    function subtitle_sync() {
+      var current_time = player.getCurrentTime();
+      let current_caption = get_subtitle(current_time);
+      if (current_caption.classList.contains("current_caption")) {
+      } else {
+        Array.prototype.forEach.call(all_captions, function (element) {
+          element.classList.remove("current_caption");
+        });
+        current_caption.className += " current_caption";
+        // The current caption will be shown 120 px from the top of the caption_container
+        caption_container.scrollTop = current_caption.offsetTop - caption_container.offsetTop - 120;
+      }
+      timeout_setter = setTimeout(subtitle_sync, 1000);
+    }
+
+    function onPlayerStateChange(event) {
+      switch (event.data) {
+        case 0:
+          console.log("video ended");
+          Array.prototype.forEach.call(all_captions, function (element) {
+            element.classList.remove("current_caption");
+          });
+
+          break;
+        case 1:
+          subtitle_sync();
+          break;
+        case 2:
+          console.log("video paused at " + player.getCurrentTime());
+      }
+    }
+</script>
