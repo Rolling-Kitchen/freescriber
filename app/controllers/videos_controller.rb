@@ -1,4 +1,5 @@
 class VideosController < ApplicationController
+  include ActionView::Helpers::UrlHelper
   before_action :set_video, only: %i[show edit update destroy]
 
   def index
@@ -7,6 +8,9 @@ class VideosController < ApplicationController
       @videos = Video.search_by_title_or_transcript(params[:query])
     else
       @videos = Video.all
+    end
+    unless current_page?(videos_path)
+      redirect_to videos_path
     end
   end
 
@@ -44,6 +48,19 @@ class VideosController < ApplicationController
 
   def new
     @video = Video.new
+  end
+
+  def edit
+  end
+
+  def update
+    @video.update(video_params)
+    redirect_to videos_path(@video)
+  end
+
+  def destroy
+    @video.destroy
+    redirect_to videos_path
   end
 
   private

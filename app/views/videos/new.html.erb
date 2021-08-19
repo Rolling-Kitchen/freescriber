@@ -1,6 +1,1 @@
-  <%= simple_form_for @video do |f| %>
-    <%= f.input :title, label: 'Your title please', error: 'title is mandatory, please specify one' %>
-    <%= f.input :description, label: 'Your description please', error: 'description is mandatory, please specify one' %>
-    <%= f.input :video_file, as: :file, label: 'Select a video to upload to youtube', error: 'must have file' %>
-    <%= f.button :submit, class: "btn-primary" %>
-  <% end %>
+<%= render "form-new", video: @video %>

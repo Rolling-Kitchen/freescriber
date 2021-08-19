@@ -1,29 +1,29 @@
- <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-     <div class="input-group">
-         <%= form_tag videos_path, method: :get do %>
-         <%= text_field_tag :query, params[:query], class: "form-control bg-light border-0 small", placeholder: "Find a video by title or keywords"%>
-         <% end %>
-         <div class="input-group-append">
-             <button class="btn btn-primary" type="submit">
-                 <i class="fas fa-search fa-sm"></i>
-             </button>
-         </div>
-     </div>
- </form>
+<form accept-charset="UTF-8" action="/videos" method="get"
+    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+    <div class="input-group">
+        <input id="query" name="query" type="text" class="form-control bg-light border-0 small"
+            placeholder="Find a video by title or keywords">
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="submit" value="Search">
+                <i class="fas fa-search fa-sm"></i>
+            </button>
+        </div>
+    </div>
+</form>
 
- <!-- Dropdown -->
+<!-- Dropdown -->
 
- <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-     <form class="form-inline mr-auto w-100 navbar-search">
-         <div class="input-group">
-             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for Keywords"
-                 aria-label="Search" aria-describedby="basic-addon2">
-             <div class="input-group-append">
-                 <button class="btn btn-primary" type="button">
-                     <i class="fas fa-search fa-sm"></i>
-                 </button>
-             </div>
-         </div>
-     </form>
- </div>
- </li>
+<div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+    <form class="form-inline mr-auto w-100 navbar-search">
+        <div class="input-group">
+            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for Keywords"
+                aria-label="Search" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="button">
+                    <i class="fas fa-search fa-sm"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+</li>
