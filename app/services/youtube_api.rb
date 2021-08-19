@@ -108,29 +108,8 @@ class YoutubeApi
     @service = Google::Apis::YoutubeV3::YouTubeService.new
     @service.client_options.application_name = @application_name
     @service.authorization = authorize
-    result = @service.list_videos("id", video.video_source)
-    p result
-    # if it has captions, try to fetch them and add them to the video model
-    # if result.items.length >0
-    #   caption_id = result.items[0].id      
-    #   captions_string = @service.download_caption(caption_id)
-    #   captions_lines = captions_string.split("\n\n")
-    #   captions = captions_lines.map do |line| 
-    #     line_array = line.split("\n")
-    #     {
-    #       start: line_array[0].split(",")[0],
-    #       end: line_array[0].split(",")[1],
-    #       text: line_array[1],
-    #       seconds: line_array[0].split(",")[0].split(':').map(&:to_f).inject(0) { |a, b| a * 60 + b }
-    #     }
-    #   end
-    #   p "I've fetched the captions!"
-    #   return captions        
-    # else
-    #   # If there are no captions, return nothing
-    #   p "There are no captions available yet"
-    #   return {}
-    # end
+    result = @service.list_videos('snippet', id: video.video_source)
+    p result.items[0].snippet.thumbnails.high.url
   end
 
   private
