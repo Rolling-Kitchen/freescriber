@@ -30,6 +30,7 @@ class VideosController < ApplicationController
     @video.video_source = video.id
     @video.captions = {}
     if @video.save!
+      flash[:success] = 'Video added!'
       redirect_to videos_path
     else
       render :new
@@ -49,4 +50,22 @@ class VideosController < ApplicationController
   def video_params
     params.require(:video).permit(:title, :description)
   end
+
+
+#   before_action :get_youtube_thumbnail
+
+# def get_youtube_thumbnail
+#   url = extract_url_from_body
+
+#   unless url.blank?
+#     client   = YouTubeIt::Client.new
+#     response = client.video_by(url)
+#     self.thumbnail = response.thumbnails.first.url
+#   end
+# end
+
+# def extract_url_from_body
+#   URI.extract(body).first
+# end
+
 end
