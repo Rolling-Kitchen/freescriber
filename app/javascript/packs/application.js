@@ -21,9 +21,6 @@ ActiveStorage.start()
 
 // External imports
 import "bootstrap";
-
-import "video";
-
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 
