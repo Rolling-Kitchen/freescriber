@@ -12,9 +12,11 @@ class VideosController < ApplicationController
 
   def show
     @video
+    yt = YoutubeApi.new
+    yt.get_thumbnail(@video)
     # raise
     if @video.captions === {}
-      yt = YoutubeApi.new
+      # yt = YoutubeApi.new
       @video.captions = yt.get_captions(@video)
       @video.save
     else
