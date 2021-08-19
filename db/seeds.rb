@@ -23,8 +23,8 @@ Video.destroy_all
   @user.save!
 
 @videos = ["1","2"]
-# @videos.each do |video|
-  
+@videos.each do |video|
+
   p 'created user and creating video now'
 Video.create!(
   user: @user,
@@ -142,6 +142,6 @@ Video.create!(
     {"end"=>"0:03:15.760", "text"=>"belong to the security group that you", "start"=>"0:03:10.720", "end_seconds"=>195.76, "start_seconds"=>190.72},
     {"end"=>"0:03:15.760", "text"=>"can that have", "start"=>"0:03:12.959", "end_seconds"=>195.76, "start_seconds"=>192.959}]
 )
-# end
+end
 
 p "seed done!"
