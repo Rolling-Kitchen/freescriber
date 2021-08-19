@@ -152,6 +152,7 @@ GEM
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.2)
       activesupport (>= 5.0.0)
+    json (2.5.1)
     jwt (2.2.3)
     listen (3.6.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
@@ -174,6 +175,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.12.0-x86_64-linux)
       racc (~> 1.4)
+    oauth (0.5.6)
     orm_adapter (0.5.0)
     os (1.1.1)
     pg (1.2.3)
@@ -266,6 +268,7 @@ GEM
     simple_form (5.1.0)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
+    simple_oauth (0.3.1)
     spring (2.1.1)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
@@ -280,9 +283,17 @@ GEM
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
+    turbolinks_render (0.9.21)
+      actionpack (>= 5.2.0)
+      activesupport (>= 5.2.0)
+      railties (>= 5.2.0)
+      turbolinks-source (~> 5.1)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     uber (0.1.0)
+    video_thumb (0.1.6)
+      json (~> 2.1)
+      nokogiri (~> 1.8)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.1.0)
@@ -305,6 +316,15 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
+    youtube_it (2.1.1)
+      builder
+      faraday
+      faraday (>= 0.7.3)
+      nokogiri
+      oauth
+      oauth (>= 0.4.4)
+      simple_oauth
+      simple_oauth (>= 0.1.5)
     zeitwerk (2.4.2)
 
 PLATFORMS
@@ -337,10 +357,13 @@ DEPENDENCIES
   simple_form
   spring
   turbolinks (~> 5)
+  turbolinks_render
   tzinfo-data
+  video_thumb
   web-console (>= 4.1.0)
   webdrivers
   webpacker (~> 5.0)
+  youtube_it
 
 RUBY VERSION
    ruby 2.6.6p146
