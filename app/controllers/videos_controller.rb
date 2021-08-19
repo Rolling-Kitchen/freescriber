@@ -3,7 +3,7 @@ class VideosController < ApplicationController
 
   def index
     @videos = Video.all
-    if params[:query].present?
+     if params[:query].present?
       @videos = Video.search_by_title_or_transcript(params[:query])
     else
       @videos = Video.all
@@ -43,6 +43,19 @@ class VideosController < ApplicationController
 
   def new
     @video = Video.new
+  end
+
+  def edit
+  end
+
+  def update
+    @video.update(video_params)
+    redirect_to videos_path(@video)
+  end
+
+  def destroy
+    @video.destroy
+    redirect_to videos_path
   end
 
   private

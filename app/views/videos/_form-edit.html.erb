@@ -1,0 +1,5 @@
+  <%= simple_form_for @video, remote: true do |f| %>
+    <%= f.input :title, label: 'Your title please', error: 'title is mandatory, please specify one' %>
+    <%= f.input :description, as: :text, :input_html => { :rows => 6 }, label: 'Your description please', error: 'description is mandatory, please specify one' %>
+    <%= f.button :submit, class: "btn-primary" %>
+  <% end %>

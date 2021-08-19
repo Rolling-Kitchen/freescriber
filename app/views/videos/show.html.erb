@@ -1,1 +1,7 @@
 <%= render 'videos/video-player' %>
+<%= button_to "Edit", edit_video_path(@video), :method => :get, class: "btn btn-primary" %>
+<br>
+<br>
+<%= button_to "Delete", video_path(@video), :method => :get, class: "btn btn-primary",
+              method: :delete,
+              data: { confirm: "Are you sure?" } %>
