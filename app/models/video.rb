@@ -20,10 +20,7 @@ class Video < ApplicationRecord
       tsearch: { prefix: true }
     }
 
+  def extract_url_from_body
+    URI.extract(body).first
+  end
 end
-
-def extract_url_from_body
-  URI.extract(body).first
-end
-end
-
