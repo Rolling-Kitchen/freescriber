@@ -16,6 +16,13 @@ class VideosController < ApplicationController
 
   def show
     @video = Video.find(params[:id])
+    # if @video.thumbnail === nil
+    # yt = YoutubeApi.new
+      #  yt.get_thumbnail(@video) returns a 360x480 jpg thubnail 
+    # yt.get_thumbnail(@video)
+    # else
+      # nil
+    # end
     authorize @video
     if @video.captions === {}
       yt = YoutubeApi.new

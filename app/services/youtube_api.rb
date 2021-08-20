@@ -104,6 +104,15 @@ class YoutubeApi
     end
   end
   
+  def get_thumbnail(video)
+    @service = Google::Apis::YoutubeV3::YouTubeService.new
+    @service.client_options.application_name = @application_name
+    @service.authorization = authorize
+    result = @service.list_videos('snippet', id: video.video_source)
+    p result.items[0].snippet.thumbnails.high.url
+    return result.items[0].snippet.thumbnails.high.url
+  end
+
   private
     
     def authorize
