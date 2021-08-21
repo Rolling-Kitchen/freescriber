@@ -1,7 +1,7 @@
-<% if @results ===nil %>
-<% p "rendering index page" %>
-<%= render 'videos/video-index-cards' %>
-<% else %>
+<% if @search_query %>
 <% p "rendering search page" %>
 <%= render 'videos/search-video-index-cards' %>
+<% else %>
+<% p "rendering index page" %>
+<%= render 'videos/video-index-cards' %>
 <% end %>

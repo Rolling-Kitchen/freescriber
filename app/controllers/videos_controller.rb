@@ -8,7 +8,8 @@ class VideosController < ApplicationController
     if params[:query].present?
       @videos = Video.search_by_title_or_transcript(params[:query])
       @search_query = params["query"]
-      @results = []
+      @caption_results = []
+      
 
       @videos.each_with_index.map{|video, index|
         new_result = {
@@ -30,9 +31,9 @@ class VideosController < ApplicationController
           end
         }
         p new_result
-        @results.push(new_result)
+        @caption_results.push(new_result)
       }
-      p @results
+      p @caption_results
       
     else
       @videos = Video.all

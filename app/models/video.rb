@@ -17,4 +17,5 @@ class Video < ApplicationRecord
   def extract_url_from_body
     URI.extract(body).first
   end
+
 end
