@@ -131,10 +131,16 @@
       replaceCaption.innerHTML = ""
       jsonResponse.forEach((caption)=>{
         console.log(caption, "hello")
-        replaceCaption.insertAdjacentHTML("beforeend", `<a>${caption.text}</a><br><br>`)
+        replaceCaption.insertAdjacentHTML("beforeend", `<a data-start-seconds=${caption.start_seconds} data-end-seconds=${caption.end_seconds} class=timecode>${caption.text}</a><br>`)
       })
+      
     }
-
+        Array.prototype.forEach.call(all_captions, function (element) {
+        element.addEventListener("click", function () {
+          console.log("timecode is: " + element.dataset.startSeconds);
+          player.seekTo(element.dataset.startSeconds, true);
+        });
+      });
 
   })
   console.log(textSearch)

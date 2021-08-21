@@ -96,7 +96,7 @@ class YoutubeApi
         }
       end
       p "I've fetched the captions!"
-      return captions        
+      return captions
     else
       # If there are no captions, return nothing
       p "There are no captions available yet"
@@ -128,7 +128,6 @@ class YoutubeApi
         url = authorizer.get_authorization_url(base_url: @redirect_uri)
         puts "Open the following URL in the browser and enter the " +
             "resulting code after authorization"
-        # code = ENV['YOUTUBE_TOKEN']
         puts url
         code = gets
         # code = ENV['YOUTUBE_TOKEN']

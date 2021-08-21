@@ -51,7 +51,6 @@ class VideosController < ApplicationController
     end
     authorize @video
     if @video.captions == {}
-
       yt = YoutubeApi.new
       @video.captions = yt.get_captions(@video)
       @video.save
