@@ -54,6 +54,7 @@ class VideosController < ApplicationController
     end
     authorize @video
     if @video.captions == {}
+
       yt = YoutubeApi.new
       @video.captions = yt.get_captions(@video)
       @video.save
@@ -97,6 +98,17 @@ class VideosController < ApplicationController
   def destroy
     @video.destroy
     redirect_to videos_path
+  end
+
+  def text_search
+    set_video
+    array_of_text = []
+    @video.captions.each do |hash|
+      if hash["text"].include? params[:text_query]
+        array_of_text << hash
+      end
+    end
+    render json: array_of_text
   end
 
   private

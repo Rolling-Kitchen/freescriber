@@ -1,0 +1,15 @@
+#status-pending {
+   display: inline-block;
+   height: 20px;
+   padding: 5px;
+   background-color: $main-pending;
+   color: black;
+}
+
+#status-completed {
+    display: inline-block;
+    height: 20px;
+    padding: 5px;
+    background-color: $main-success;
+    color: black;
+ }
