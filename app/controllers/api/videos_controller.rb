@@ -9,6 +9,7 @@ class Api::VideosController < ApplicationController
     end
     render json: array_of_text
   end
+
     private
   def set_video
     @video = Video.find(params[:id])

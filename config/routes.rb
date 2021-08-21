@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     get 'videos/:id/search', to: 'videos#search'
   end
+  get 'videos/:id/text_search', to: 'videos#text_search', as: :text_search
+
 end
