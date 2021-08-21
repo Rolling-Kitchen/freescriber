@@ -75,3 +75,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Youtube Thumbnail
 gem 'youtube_it'
 gem 'video_thumb'
+
+gem "google-cloud-translate", "~> 3.2"
