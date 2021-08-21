@@ -9,16 +9,15 @@ class VideosController < ApplicationController
       @search_query = params["query"]
       @results = []
 
-
       @videos.each_with_index.map{|video, index|
         new_result = {
-          title: "",
-          description: "",
+          title: video.title,
+          description: video.description,
+          created_at: video.created_at,
           captions: []
         }
         if video.title.include? @search_query
-          new_result[:title] = video.title
-          
+          new_result[:title] = video.title            
         end
         if video.description.include? @search_query
           new_result[:title] = video.description
