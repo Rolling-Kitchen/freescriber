@@ -32,6 +32,8 @@ class VideosController < ApplicationController
     else
       nil
     end
+    yt = YoutubeApi.new
+    @translation = yt.translate(@video.captions)
   end
 
   def create

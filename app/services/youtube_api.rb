@@ -4,6 +4,8 @@ class YoutubeApi
     require 'rubygems'
     require 'google/apis'
     require 'google/apis/youtube_v3'
+    require 'google/cloud'
+    require "google/cloud/translate"
     require 'googleauth'
     require 'googleauth/stores/file_token_store'
     require 'fileutils'
@@ -111,6 +113,12 @@ class YoutubeApi
     result = @service.list_videos('snippet', id: video.video_source)
     p result.items[0].snippet.thumbnails.high.url
     return result.items[0].snippet.thumbnails.high.url
+  end
+
+  def translate(captions)
+    client = Google::Cloud::Translate.new
+    @translation = @translate.translate captions to: "la"
+    return @translation
   end
 
   private

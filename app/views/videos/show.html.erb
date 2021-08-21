@@ -1,3 +1,13 @@
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    🌍 Translate
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Chinese</a>
+    <a class="dropdown-item" href="#">Japanese</a>
+    <a class="dropdown-item" href="#">Arabic</a>
+  </div>
+</div>
 <%= render 'videos/video-player' %>
 <%= button_to "Edit", edit_video_path(@video), :method => :get, class: "btn btn-primary" %>
 <br>
@@ -5,3 +15,5 @@
 <%= button_to "Delete", video_path(@video), :method => :get, class: "btn btn-primary",
               method: :delete,
               data: { confirm: "Are you sure?" } %>
+
+              <p><%= @translation %></p>
