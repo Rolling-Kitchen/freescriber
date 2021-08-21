@@ -1,7 +1,6 @@
 <div id="content-wrapper" class="d-flex flex-column">
     <div id="content">
          <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
             <!-- Toggle-->
             <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                 <i class="fa fa-bars"></i>
@@ -9,20 +8,14 @@
             
             <!-- Search -->
             <%= render 'shared/navbar/search' %>  
-
              <!-- Menu -->
              <ul class="navbar-nav ml-auto">
-        
-
              <!--Alert -->
-            <%= render 'shared/alert/notification' %>   
-            <%= render 'shared/alert/message' %>  
-            
-            </li>
-            <%= render 'shared/divider/vertical' %>  
-
+            <%#= render 'shared/alert/notification' %>   
+            <%#= render 'shared/alert/message' %>  
+            <%# </li> %>
+            <%#= render 'shared/divider/vertical' %>  
             <!--User -->
             <%= render 'shared/navbar/user' %>  
         </ul>
     </nav>
- 
