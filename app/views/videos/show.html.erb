@@ -13,6 +13,7 @@
     <a class="dropdown-item" href="/videos/<%= @video.id %>?language=de">German</a>
   </div>
 </div>
+
 <%= render 'videos/video-player' %>
 <%= button_to "Edit", edit_video_path(@video), :method => :get, class: "btn btn-primary" %>
 <br>
