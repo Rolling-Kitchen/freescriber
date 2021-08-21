@@ -7,6 +7,31 @@ class VideosController < ApplicationController
     @videos = policy_scope(Video)
     if params[:query].present?
       @videos = Video.search_by_title_or_transcript(params[:query])
+      @search_query = params["query"]
+      @caption_results = []
+      @videos.each_with_index.map{|video, index|
+        video_captions = []
+        # new_result = {
+        #   title: video.title,
+        #   description: video.description,
+        #   created_at: video.created_at,
+        #   captions: []
+        # }
+        # if video.title.include? @search_query
+        #   new_result[:title] = video.title            
+        # end
+        # if video.description.include? @search_query
+        #   new_result[:title] = video.description
+        # end
+        video.captions.each_with_index.map{|caption, index| 
+          if caption["text"].include? @search_query
+            # create for last index or first index
+            video_captions.push(video.captions[index-1]["start"] + " ..." + video.captions[index-1]["text"] + " " + caption["text"] + " " + video.captions[index-+1]["text"] + "...")
+          end
+        }
+        @caption_results.push(video_captions)
+      }
+      
     else
       @videos = Video.all
     end
@@ -25,6 +50,7 @@ class VideosController < ApplicationController
     end
     authorize @video
     if @video.captions == {}
+
       yt = YoutubeApi.new
       @video.captions = yt.get_captions(@video)
       @video.save
@@ -75,6 +101,17 @@ class VideosController < ApplicationController
   def destroy
     @video.destroy
     redirect_to videos_path
+  end
+
+  def text_search
+    set_video
+    array_of_text = []
+    @video.captions.each do |hash|
+      if hash["text"].include? params[:text_query]
+        array_of_text << hash
+      end
+    end
+    render json: array_of_text
   end
 
   private

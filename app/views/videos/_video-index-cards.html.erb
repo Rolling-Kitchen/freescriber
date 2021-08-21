@@ -1,28 +1,35 @@
 <div class="container py-2">
 	<div class="h1 text-center text-dark" id="pageHeaderTitle">Your videos (<%= @videos.count%>)</div>
+
 	<% @videos.each do |video| %>
 	<%= link_to video_path(video) do %>
-	<article class="postcard light blue">
-		<%= cl_image_tag video.photo.key, :effect=>"trim" %>
-		<div class="postcard__text t-dark">
-			<h1 class="postcard__title yellow">
-				<%= video.title %></h1>
-			<div class="postcard__subtitle small">
-				<time datetime="2020-05-25 12:00:00">
-					<i class="fas fa-calendar-alt mr-2"></i><%= video.created_at %>
-				</time>
-			</div>
-			<div class="postcard__bar"></div>
-			<div class="postcard__preview-txt"><%= video.description %></div>
-			<% end %>
-			<ul class="postcard__tagbox">
-				<li class="tag__item"><i class="fas fa-tag mr-2"></i>Podcast</li>
-				<li class="tag__item"><i class="fas fa-clock mr-2"></i>55 mins.</li>
-				<li class="tag__item play yellow">
-					<a href="#"><i class="fas fa-play mr-2"></i>Play Episode</a>
-				</li>
-			</ul>
+	<article>
+		<div class="videocard light blue">
+		<div class="videocard-thumbnail">
+			<%= cl_image_tag video.photo.key%>
 		</div>
-	</article>
+			<div class="videocard-text t-dark">
+				<h1 class="videocard-title yellow">
+				
+					<%= video.title %></h1>
+
+				<div class="videocard-subtitle small">
+					<time datetime="2020-05-25 12:00:00">
+							<i class="fas fa-calendar-alt mr-2"></i><%= video.created_at %>	 
+							<span class="badge badge-warning" id="status-pending">Pending</span> 
+							<span class="badge badge-success" id="status-completed">Completed</span> 
+					</time>
+				</div>
+				<div class="videocard-bar"></div>
+				<div class="videocard-preview-txt"><%= video.description %></div>
+				<% end %>
+				<ul class="videocard-tagbox">
+					<li class="tag-item"><i class="fas fa-tag mr-2"></i>Business</li>
+					<li class="tag-item"><i class="fas fa-clock mr-2"></i>55 mins.</li>
+					</li>
+				</ul>
+			</div>
+			</div>
+		</article>
 	<% end %>
 </div>
