@@ -19,7 +19,6 @@ class VideosController < ApplicationController
     @video = Video.find(params[:id])
     unless @video.photo.attached?
       yt = YoutubeApi.new
-      #yt.get_thumbnail(@video) returns a 360x480 jpg thubnail 
       @thumbnail = yt.get_thumbnail(@video)
       file = URI.open(@thumbnail)
       @video.photo.attach(io: file, filename: 'thumbnail.png', content_type: 'image/png')
@@ -33,7 +32,12 @@ class VideosController < ApplicationController
       nil
     end
     yt = YoutubeApi.new
-    @translation = yt.translate(@video.captions)
+    if params["language"]
+      language = params["language"]
+      @translation = yt.translate(@video, language)
+    else
+      @translation = nil
+    end
   end
 
   def create

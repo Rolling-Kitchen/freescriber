@@ -3,9 +3,10 @@
     🌍 Translate
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="/videos/<%= @video.id %>">English</a>
     <a class="dropdown-item" href="#">Chinese</a>
-    <a class="dropdown-item" href="#">Japanese</a>
-    <a class="dropdown-item" href="#">Arabic</a>
+    <a class="dropdown-item" href="/videos/<%= @video.id %>?language=nl">Dutch</a>
+    <a class="dropdown-item" href="/videos/<%= @video.id %>?language=de">German</a>
   </div>
 </div>
 <%= render 'videos/video-player' %>
@@ -15,5 +16,3 @@
 <%= button_to "Delete", video_path(@video), :method => :get, class: "btn btn-primary",
               method: :delete,
               data: { confirm: "Are you sure?" } %>
-
-              <p><%= @translation %></p>
