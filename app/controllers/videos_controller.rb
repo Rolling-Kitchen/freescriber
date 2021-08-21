@@ -6,6 +6,34 @@ class VideosController < ApplicationController
     @videos = policy_scope(Video)
     if params[:query].present?
       @videos = Video.search_by_title_or_transcript(params[:query])
+      @search_query = params["query"]
+      @results = []
+
+
+      @videos.each_with_index.map{|video, index|
+        new_result = {
+          title: "",
+          description: "",
+          captions: []
+        }
+        if video.title.include? @search_query
+          new_result[:title] = video.title
+          
+        end
+        if video.description.include? @search_query
+          new_result[:title] = video.description
+        end
+        video.captions.each_with_index.map{|caption, index| 
+          if caption["text"].include? @search_query
+            # create for last index or first index
+            new_result[:captions].push(video.captions[index-1]["start"] + " ..." + video.captions[index-1]["text"] + " " + caption["text"] + " " + video.captions[index-+1]["text"] + "...")
+          end
+        }
+        p new_result
+        @results.push(new_result)
+      }
+      p @results
+      
     else
       @videos = Video.all
     end

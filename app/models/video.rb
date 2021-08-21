@@ -17,10 +17,13 @@ class Video < ApplicationRecord
   pg_search_scope :search_by_title_or_transcript,
     against: [ :title, :description, :captions ],
     using: {
-      tsearch: { prefix: true }
+      tsearch: { prefix: true,
+              highlight: {
+        start_sel: '<b>',
+        stop_sel: '</b>',
+      }
+      }
     }
-
-end
 
 def extract_url_from_body
   URI.extract(body).first
