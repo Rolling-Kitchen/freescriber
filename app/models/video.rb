@@ -7,10 +7,6 @@ class Video < ApplicationRecord
     against: [ :title, :description, :captions ],
     using: {
       tsearch: { prefix: true,
-              highlight: {
-        start_sel: '<b>',
-        stop_sel: '</b>',
-      }
       }
     }
 
