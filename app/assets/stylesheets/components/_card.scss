@@ -38,10 +38,32 @@
   }
 
   .videocard-img {
-    max-height: 180px;
+  
     width: 100%;
-    object-fit:fill;
     position: relative;
+    object-fit: cover;
+  }
+  
+  .videocard a {
+    color: inherit;
+    height: 200px;
+  }
+
+
+  
+  img {
+    vertical-align: middle;
+    border-style: none;
+    object-fit: fill;
+  }
+
+  
+
+  .videocard-thumbnail {
+  
+    width: 100%;
+    position: relative;
+    object-fit: cover;
   }
 
   .videocard-img_link {
@@ -49,11 +71,11 @@
   }
 
   .videocard-bar {
-    width: 50px;
+    width: 20px;
     height: 10px;
     margin: 10px 0;
     border-radius: 5px;
-    background-color: #424242;
+    background-color:transparent;
     transition: width 0.2s ease;
   }
 
@@ -65,7 +87,8 @@
   }
 
   .videocard-preview-txt {
-    overflow: hidden;
+    overflow: auto;
+    max-height: 100px;
     text-overflow: ellipsis;
     text-align: justify;
     height: 100%;
@@ -96,7 +119,7 @@
       }
     }
   }
-video
+
 
 
   &:before {
