@@ -119,10 +119,6 @@ class YoutubeApi
     @service = Google::Cloud::Translate.translation_service do |config|
       config.credentials = "./credentials.json"
     end
-    # @service.client_options.application_name = @application_name
-    # @service.authorization = authorize
-    # projectname = gets "https://cloudresourcemanager.googleapis.com/v3/projects:search"
-    # p projectname
     @translation = @service.translate_text({
       "contents": video.captions.map{|caption| caption['text']},
       "source_language_code": "en", 
