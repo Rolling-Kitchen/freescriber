@@ -4,6 +4,8 @@ class YoutubeApi
     require 'rubygems'
     require 'google/apis'
     require 'google/apis/youtube_v3'
+    require 'google/cloud'
+    require 'google/cloud/translate'
     require 'googleauth'
     require 'googleauth/stores/file_token_store'
     require 'fileutils'
@@ -96,7 +98,7 @@ class YoutubeApi
         }
       end
       p "I've fetched the captions!"
-      return captions        
+      return captions
     else
       # If there are no captions, return nothing
       p "There are no captions available yet"
@@ -111,6 +113,19 @@ class YoutubeApi
     result = @service.list_videos('snippet', id: video.video_source)
     p result.items[0].snippet.thumbnails.high.url
     return result.items[0].snippet.thumbnails.high.url
+  end
+
+  def translate(video, language)
+    @service = Google::Cloud::Translate.translation_service do |config|
+      config.credentials = "./credentials.json"
+    end
+    @translation = @service.translate_text({
+      "contents": video.captions.map{|caption| caption['text']},
+      "source_language_code": "en", 
+      "target_language_code": language,
+      "parent": "projects/freescriber"
+    })
+    return @translation.translations.map{ |translation| translation.translated_text }
   end
 
   private
@@ -128,7 +143,6 @@ class YoutubeApi
         url = authorizer.get_authorization_url(base_url: @redirect_uri)
         puts "Open the following URL in the browser and enter the " +
             "resulting code after authorization"
-        # code = ENV['YOUTUBE_TOKEN']
         puts url
         code = gets
         # code = ENV['YOUTUBE_TOKEN']
