@@ -2,7 +2,7 @@
 <div class="row">
   <div class="col-md-12 col-lg-8">
     <div class="card card-body">
-      <div class="embed-responsive embed-responsive-16by9"> 
+      <div class="embed-responsive embed-responsive-16by9">
         <%= form_tag  do %>
           <div id="player"></div>
         <% end %>
@@ -12,18 +12,30 @@
   <div class="col-md-12 col-lg-4">
     <div class="card card-body" style="overflow: auto;max-height: 550px;" id="caption_container">
       <h5 class="m-b-0">The Transcript</h5>
+        <%= form_tag text_search_path, method: :get, class: 'form-text', remote: true do %>
+          <%= text_field_tag :text_query,
+          params[:text_query],
+          class: "form-control form-color form-radius",
+          placeholder: "",
+          data: {
+          search_target: "input"
+          }
+          %>
+          <%= submit_tag "Search", class: "btn btn-primary btn-border btn-radius btn-font-color", data: { search_target: 'button' } %>
+        <% end %>
+        <div id="caption-text">
         <% if @video.captions.length === 0 %>
           "Sorry! Transcript not available yet"
-      <% else %>
-        <% @video.captions.each do |caption| %>
-            <%= content_tag("a"," #{caption["text"]}", data: { start_seconds: caption["start_seconds"], end_seconds: caption["end_seconds"]}, class: "timecode") %>
+        <% else %>
+          <% @video.captions.each do |caption| %>
+              <%= content_tag("a"," #{caption["text"]}", data: { start_seconds: caption["start_seconds"], end_seconds: caption["end_seconds"]}, class: "timecode") %>
         <% end %>
+        </div>
       <% end %>
     </div>
   </div>
-<%# Create a js file - an init file -> application.js %>
-<%# if the document contains a specific id - run %>
 <script>
+
     // 2. This code loads the IFrame Player API code asynchronously.
     var tag = document.createElement("script");
     tag.src = "https://www.youtube.com/iframe_api";
@@ -58,7 +70,7 @@
       });
     }
   function onPlayerError(event) {
-    window.location.reload(true); 
+    window.location.reload(true);
   }
     // 4. The API will call this function when the video player is ready.
     function onPlayerReady(event) {
@@ -105,4 +117,25 @@
           console.log("video paused at " + player.getCurrentTime());
       }
     }
+
+  const textSearch = document.querySelector(".form-text")
+  textSearch.addEventListener("ajax:success", (event, data)=>{
+    console.log(event, data)
+    console.log("asd")
+    const jsonResponse = event.detail[0]
+    console.log(jsonResponse)
+    const replaceCaption = document.getElementById("caption-text")
+    if (jsonResponse.length !== 0) {
+      replaceCaption.innerHTML = ""
+      jsonResponse.forEach((caption)=>{
+        console.log(caption, "hello")
+        replaceCaption.insertAdjacentHTML("beforeend", `<a>${caption.text}</a><br><br>`)
+      })
+    }
+
+
+  })
+  console.log(textSearch)
+
+
 </script>
