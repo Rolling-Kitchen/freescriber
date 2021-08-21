@@ -1,5 +1,6 @@
 class VideosController < ApplicationController
   include ActionView::Helpers::UrlHelper
+  require "open-uri"
   before_action :set_video, only: %i[show edit update destroy]
 
   def index
@@ -43,8 +44,15 @@ class VideosController < ApplicationController
 
   def show
     @video = Video.find(params[:id])
+    unless @video.photo.attached?
+      yt = YoutubeApi.new
+      #yt.get_thumbnail(@video) returns a 360x480 jpg thubnail 
+      @thumbnail = yt.get_thumbnail(@video)
+      file = URI.open(@thumbnail)
+      @video.photo.attach(io: file, filename: 'thumbnail.png', content_type: 'image/png')
+    end
     authorize @video
-    if @video.captions === {}
+    if @video.captions == {}
       yt = YoutubeApi.new
       @video.captions = yt.get_captions(@video)
       @video.save
