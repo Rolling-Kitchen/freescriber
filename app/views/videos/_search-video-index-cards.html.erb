@@ -6,8 +6,7 @@
 		<article id="videocard_search_container">
 		<div class="videocard light blue">
 			<%= cl_image_tag video.photo.key, :effect=>"trim" %>
-			<a class="videocard-img_link" href="#">
-				</a>
+	
 			<div class="videocard-text t-dark">
 				<h1 class="videocard-title yellow">				
 					 <%= video.title %></h1>
@@ -33,7 +32,7 @@
 						<h3>Results from Transcript </h3>
 						<ul>
 							<% @caption_results[index].each do |caption| %>
-			<li><%= caption.gsub!(/#{@search_query}/, '<strong>\0</strong>') %></li>
+			<li><%= caption.gsub!(/#{@search_query}/, '<b>\0</b>') %></li>
 			<% end %>
 			</ul>
 			</div>
@@ -42,31 +41,36 @@
 	<% end %>
 </div>
 
+<script>
+  const textSearch = document.querySelector(".form-text")
+  textSearch.addEventListener("ajax:success", (event, data)=>{
+    console.log(event, data)
+    console.log("asd")
+    const jsonResponse = event.detail[0]
+    console.log(jsonResponse)
+    const replaceCaption = document.getElementById("caption-text")
+    if (jsonResponse.length !== 0) {
+      replaceCaption.innerHTML = ""
+      jsonResponse.forEach((caption)=>{
+        console.log(caption, "hello")
+        replaceCaption.insertAdjacentHTML("beforeend", `<a>${caption.text}</a><br><br>`)
+      })
+    }
+
+
+  })
+  console.log(textSearch)
+
+
+</script>
+
 
 <style>
-	.temp_styling{
-		margin: 10px 40px;
-	}
 
-	#videocard_search_container{
-    background-color: #e1e5ea;
-    /* flex-wrap: wrap; */
-    /* display: flex; */
-    box-shadow: 0 4px 21px -12px rgb(0 0 0 / 66%);
-    border-radius: 10px;
-    margin: 0 0 2rem 0;
-    /* overflow: hidden; */
-    /* position: relative; */
-    color: black;
-	}
-	.videocard {
-    display: flex;
-    box-shadow: none;
-    border-radius: 10px;
-    margin: 0 0 2rem 0;
-    overflow: hidden;
-    position: relative;
-    color: #ffffff;
+.current_caption{
+  background-color:yellow;
+  color:black;
 }
+
 
 </style>
