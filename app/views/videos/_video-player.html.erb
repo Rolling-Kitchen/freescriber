@@ -4,7 +4,8 @@
     <div class="card card-body">
       <div class="embed-responsive embed-responsive-16by9">
         <%= form_tag  do %>
-        <div id="player"></div>
+        <%# <div id="player"></div> %>
+        <%= content_tag("div",'', data: { video_source: @video.video_source}, class: "hellocard", id: "player") %>
         <% end %>
       </div>
     </div>

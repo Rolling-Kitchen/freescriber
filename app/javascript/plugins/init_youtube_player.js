@@ -1,24 +1,15 @@
 export function init_youtube_player() {
   const caption_container = document.getElementById("caption_container");
   if (caption_container) {
-    console.log('it runs')
-    // 2. This code loads the IFrame Player API code asynchronously.
-    // var tag = document.createElement("script");
-    // tag.src = "https://www.youtube.com/iframe_api";
-    // var firstScriptTag = document.getElementsByTagName("script")[0];
-    // firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-    // 3. This function creates an <iframe> (and YouTube player)
-    //    after the API code downloads.
     var YouTubeIframeLoader = require('youtube-iframe');
-
     var player;
+    const container_div_source = document.getElementById("player").dataset['videoSource'];
     const all_captions = document.getElementsByClassName("timecode");
-
     YouTubeIframeLoader.load(function (YT) {
       player = new YT.Player("player", {
         height: "490",
         width: "800",
-        videoId: "<%=@video.video_source %>",
+        videoId: container_div_source,
         enablejsapi: 1,
         modestbranding: 1,
         rel: 0,
@@ -36,11 +27,10 @@ export function init_youtube_player() {
       });
     });
     function onPlayerError(event) {
-        window.location.reload(true);
+        // window.location.reload(true);
       }
     // 4. The API will call this function when the video player is ready.
     function onPlayerReady(event) {
-        console.log('player is ready')
         // event.target.playVideo();
       }
 
@@ -67,7 +57,7 @@ export function init_youtube_player() {
           caption_container.scrollTop =
             current_caption.offsetTop - caption_container.offsetTop - 120;
         }
-        timeout_setter = setTimeout(subtitle_sync, 1000);
+        setTimeout(subtitle_sync, 1000);
       }
 
     function onPlayerStateChange(event) {

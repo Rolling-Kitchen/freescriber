@@ -9,9 +9,6 @@ class Video < ApplicationRecord
       tsearch: { prefix: true,
       }
     }
-    def has_captions?
-      video.captions
-    end
 
   def extract_url_from_body
     URI.extract(body).first
