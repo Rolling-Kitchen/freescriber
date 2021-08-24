@@ -84,12 +84,14 @@ export function init_youtube_player() {
       console.log(event, data)
       const jsonResponse = event.detail[0]
       console.log(jsonResponse)
-      const replaceCaption = document.getElementById("caption-text")
+      const captionSearch = document.getElementById("caption-search")
+      const captionText = document.getElementById("caption-text")
       if (jsonResponse.length !== 0) {
-        replaceCaption.innerHTML = ""
+        captionSearch.innerHTML = ""
+        captionText.style.display = "none"
         jsonResponse.forEach((caption) => {
           console.log(caption, "hello")
-          replaceCaption.insertAdjacentHTML("beforeend", `<a data-start-seconds=${caption.start_seconds} data-end-seconds=${caption.end_seconds} class=timecode>${caption.text}</a><br>`)
+          captionSearch.insertAdjacentHTML("beforeend", `<a data-start-seconds=${caption.start_seconds} data-end-seconds=${caption.end_seconds} class=timecode>${caption.text}</a><br>`)
         })
 
       }
@@ -97,6 +99,8 @@ export function init_youtube_player() {
         element.addEventListener("click", function () {
           console.log("timecode is: " + element.dataset.startSeconds);
           player.seekTo(element.dataset.startSeconds, true);
+          captionSearch.innerHTML = ""
+          captionText.style.display = "block"
         });
       });
 

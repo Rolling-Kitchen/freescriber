@@ -24,6 +24,8 @@
           %>
           <%= submit_tag "Search", class: "btn btn-primary btn-border btn-radius btn-font-color", data: { search_target: 'button' } %>
         <% end %>
+        <div id="caption-search">
+        </div>
         <div id="caption-text">
         <% if @video.captions.length === 0 %>
           "Sorry! Transcript not available yet"
