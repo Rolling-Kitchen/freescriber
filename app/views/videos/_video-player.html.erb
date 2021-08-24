@@ -4,7 +4,7 @@
     <div class="card card-body">
       <div class="embed-responsive embed-responsive-16by9">
         <%= form_tag  do %>
-          <div id="player"></div>
+        <div id="player"></div>
         <% end %>
       </div>
     </div>
@@ -86,11 +86,11 @@
         }
       }
     }
+
     function subtitle_sync() {
       var current_time = player.getCurrentTime();
       let current_caption = get_subtitle(current_time);
-      if (current_caption.classList.contains("current_caption")) {
-      } else {
+      if (current_caption.classList.contains("current_caption")) {} else {
         Array.prototype.forEach.call(all_captions, function (element) {
           element.classList.remove("current_caption");
         });
