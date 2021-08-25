@@ -1,11 +1,9 @@
 <div class="container py-2">
-
-<% if  @search_query === nil %>
-  <div class="h1 text-center text-dark" id="pageHeaderTitle">My Videos (<%= @videos.count%>)</div>
-	<% else %>
-  <div class="h1 text-center text-dark" id="pageHeaderTitle"> Results for "<%= @search_query %>" (<%= @videos.count%>) </div>	
-<% end %>
-
+  <% if  @search_query === nil %>
+    <div class="h1 text-center text-dark" id="pageHeaderTitle">My Videos (<%= @videos.count%>)</div>
+  <% else %>
+    <div class="h1 text-center text-dark" id="pageHeaderTitle"> Results for "<%= @search_query %>" (<%= @videos.count%>) </div>
+  <% end %>
   <% @videos.each_with_index do |video, index| %>
     <%= link_to video_path(video) do %>
       <article>
@@ -38,20 +36,23 @@
     </div>
     <% if @caption_results != nil %>
       <div class="temp_styling">
+          <% if @caption_results[index] != [] %>
         <h3>Results from Transcript </h3>
         <ul>
-          <% @caption_results[index].each do |caption| %>
-            <li><%= caption.gsub!(/#{@search_query}\w*\b/, '<span class = "search_term_highlight">\0</span>').html_safe %></li>
-          <% end %>
+            <% @caption_results[index].each_with_index do |caption, index| %>
+              <%= link_to video_path(video, :start => caption[0]) do %>
+                <li><%= caption[1].gsub!(/#{@search_query}\w*\b/, '<span class = "search_term_highlight">\0</span>').html_safe %></li>
+              <% end %>
+            <% end %>
         </ul>
+          <% end %>
       </div>
     <% end %>
   </article>
 <% end %>
 </div>
-
 <style>
-.search_term_highlight{
-	background: yellow;
-}
+  .search_term_highlight{
+  	background: yellow;
+  }
 </style>
