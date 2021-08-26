@@ -40,7 +40,7 @@
         <h3>Results from Transcript </h3>
         <ul>
             <% @caption_results[index].each_with_index do |caption, index| %>
-              <%= link_to video_path(video, :start => caption[0]) do %>
+              <%= link_to video_path(video, :start_skim => caption[0]) do %>
                 <li><%= caption[1].gsub!(/#{@search_query}\w*\b/, '<span class = "search_term_highlight">\0</span>').html_safe %></li>
               <% end %>
             <% end %>

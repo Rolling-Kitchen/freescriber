@@ -32,6 +32,11 @@ export function init_youtube_player() {
     // 4. The API will call this function when the video player is ready.
     function onPlayerReady(event) {
         // event.target.playVideo();
+        const urlParams = new URLSearchParams(window.location.search);
+        const skim_value = urlParams.get("start_skim")
+        console.log ("skim value");
+        console.log (skim_value);
+        player.seekTo(skim_value, true);
       }
 
     // https://stackoverflow.com/questions/37904499/sync-embedded-youtube-video-time-stamp-to-custom-progress-bar
