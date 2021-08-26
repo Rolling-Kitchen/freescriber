@@ -16,14 +16,13 @@ class VideosController < ApplicationController
             case index
               when 0 
                 video_captions.push([video.captions[index]["start_seconds"],(video.captions[index]["start"] + " " + caption["text"] + " " + video.captions[index+1]["text"] + "...")])
-              when video.captions.length-1 
-                video_captions.push([video.captions[index-1]["start_seconds"],(video.captions[index-1]["start"] + " ..." + video.captions[index-1]["text"] + " " + caption["text"] + " " + video.captions[index+1]["text"] + "...")])
+              when video.captions.length - 1 
+                video_captions.push([video.captions[index-1]["start_seconds"],(video.captions[index-1]["start"] + " ..." + video.captions[index-1]["text"] + " " + caption["text"] + " ")])
               else
                 video_captions.push([video.captions[index-1]["start_seconds"], (video.captions[index-1]["start"] + " ..." + video.captions[index-1]["text"] + " " + caption["text"] + " " + video.captions[index+1]["text"] + "...")])
             end
           end
         }
-        p video_captions
         @caption_results.push(video_captions)
       }
       
