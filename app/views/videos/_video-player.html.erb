@@ -30,9 +30,11 @@
         <% if @video.captions.length === 0 %>
           "Sorry! Transcript not available yet"
         <% else %>
+        <ul>
           <% @video.captions.each do |caption| %>
-              <%= content_tag("a"," #{caption["text"]}", data: { start_seconds: caption["start_seconds"], end_seconds: caption["end_seconds"]}, class: "timecode") %>
+              <li><%= content_tag("a"," #{caption["text"]}", data: { start_seconds: caption["start_seconds"], end_seconds: caption["end_seconds"]}, class: "timecode") %></li>
         <% end %>
+        </ul>
         </div>
       <% end %>
     </div>
