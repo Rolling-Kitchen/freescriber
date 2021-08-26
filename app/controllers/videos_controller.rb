@@ -1,10 +1,11 @@
 class VideosController < ApplicationController
   include ActionView::Helpers::UrlHelper
   require "open-uri"
-  before_action :set_video, only: %i[show edit update destroy]
+  before_action :set_video, only: %i[show edit update destroy toggle_favorite]
 
   def index
     @videos = policy_scope(Video)
+      @favorite_videos = current_user.favorited_by_type('Video')
     if params[:query].present?
       @videos = Video.search_by_title_or_transcript(params[:query])
       @search_query = params["query"]
@@ -111,6 +112,17 @@ class VideosController < ApplicationController
       end
     end
     render json: array_of_text
+  end
+
+  def toggle_favorite
+    current_user.favorited?(@video) ? current_user.unfavorite(@video) : current_user.favorite(@video)
+    respond_to do |format|
+      format.js {render inline: "location.reload();" }
+    end
+  end
+
+  def show_favorites
+    @favorites = current_user.all_favorited
   end
 
   private

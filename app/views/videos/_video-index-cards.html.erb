@@ -5,19 +5,28 @@
 	<%= link_to video_path(video) do %>
 	<article>
 		<div class="videocard light blue">
-		<div class="videocard-thumbnail">
-			<%= cl_image_tag video.photo.key%>
-		</div>
+			<div class="videocard-thumbnail">
+				<%= cl_image_tag video.photo.key%>
+			</div>
 			<div class="videocard-text t-dark">
 				<h1 class="videocard-title yellow">
-				
+
 					<%= video.title %></h1>
 
 				<div class="videocard-subtitle small">
 					<time datetime="2020-05-25 12:00:00">
-							<i class="fas fa-calendar-alt mr-2"></i><%= video.created_at %>	 
-							<span class="badge badge-warning" id="status-pending">Pending</span> 
-							<span class="badge badge-success" id="status-completed">Completed</span> 
+						<i class="fas fa-calendar-alt mr-2"></i><%= video.created_at %>
+						<span class="badge badge-warning" id="status-pending">Pending</span>
+						<span class="badge badge-success" id="status-completed">Completed</span>
+						<%= link_to toggle_favorite_video_path(video), remote: true, method: :post do %>
+						<div class="like-icon mx-2 <%= 'red' if current_user.favorited?(video) %>" data-id="<%= video.id %>">
+							<% if current_user.favorited?(video) %>
+							<i class="fas fa-heart"></i>
+							<% else %>
+							<i class="far fa-heart"></i>
+							<% end %>
+						</div>
+						<% end %>
 					</time>
 				</div>
 				<div class="videocard-bar"></div>
@@ -29,7 +38,7 @@
 					</li>
 				</ul>
 			</div>
-			</div>
-		</article>
+		</div>
+	</article>
 	<% end %>
 </div>

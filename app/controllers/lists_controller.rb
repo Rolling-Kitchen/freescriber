@@ -3,6 +3,7 @@ class ListsController < ApplicationController
   
   def index
     @lists = List.all
+    current_user.favorites.map(&:favoritable_id)
   end
 
    def new

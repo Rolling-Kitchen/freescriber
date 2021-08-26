@@ -6,4 +6,5 @@ class User < ApplicationRecord
   enum job:{ student: 0, office_worker: 1, researcher: 2, teacher: 3, content_creator: 4, seo: 5, podcaster: 6, media: 7 }
   has_many :videos, dependent: :destroy
   has_many :lists
+  acts_as_favoritor
 end

@@ -15,6 +15,19 @@
   </div>
 </div>
 
+<div class="dropdown">
+<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+    aria-haspopup="true" aria-expanded="false">
+    ➕ Add To List
+  </button>
+<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+  <a class="dropdown-item" href="/lists/new">+ Create New List</a>
+  <% current_user.lists.each do |list| %>
+  <a class="dropdown-item" href="/lists/<%= list.id %>"><%= list.name %></a>
+  <% end %>
+  </div>
+</div>
+
 <%= render 'videos/video-player' %>
 <%= button_to "Edit", edit_video_path(@video), :method => :get, class: "btn btn-primary" %>
 <br>

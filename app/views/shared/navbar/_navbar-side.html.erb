@@ -37,20 +37,27 @@
         <%= render 'shared/divider/horizontal' %>
 
 
-        <!-- Heading-02 -->
+        <!-- Heading-02 -->    
+        <li class="nav-item active">
+            <%= link_to "My Favorites", favorites_path, class: "nav-link" %>  
+        </li>
 
         <div class="sidebar-heading mt-2">My Lists</div>
+        <% if current_user.present? %>
+        <% if current_user.lists.present? %>
+        <p><%= link_to ' + Create new list', new_list_path %></p>
+        <% current_user.lists.each do |list| %>
+        <ul>
+            <li style="list-style:none;"># <%= link_to list.name, list_path(list)  %></li>
+        </ul>
+        <% end %>
+        <% else %>
+        <p><%= link_to 'Create new list', new_list_path %></p>
+        <% end %>
+        <% end %>
 
         <li class="nav-item">
-                <% if current_user.lists.present? %>
-                    <% current_user.lists.each do |list| %>
-                    <ul>
-                        <li># <%= link_to list.name, list_path(list) %></li>
-                    </ul>
-                    <% end %>
-                <% else %>
-                    <p><%= link_to 'Create new list', new_list_path %></p>
-                <% end %>
+
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Categories:</h6>
