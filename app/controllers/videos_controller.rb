@@ -11,24 +11,20 @@ class VideosController < ApplicationController
       @caption_results = []
       @videos.each_with_index.map{|video, index|
         video_captions = []
-        # new_result = {
-        #   title: video.title,
-        #   description: video.description,
-        #   created_at: video.created_at,
-        #   captions: []
-        # }
-        # if video.title.include? @search_query
-        #   new_result[:title] = video.title            
-        # end
-        # if video.description.include? @search_query
-        #   new_result[:title] = video.description
-        # end
         video.captions.each_with_index.map{|caption, index| 
           if caption["text"].include? @search_query
             # create for last index or first index
-            video_captions.push(video.captions[index-1]["start"] + " ..." + video.captions[index-1]["text"] + " " + caption["text"] + " " + video.captions[index-+1]["text"] + "...")
+            case index
+              when 0 
+                video_captions.push([video.captions[index]["start_seconds"],(video.captions[index]["start"] + " " + caption["text"] + " " + video.captions[index+1]["text"] + "...")])
+              when video.captions.length-1 
+                video_captions.push([video.captions[index-1]["start_seconds"],(video.captions[index-1]["start"] + " ..." + video.captions[index-1]["text"] + " " + caption["text"] + " " + video.captions[index+1]["text"] + "...")])
+              else
+                video_captions.push([video.captions[index-1]["start_seconds"], (video.captions[index-1]["start"] + " ..." + video.captions[index-1]["text"] + " " + caption["text"] + " " + video.captions[index+1]["text"] + "...")])
+            end
           end
         }
+        p video_captions
         @caption_results.push(video_captions)
       }
       
