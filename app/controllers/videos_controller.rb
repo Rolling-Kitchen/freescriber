@@ -36,17 +36,16 @@ class VideosController < ApplicationController
 
   def show
     @video = Video.find(params[:id])
-    @video_captions = @video.captions[1..15]
-    p @video_captions
-    @new_description = ""
-    
-    @video_captions.each do |caption|  
-      @new_description.concat(caption["text"]+" ")
+    unless @video.description?
+      @video_captions = @video.captions[0..7]
+      @new_description = ""
+      @video_captions.each do |caption|  
+        @new_description.concat(caption["text"]+" ")
+      end
+      @new_description.concat("...") 
+      @video.description = @new_description
+      @video.save
     end
-    p @new_description
-    
-    # raise
-
     unless @video.photo.attached?
       yt = YoutubeApi.new
       @thumbnail = yt.get_thumbnail(@video)
