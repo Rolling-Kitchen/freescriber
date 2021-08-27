@@ -45,3 +45,4 @@ yarn-debug.log*
 client_secrets.json
 credential.json
 youtube-credentials.yaml
+public/youtube-credentials.yaml
