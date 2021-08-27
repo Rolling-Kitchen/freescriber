@@ -13,8 +13,8 @@
   <div class="col-md-12 col-lg-4">
     <div class="card card-body" style="overflow: auto;max-height: 550px;" id="caption_container">
       <h5 class="m-b-0">The Transcript</h5>
-        <%= form_tag text_search_path, method: :get, class: 'form-text', remote: true do %>
-          <%= text_field_tag :text_query,
+      <%= form_tag text_search_path, method: :get, class: 'form-text', remote: true do %>
+      <%= text_field_tag :text_query,
           params[:text_query],
           class: "form-control form-color form-radius",
           placeholder: "",
@@ -22,31 +22,29 @@
           search_target: "input"
           }
           %>
-          <%= submit_tag "Search", class: "btn btn-primary btn-border btn-radius btn-font-color", data: { search_target: 'button' } %>
-        <% end %>
-        <div id="caption-search">
-        </div>
-        <div id="caption-text">
+      <%= submit_tag "Search", class: "btn btn-primary btn-border btn-radius btn-font-color", data: { search_target: 'button' } %>
+      <% end %>
+      <div id="caption-search">
+      </div>
+      <div id="caption-text">
         <% if @video.captions.length === 0 %>
-          "Sorry! Transcript not available yet"
+        "Sorry! Transcript not available yet"
         <% else %>
-          <% @video.captions.each do |caption| %>
-              <%= content_tag("a"," #{caption["text"]}", data: { start_seconds: caption["start_seconds"], end_seconds: caption["end_seconds"]}, class: "timecode") %>
+        <% @video.captions.each_with_index do |caption, index| %>
+        <% caption["text"] = @translation[index] if @translation %>
+        <%= content_tag("a"," #{caption["text"]}", data: { start_seconds: caption["start_seconds"], end_seconds: caption["end_seconds"]}, class: "timecode") %>
         <% end %>
-        </div>
+      </div>
       <% end %>
     </div>
   </div>
 
-<style>
-
-.current_caption{
-  background-color:yellow;
-  color:black;
-}
-
-
-</style>
+  <style>
+    .current_caption {
+      background-color: yellow;
+      color: black;
+    }
+  </style>
 
 
-<%# Fauzans thing %>
+  <%# Fauzans thing %>
