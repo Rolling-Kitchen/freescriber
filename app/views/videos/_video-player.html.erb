@@ -27,13 +27,13 @@
       <div id="caption-search">
       </div>
       <div id="caption-text">
-        <% if @video.captions.length === 0 %>
-        "Sorry! Transcript not available yet"
-        <% else %>
+      <% if @video.captions.length === 0 %>
+        "Sorry! Transcript not available yet. Please come back later."
+      <% else %>
         <% @video.captions.each_with_index do |caption, index| %>
         <% caption["text"] = @translation[index] if @translation %>
         <%= content_tag("a"," #{caption["text"]}", data: { start_seconds: caption["start_seconds"], end_seconds: caption["end_seconds"]}, class: "timecode") %>
-        <% end %>
+      <% end %>
       </div>
       <% end %>
     </div>
