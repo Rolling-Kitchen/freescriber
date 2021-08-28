@@ -17,9 +17,13 @@ class YoutubeApi
 
     # REPLACE WITH NAME/LOCATION OF YOUR client_secrets.json FILE
     # MAKE SURE TO MAKE THIS PRIVATE LATER
-    @client_secrets_path = './client_secret.json'
+    @client_secrets_path = './client_secrets.json'
     # REPLACE FINAL ARGUMENT WITH FILE WHERE CREDENTIALS WILL BE STORED
+<<<<<<< HEAD
     @credentials_path = Rails.root.join("public", "youtubeytoken.yaml")
+=======
+    @credentials_path = Rails.root.join("public", "youtube-credentials.yaml")
+>>>>>>> master
 
     # @scope FOR WHICH THIS SCRIPT REQUESTS AUTHORIZATION
     @scope = 'https://www.googleapis.com/auth/youtube.force-ssl'
@@ -116,7 +120,7 @@ class YoutubeApi
 
   def translate(video, language)
     @service = Google::Cloud::Translate.translation_service do |config|
-      config.credentials = "./credentials.json"
+      config.credentials = "./credential.json"
     end
     @translation = @service.translate_text({
       "contents": video.captions.map{|caption| caption['text']},
@@ -133,20 +137,29 @@ class YoutubeApi
       FileUtils.mkdir_p(File.dirname(@credentials_path))
 
       client_id = Google::Auth::ClientId.from_file(@client_secrets_path)
+      p "credentials path"
+      p @credentials_path
+      p "clientsecrets path"
+      p @client_secrets_path
       @token_store = Google::Auth::Stores::FileTokenStore.new(file: @credentials_path)
+      p "token store path"
+      p @token_store
       authorizer = Google::Auth::UserAuthorizer.new(
         client_id, @scope, @token_store)
       user_id = 'default'
       @credentials = authorizer.get_credentials(user_id)
+      p @credentials
       if @credentials.nil?
         url = authorizer.get_authorization_url(base_url: @redirect_uri)
         puts "Open the following URL in the browser and enter the " +
             "resulting code after authorization"
         puts url
-        code = gets
-        # code = ENV['YOUTUBE_TOKEN']
+        code = ENV['YOUTUBE_TOKEN']
+        # code = gets
+        code = ENV['YOUTUBE_TOKEN']
         @credentials = authorizer.get_and_store_credentials_from_code(
           user_id: user_id, code: code, base_url: @redirect_uri)
+          p @credentials
       end
       @credentials
     end

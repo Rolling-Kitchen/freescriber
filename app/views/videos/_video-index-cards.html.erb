@@ -1,24 +1,38 @@
 <div class="container py-2">
-	<div class="h1 text-center text-dark" id="pageHeaderTitle">Your videos (<%= @videos.count%>)</div>
-
-	<% @videos.each do |video| %>
-	<%= link_to video_path(video) do %>
-	<article>
-		<div class="videocard light blue">
-			<div class="videocard-thumbnail">
-				<%= cl_image_tag video.photo.key%>
-			</div>
-			<div class="videocard-text t-dark">
-				<h1 class="videocard-title yellow">
-
-					<%= video.title %></h1>
-
-				<div class="videocard-subtitle small">
-					<time datetime="2020-05-25 12:00:00">
-						<i class="fas fa-calendar-alt mr-2"></i><%= video.created_at %>
-						<span class="badge badge-warning" id="status-pending">Pending</span>
-						<span class="badge badge-success" id="status-completed">Completed</span>
-						<%= link_to toggle_favorite_video_path(video), remote: true, method: :post do %>
+  <% if  @search_query === nil %>
+    <div class="h1 text-center text-dark" id="pageHeaderTitle">My Videos (<%= @videos.count%>)</div>
+  <% else %>
+    <div class="h1 text-center text-dark" id="pageHeaderTitle"> Results for "<%= @search_query %>" (<%= @videos.count%>) </div>
+  <% end %>
+  <% @videos.each_with_index do |video, index| %>
+    <%= link_to video_path(video) do %>
+      <article>
+        <div class="videocard light blue">
+          <div class="videocard-thumbnail">
+            <%= cl_image_tag video.photo.key%>
+          </div>
+          <div class="videocard-text t-dark">
+            <h1 class="videocard-title yellow">
+              <%= video.title %></h1>
+            <div class="videocard-subtitle small">
+              <time datetime="2020-05-25 12:00:00">
+                <i class="fas fa-calendar-alt mr-2"></i><%= video.created_at %>
+                <% if video.captions? %>
+                  <span class="badge badge-success" id="status-completed">Search Completed</span>
+                <% else %>
+                  <span class="badge badge-warning" id="status-pending">Pending</span>
+                <% end %>
+              </time>
+            </div>
+            <div class="videocard-bar"></div>
+            <div class="videocard-preview-txt"><%= video.description %></div>
+          <% end %>
+          <ul class="videocard-tagbox">
+            <li class="tag-item"><i class="fas fa-tag mr-2"></i>Business</li>
+            <li class="tag-item"><i class="fas fa-clock mr-2"></i>55 mins.</li>
+          </li>
+        </ul>
+        <%= link_to toggle_favorite_video_path(video), remote: true, method: :post do %>
 						<div class="like-icon mx-2 <%= 'red' if current_user.favorited?(video) %>" data-id="<%= video.id %>">
 							<% if current_user.favorited?(video) %>
 							<i class="fas fa-heart"></i>
@@ -27,18 +41,27 @@
 							<% end %>
 						</div>
 						<% end %>
-					</time>
-				</div>
-				<div class="videocard-bar"></div>
-				<div class="videocard-preview-txt"><%= video.description %></div>
-				<% end %>
-				<ul class="videocard-tagbox">
-					<li class="tag-item"><i class="fas fa-tag mr-2"></i>Business</li>
-					<li class="tag-item"><i class="fas fa-clock mr-2"></i>55 mins.</li>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</article>
-	<% end %>
+      </div>
+    </div>
+    <% if @caption_results != nil %>
+      <div class="temp_styling">
+          <% if @caption_results[index] != [] %>
+        <h3>Results from Transcript </h3>
+        <ul>
+            <% @caption_results[index].each_with_index do |caption, index| %>
+              <%= link_to video_path(video, :start_skim => caption[0]) do %>
+                <li><%= caption[1].gsub!(/#{@search_query}\w*\b/, '<span class = "search_term_highlight">\0</span>').html_safe %></li>
+              <% end %>
+            <% end %>
+        </ul>
+          <% end %>
+      </div>
+    <% end %>
+  </article>
+<% end %>
 </div>
+<style>
+  .search_term_highlight{
+  	background: yellow;
+  }
+</style>
