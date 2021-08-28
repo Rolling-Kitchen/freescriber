@@ -2,7 +2,7 @@
      <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             <div class="sidebar-brand-text mx-3">
               <%= link_to root_path, class: "navbar-brand" do %>
-                <%= image_tag "pscriber-logo.png", class: "navbar-logo" %>     
+                <%= image_tag "pscriber-logo-lime.png", class: "navbar-logo" %>     
                 <% end %>
             </div>
         </a>
@@ -14,24 +14,23 @@
 
 <!-- Heading-01 -->
 <div class="sidebar-heading mt-2">Dashboard</div>
-
+       
     <li class="nav-item active">
-         <%= link_to "Show Videos", videos_path, class: "nav-link" %>
+        <%= link_to videos_path, class: "nav-link" do %>
+        <%= image_tag "video.svg", class: "nav-icon" %> Show Videos
+        <% end %>
     </li>  
 
     <li class="nav-item active">
-        <%# <i class="fas fa-file-import"></i> %>
-        <%= link_to "Import", new_video_path, class: "nav-link" %>
-    </li>           
-
-    <li class="nav-item active">
-        <%# <i class="fas fa-upload"></i> %>
-         <%= link_to "Upload", new_video_path, class: "nav-link" %>
+        <%= link_to new_video_path, class: "nav-link" do %>
+        <%= image_tag "upload.svg", class: "nav-icon" %> Upload a Video
+        <% end %>
     </li>  
 
     <li class="nav-item active">
-        <%# <i class="fas fa-microphone-alt"></i> %>
-        <%= link_to "Record", new_video_path, class: "nav-link" %>
+        <%= link_to new_video_path, class: "nav-link" do %>
+         <%= image_tag "record.svg", class: "nav-icon" %>Record a Video
+          <% end %>
     </li>  
             
 <%= render 'shared/divider/horizontal' %>          
@@ -39,13 +38,14 @@
 
 <!-- Heading-02 -->         
 
-<div class="sidebar-heading mt-2">My Workspace</div>
+<%# <div class="sidebar-heading mt-2">My Workspace</div> %>
 
     <li class="nav-item">
+       <%= link_to "", class: "nav-link" do %>
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Bookmark</span>
+             <%= image_tag "bookmark.svg", class: "nav-icon" %>Bookmarks
+              <% end %>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
@@ -56,26 +56,14 @@
         </div>
     </li>
 
-<%= render 'shared/divider/horizontal' %>   
-         
-<div class="sidebar-heading mt-2">Addons</div>          
-        
-    <li class="nav-item active">
-        <a class="nav-link" href="index.html">
-        <i class="fas fa-user-plus"></i>
-            <span>Add Member</span></a>
-    </li>  
 
-
-            
-<%= render 'shared/divider/horizontal' %>  
 
 <!-- Heading-03 -->    
 
 <div class="sidebar-card d-none d-lg-flex mt-5">
         <img class="sidebar-card-illustration mb-2" src="" alt="">
         <p class="text-center mb-2"><strong>FREESCRIBER Pro</strong> is packed with premium features, components, and more!</p>
-        <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
+        <a class="btn btn-success btn-sm" href="">See Members</a>
 </div>
 
 <!-- Social Media Here - To follow-->    
