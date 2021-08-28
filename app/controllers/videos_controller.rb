@@ -42,7 +42,7 @@ class VideosController < ApplicationController
     yt = YoutubeApi.new
     unless @video.description?
       p "get captions"
-      if  @video.captions != nil
+      if  @video.captions != {}
       @video_captions = @video.captions[0..5]
       @new_description = ""
       @video_captions.each do |caption|
@@ -53,6 +53,7 @@ class VideosController < ApplicationController
       @video.save
     end
     end
+    
     unless @video.photo.attached?
       yt = YoutubeApi.new
       begin
@@ -65,6 +66,7 @@ class VideosController < ApplicationController
         @video.photo.attach(io: file, filename: 'thumbnail.png', content_type: 'image/png')
       end
     end
+
     unless @video.duration?
       yt = YoutubeApi.new
       @video.duration = yt.get_duration(@video)

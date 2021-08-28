@@ -1,50 +1,3 @@
-<<<<<<< HEAD
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-    aria-haspopup="true" aria-expanded="false">
-    🌍 Translate
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownTranslate">
-    <a class="dropdown-item" href="/videos/<%= @video.id %>">English</a>
-    <a class="dropdown-item" href="/videos/<%= @video.id %>?language=zh">Chinese</a>
-    <a class="dropdown-item" href="/videos/<%= @video.id %>?language=ja">Japanese</a>
-    <a class="dropdown-item" href="/videos/<%= @video.id %>?language=ar">Arabic</a>
-    <a class="dropdown-item" href="/videos/<%= @video.id %>?language=id">Indonesian</a>
-    <a class="dropdown-item" href="/videos/<%= @video.id %>?language=tl">Tagalog</a>
-    <a class="dropdown-item" href="/videos/<%= @video.id %>?language=nl">Dutch</a>
-    <a class="dropdown-item" href="/videos/<%= @video.id %>?language=de">German</a>
-  </div>
-</div>
-
-<%= simple_form_for [@video, @bookmark], html: { class: "hide-form"} do |f| %>
-   <%= f.association :list %>
-   <%= f.submit 'Add to List', class: "btn btn-default btn-primary" %>
-<% end %>
-
-<div class="dropdown">
-<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownList" data-toggle="dropdown"
-    aria-haspopup="true" aria-expanded="false">
-    ➕ Add To List
-  </button>
-<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-  <a class="dropdown-item" href="/lists/new">+ Create New List</a>
-  <% current_user.lists.each do |list| %>
-    <a class="dropdown-item list-name" href="" data-my-id="<%= list.id %>">
-  <%= list.name %></a>
-  <% end %>
-   </div>
-</div>
-
-<%= render 'videos/video-player' %>
-<%= button_to "Edit", edit_video_path(@video), :method => :get, class: "btn btn-primary" %>
-<br>
-<br>
-<%= button_to "Delete", video_path(@video), :method => :get, class: "btn btn-primary",
-              method: :delete,
-              data: { confirm: "Are you sure?" } %>
-
-<%= javascript_pack_tag 'add-to-list' %>
-=======
 <div class="container">
   <div class="video-show-container">
     <div class="row no-gutters">
@@ -192,4 +145,3 @@
 </style>
 
 
->>>>>>> master
