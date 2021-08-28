@@ -40,7 +40,6 @@ class VideosController < ApplicationController
   def show
     @video = Video.find(params[:id])
     yt = YoutubeApi.new
-    yt.get_duration(@video)
     unless @video.description?
       if  @video_captions != nil
       @video_captions = @video.captions[0..5]
@@ -65,6 +64,12 @@ class VideosController < ApplicationController
         @video.photo.attach(io: file, filename: 'thumbnail.png', content_type: 'image/png')
       end
     end
+    unless @video.duration?
+      yt = YoutubeApi.new
+      @video.duration = yt.get_duration(@video)
+      @video.save
+    end
+
     authorize @video
     if @video.captions == {}
       yt = YoutubeApi.new

@@ -91,6 +91,7 @@ class YoutubeApi
 
   def get_duration(video)
     result = @service.list_videos('contentDetails', id: video.video_source)
+    p "duration"
     p result.items[0].content_details.duration
     return ActiveSupport::Duration.parse(result.items[0].content_details.duration).in_minutes
     raise
