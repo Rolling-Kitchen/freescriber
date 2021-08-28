@@ -17,9 +17,9 @@ class YoutubeApi
 
     # REPLACE WITH NAME/LOCATION OF YOUR client_secrets.json FILE
     # MAKE SURE TO MAKE THIS PRIVATE LATER
-    @client_secrets_path = './client_secret.json'
+    @client_secrets_path = './client_secrets.json'
     # REPLACE FINAL ARGUMENT WITH FILE WHERE CREDENTIALS WILL BE STORED
-    @credentials_path = Rails.root.join("public", "youtube-prod.yaml")
+    @credentials_path = Rails.root.join("public", "youtube-credentials.yaml")
 
     # @scope FOR WHICH THIS SCRIPT REQUESTS AUTHORIZATION
     @scope = 'https://www.googleapis.com/auth/youtube.force-ssl'
@@ -116,7 +116,7 @@ class YoutubeApi
 
   def translate(video, language)
     @service = Google::Cloud::Translate.translation_service do |config|
-      config.credentials = "./credentials.json"
+      config.credentials = "./credential.json"
     end
     @translation = @service.translate_text({
       "contents": video.captions.map{|caption| caption['text']},
