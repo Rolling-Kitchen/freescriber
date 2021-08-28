@@ -1,4 +1,4 @@
-lass VideosController < ApplicationController
+class VideosController < ApplicationController
   include ActionView::Helpers::UrlHelper
   require "open-uri"
   before_action :set_video, only: %i[show edit update destroy]
