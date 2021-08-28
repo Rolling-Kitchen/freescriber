@@ -133,20 +133,29 @@ class YoutubeApi
       FileUtils.mkdir_p(File.dirname(@credentials_path))
 
       client_id = Google::Auth::ClientId.from_file(@client_secrets_path)
+      p "credentials path"
+      p @credentials_path
+      p "clientsecrets path"
+      p @client_secrets_path
       @token_store = Google::Auth::Stores::FileTokenStore.new(file: @credentials_path)
+      p "token store path"
+      p @token_store
       authorizer = Google::Auth::UserAuthorizer.new(
         client_id, @scope, @token_store)
       user_id = 'default'
       @credentials = authorizer.get_credentials(user_id)
+      p @credentials
       if @credentials.nil?
         url = authorizer.get_authorization_url(base_url: @redirect_uri)
         puts "Open the following URL in the browser and enter the " +
             "resulting code after authorization"
         puts url
-        code = gets
-        # code = ENV['YOUTUBE_TOKEN']
+        code = ENV['YOUTUBE_TOKEN']
+        # code = gets
+        code = ENV['YOUTUBE_TOKEN']
         @credentials = authorizer.get_and_store_credentials_from_code(
           user_id: user_id, code: code, base_url: @redirect_uri)
+          p @credentials
       end
       @credentials
     end
