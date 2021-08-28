@@ -6,6 +6,6 @@ const listId = document.querySelector('#bookmark_list_id')
 allLists.forEach((list) => {
   list.addEventListener('click', (e) => {
     listId.value = e.target.dataset.myId
-    buttonList.click()
+    buttonList.click() 
   })
 })
