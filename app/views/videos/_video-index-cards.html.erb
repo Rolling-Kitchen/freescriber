@@ -29,7 +29,9 @@
           <% end %>
           <ul class="videocard-tagbox">
             <li class="tag-item"><i class="fas fa-tag mr-2"></i>Business</li>
-            <li class="tag-item"><i class="fas fa-clock mr-2"></i>55 mins.</li>
+                            <% if video.duration? %>
+            <li class="tag-item"><i class="fas fa-clock mr-2"></i><%= video.duration %> minutes</li>
+            <% end %>
           </li>
         </ul>
       </div>
