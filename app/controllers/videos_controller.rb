@@ -39,7 +39,8 @@ class VideosController < ApplicationController
     @video = Video.find(params[:id])
     yt = YoutubeApi.new
     unless @video.description?
-      if  @video_captions != nil
+      p "get captions"
+      if  @video.captions != nil
       @video_captions = @video.captions[0..5]
       @new_description = ""
       @video_captions.each do |caption|
