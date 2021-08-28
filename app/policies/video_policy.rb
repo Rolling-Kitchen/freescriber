@@ -8,7 +8,7 @@ class VideoPolicy < ApplicationPolicy
   
   class Scope < Scope
     def resolve
-      user.videos
+      scope.where(user: user)
     end
   end
   
