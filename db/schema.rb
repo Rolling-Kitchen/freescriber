@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 2021_08_28_033925) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.jsonb "captions"
+    t.integer "duration"
     t.index ["user_id"], name: "index_videos_on_user_id"
   end
 

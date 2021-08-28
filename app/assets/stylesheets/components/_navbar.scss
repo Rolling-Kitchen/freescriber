@@ -42,8 +42,17 @@
 }
 
 .nav-link {
-  font-size: 14px;
+  font-size: 16px;
+  font-family:  'CircularStd-Black';
+  padding: -5px;
 }
+
+.nav-link:hover {
+  font-size: 16px;
+  font-family:  'CircularStd-Black';
+  padding: -5px;
+}
+
 
 .navbar-collapse {
   flex-basis: 100%;
@@ -1134,27 +1143,27 @@
 }
 
 .m-1 {
-  margin: 0.25rem !important;
+  margin: 5px !important;
 }
 
 .mt-1,
 .my-1 {
-  margin-top: 0.25rem !important;
+  margin-top: 5px !important;
 }
 
 .mr-1,
 .mx-1 {
-  margin-right: 0.25rem !important;
+  margin-right: 5px !important;
 }
 
 .mb-1,
 .my-1 {
-  margin-bottom: 0.25rem !important;
+  margin-bottom: 5px !important;
 }
 
 .ml-1,
 .mx-1 {
-  margin-left: 0.25rem !important;
+  margin-left: 5px !important;
 }
 
 .m-2 {
@@ -1278,27 +1287,27 @@
 }
 
 .p-1 {
-  padding: 0.25rem !important;
+  padding: 5px !important;
 }
 
 .pt-1,
 .py-1 {
-  padding-top: 0.25rem !important;
+  padding-top: 5px !important;
 }
 
 .pr-1,
 .px-1 {
-  padding-right: 0.25rem !important;
+  padding-right: 5px !important;
 }
 
 .pb-1,
 .py-1 {
-  padding-bottom: 0.25rem !important;
+  padding-bottom: 5px !important;
 }
 
 .pl-1,
 .px-1 {
-  padding-left: 0.25rem !important;
+  padding-left: 5px !important;
 }
 
 .p-2 {
@@ -1398,27 +1407,27 @@
 }
 
 .m-n1 {
-  margin: -0.25rem !important;
+  margin: -5px !important;
 }
 
 .mt-n1,
 .my-n1 {
-  margin-top: -0.25rem !important;
+  margin-top: -5px !important;
 }
 
 .mr-n1,
 .mx-n1 {
-  margin-right: -0.25rem !important;
+  margin-right: -5px !important;
 }
 
 .mb-n1,
 .my-n1 {
-  margin-bottom: -0.25rem !important;
+  margin-bottom: -5px !important;
 }
 
 .ml-n1,
 .mx-n1 {
-  margin-left: -0.25rem !important;
+  margin-left: -5px !important;
 }
 
 .m-n2 {
@@ -1562,23 +1571,23 @@
     margin-left: 0 !important;
   }
   .m-sm-1 {
-    margin: 0.25rem !important;
+    margin: 5px !important;
   }
   .mt-sm-1,
   .my-sm-1 {
-    margin-top: 0.25rem !important;
+    margin-top: 5px !important;
   }
   .mr-sm-1,
   .mx-sm-1 {
-    margin-right: 0.25rem !important;
+    margin-right: 5px !important;
   }
   .mb-sm-1,
   .my-sm-1 {
-    margin-bottom: 0.25rem !important;
+    margin-bottom: 5px !important;
   }
   .ml-sm-1,
   .mx-sm-1 {
-    margin-left: 0.25rem !important;
+    margin-left: 5px !important;
   }
   .m-sm-2 {
     margin: 0.5rem !important;
@@ -1676,7 +1685,7 @@
     padding-left: 0 !important;
   }
   .p-sm-1 {
-    padding: 0.25rem !important;
+    padding: 5px !important;
   }
   .pt-sm-1,
   .py-sm-1 {
@@ -3710,13 +3719,17 @@ a:focus {
 }
 
 .sidebar .nav-item:last-child {
-  margin-bottom: 1rem;
+  margin-bottom: 5px;
 }
 
 .sidebar .nav-item .nav-link {
-  text-align: center;
-  padding: 0.75rem 1rem;
-  width: 6.5rem;
+  display: block;
+  width: 100%;
+  text-align: left;
+  /* padding: 1rem; */
+  width: 14rem;
+  padding-left: 16px;
+  padiing-top: 10px;
 }
 
 .sidebar .nav-item .nav-link span {
@@ -3855,9 +3868,11 @@ a:focus {
 
 .sidebar .sidebar-heading {
   text-align: center;
-  padding: 0 1rem;
-  font-weight: 800;
-  font-size: 0.65rem;
+  font-family: 'Circular-Loom';
+  font-weight: 500;
+  font-size: 14px;
+  padding-left: 16px;
+  padding-top: 10px;
 }
 
 .sidebar .sidebar-card {

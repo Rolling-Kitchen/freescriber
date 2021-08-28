@@ -4,55 +4,78 @@ class VideosController < ApplicationController
   before_action :set_video, only: %i[show edit update destroy toggle_favorite]
 
   def index
-    @videos = policy_scope(Video)
-      @favorite_videos = current_user.favorited_by_type('Video')
+    @favorite_videos = current_user.favorited_by_type('Video')
     if params[:query].present?
-      @videos = Video.search_by_title_or_transcript(params[:query])
+      @videos = policy_scope(Video).search_by_title_or_transcript(params[:query])
       @search_query = params["query"]
       @caption_results = []
-      @videos.each_with_index.map{|video, index|
+      @videos.each_with_index.map do |video, index|
         video_captions = []
-        video.captions.each_with_index.map{|caption, index| 
-          if caption["text"].include? @search_query
-            # create for last index or first index
-            case index
-              when 0 
-                video_captions.push([video.captions[index]["start_seconds"],(video.captions[index]["start"] + " " + caption["text"] + " " + video.captions[index+1]["text"] + "...")])
-              when video.captions.length-1 
-                video_captions.push([video.captions[index-1]["start_seconds"],(video.captions[index-1]["start"] + " ..." + video.captions[index-1]["text"] + " " + caption["text"] + " " + video.captions[index+1]["text"] + "...")])
-              else
-                video_captions.push([video.captions[index-1]["start_seconds"], (video.captions[index-1]["start"] + " ..." + video.captions[index-1]["text"] + " " + caption["text"] + " " + video.captions[index+1]["text"] + "...")])
-            end
+        video.captions.each_with_index.map do |caption, index|
+          next unless caption["text"].include? @search_query
+
+          # create for last index or first index
+          case index
+          when 0
+            video_captions.push([video.captions[index]["start_seconds"],
+                                 (video.captions[index]["start"] + " " + caption["text"] + " " + video.captions[index + 1]["text"] + "...")])
+          when video.captions.length - 1
+            video_captions.push([video.captions[index - 1]["start_seconds"],
+                                 (video.captions[index - 1]["start"] + " ..." + video.captions[index - 1]["text"] + " " + caption["text"] + " " + video.captions[index + 1]["text"] + "...")])
+          else
+            video_captions.push([video.captions[index - 1]["start_seconds"],
+                                 (video.captions[index - 1]["start"] + " ..." + video.captions[index - 1]["text"] + " " + caption["text"] + " " + video.captions[index + 1]["text"] + "...")])
           end
-        }
-        p video_captions
+        end
         @caption_results.push(video_captions)
-      }
-      
+      end
+
     else
-      @videos = Video.all
+      @videos = policy_scope(Video)
     end
-    unless current_page?(videos_path)
-      redirect_to videos_path
-    end
+    redirect_to videos_path unless current_page?(videos_path)
   end
 
   def show
     @bookmark = Bookmark.new
     @video = Video.find(params[:id])
+    yt = YoutubeApi.new
+    unless @video.description?
+      p "get captions"
+      if  @video.captions != nil
+      @video_captions = @video.captions[0..5]
+      @new_description = ""
+      @video_captions.each do |caption|
+        @new_description.concat(caption["text"] + " ")
+      end
+      @new_description.concat("...")
+      @video.description = @new_description
+      @video.save
+    end
+    end
     unless @video.photo.attached?
       yt = YoutubeApi.new
-      @thumbnail = yt.get_thumbnail(@video)
-      file = URI.open(@thumbnail)
-      @video.photo.attach(io: file, filename: 'thumbnail.png', content_type: 'image/png')
+      begin
+        @thumbnail = yt.get_thumbnail(@video)
+        file = URI.open(@thumbnail)
+      rescue OpenURI::HTTPError
+        p "no thumbnail"
+      else
+        p "attach the thumbnail found"
+        @video.photo.attach(io: file, filename: 'thumbnail.png', content_type: 'image/png')
+      end
     end
+    unless @video.duration?
+      yt = YoutubeApi.new
+      @video.duration = yt.get_duration(@video)
+      @video.save
+    end
+
     authorize @video
     if @video.captions == {}
       yt = YoutubeApi.new
       @video.captions = yt.get_captions(@video)
       @video.save
-    else
-      nil
     end
     yt = YoutubeApi.new
     if params["language"]
@@ -104,9 +127,7 @@ class VideosController < ApplicationController
     set_video
     array_of_text = []
     @video.captions.each do |hash|
-      if hash["text"].include? params[:text_query]
-        array_of_text << hash
-      end
+      array_of_text << hash if hash["text"].include? params[:text_query]
     end
     render json: array_of_text
   end
@@ -131,22 +152,4 @@ class VideosController < ApplicationController
   def video_params
     params.require(:video).permit(:title, :description)
   end
-
-
-#   before_action :get_youtube_thumbnail
-
-# def get_youtube_thumbnail
-#   url = extract_url_from_body
-
-#   unless url.blank?
-#     client   = YouTubeIt::Client.new
-#     response = client.video_by(url)
-#     self.thumbnail = response.thumbnails.first.url
-#   end
-# end
-
-# def extract_url_from_body
-#   URI.extract(body).first
-# end
-
 end

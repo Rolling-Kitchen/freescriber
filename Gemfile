@@ -79,3 +79,4 @@ gem 'youtube_it'
 gem 'video_thumb'
 
 gem "google-cloud-translate", "~> 3.2"
+

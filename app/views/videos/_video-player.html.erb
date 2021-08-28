@@ -1,50 +1,97 @@
-<h1><%= @video.title %> </h1>
-<div class="row">
-  <div class="col-md-12 col-lg-8">
-    <div class="card card-body">
-      <div class="embed-responsive embed-responsive-16by9">
-        <%= form_tag  do %>
-        <%# <div id="player"></div> %>
-        <%= content_tag("div",'', data: { video_source: @video.video_source}, class: "hellocard", id: "player") %>
-        <% end %>
-      </div>
+<div class="embed-responsive embed-responsive-16by9">
+    <div id="player"></div>
+</div>
+<div class="video-description-card"> 
+    <h2 class="video-title"><%= @video.title %></h2>
+    <h5 class="video-description">Description</h5>
+        <p><%= @video.description %></p>
+
+    <div class="d-flex justify-content-end pb-4">
+    <!-- Edit -->
+    <div class="p-1 bd-highlight">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#form-edit">Edit</button>
+    <!-- Edit-Modal -->
+        <div class="modal fade" id="form-edit" tabindex="-1" role="dialog" aria-labelledby="form-edit" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" style="max-width: 800px!important;" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            <div class="row">
+                    <div class="col-md-6">
+                    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+                    <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_kwljzgsc.json"  background="transparent" loop autoplay></lottie-player>
+                    </div>
+                    <div class="col-md-6">
+                    <%= simple_form_for @video, remote: true do |f| %>
+                    <%= f.input :title, label: 'Your title please', error: 'title is mandatory, please specify one' %>
+                    <%= f.input :description, as: :text, :input_html => { :rows => 6 }, label: 'Your description please', error: 'description is mandatory, please specify one' %>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <%= f.button :submit, class: "btn-primary" %>
+                <% end %>
+            </div>
+            </div>
+        </div>
+        </div>
     </div>
-  </div>
-  <div class="col-md-12 col-lg-4">
-    <div class="card card-body" style="overflow: auto;max-height: 550px;" id="caption_container">
-      <h5 class="m-b-0">The Transcript</h5>
-      <%= form_tag text_search_path, method: :get, class: 'form-text', remote: true do %>
-      <%= text_field_tag :text_query,
-          params[:text_query],
-          class: "form-control form-color form-radius",
-          placeholder: "",
-          data: {
-          search_target: "input"
-          }
-          %>
-      <%= submit_tag "Search", class: "btn btn-primary btn-border btn-radius btn-font-color", data: { search_target: 'button' } %>
-      <% end %>
-      <div id="caption-search">
-      </div>
-      <div id="caption-text">
-      <% if @video.captions.length === 0 %>
-        "Sorry! Transcript not available yet. Please come back later."
-      <% else %>
-        <% @video.captions.each_with_index do |caption, index| %>
-        <% caption["text"] = @translation[index] if @translation %>
-        <%= content_tag("a"," #{caption["text"]}", data: { start_seconds: caption["start_seconds"], end_seconds: caption["end_seconds"]}, class: "timecode") %>
-      <% end %>
-      </div>
-      <% end %>
+
+    <!-- Delete -->
+    <div class="p-1 bd-highlight">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#form-delete">Delete</button>
+    <!-- Delete-Modal -->
+        <div class="modal fade" id="form-delete" tabindex="-1" role="dialog" aria-labelledby="form-delete" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" style="max-width: 500px!important;" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            <div class="row">
+                    <div class="col-md-6">
+                    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+                    <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_dsqblnrv.json"  background="transparent" loop autoplay></lottie-player>
+                    </div>
+                    <div class="col-md-6">
+                    <p>Are you sure?</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                 <%= button_to "Delete", video_path(@video), :method => :get, class: "btn btn-primary",
+                method: :delete,
+                data: { confirm: "Are you sure?" } %>
+       
+            </div>
+            </div>
+        </div>
+        </div>
     </div>
-  </div>
+    </div>
+ </div>
+
+
+
 
   <style>
     .current_caption {
       background-color: yellow;
       color: black;
     }
+
+
+
+
+
+
+
   </style>
 
 
-  <%# Fauzans thing %>
