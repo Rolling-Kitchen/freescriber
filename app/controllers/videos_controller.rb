@@ -1,12 +1,11 @@
-class VideosController < ApplicationController
+lass VideosController < ApplicationController
   include ActionView::Helpers::UrlHelper
   require "open-uri"
   before_action :set_video, only: %i[show edit update destroy]
 
   def index
-    @videos = policy_scope(Video)
     if params[:query].present?
-      @videos = Video.search_by_title_or_transcript(params[:query])
+      @videos = policy_scope(Video).search_by_title_or_transcript(params[:query])
       @search_query = params["query"]
       @caption_results = []
       @videos.each_with_index.map do |video, index|
@@ -27,12 +26,11 @@ class VideosController < ApplicationController
                                  (video.captions[index - 1]["start"] + " ..." + video.captions[index - 1]["text"] + " " + caption["text"] + " " + video.captions[index + 1]["text"] + "...")])
           end
         end
-        p video_captions
         @caption_results.push(video_captions)
       end
 
     else
-      @videos = Video.all
+      @videos = policy_scope(Video)
     end
     redirect_to videos_path unless current_page?(videos_path)
   end
