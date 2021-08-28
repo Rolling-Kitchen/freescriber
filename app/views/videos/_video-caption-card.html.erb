@@ -2,23 +2,22 @@
   <h5 class="video-description">Transcription</h5>
     <div class="d-flex justify-content-between pb-3 pt-2">
       <div class="d-inline-flex">
-        <form class="form-inline flex-nowrap mx-0 mx-lg-auto rounded">
-            <%= form_tag text_search_path, method: :get, class: 'form-text', remote: true do %>
+            <%= form_tag text_search_path, method: :get, class: 'form-text', id: 'video_search' ,remote: true do %>
               <%= text_field_tag :text_query,
               params[:text_query],
-              class: "form-control form-color form-radius",
+              class: "form-control form-color form-radius ",
               placeholder: "Search",
               data: {
               search_target: "input"
               }
               %>
-              <%#= submit_tag "Search", class: "btn btn-primary btn-border btn-radius btn-font-color", id: "btn-caption-search", data: { search_target: 'button' } %>
+              <%= submit_tag "Search", class: "btn btn-primary btn-border btn-radius btn-font-color", id: "btn-caption-search", data: { search_target: 'button' } %>
           <% end %>
-        </form>
+
       </div>
       <div class="d-inline-flex">
         <div classs="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+          <button class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false"> 
             Translate
           </button>
@@ -41,11 +40,14 @@
       <% if @video.captions.length === 0 %>
         "Sorry! Transcript not available yet"
       <% else %>
+      <div id="fullTranscript">
         <% @video.captions.each_with_index do |caption, index| %>
         <% caption["text"] = @translation[index] if @translation %>
-            <span><%= content_tag("a"," #{caption["text"]}", data: { start_seconds: caption["start_seconds"], end_seconds: caption["end_seconds"]}, class: "timecode") %></span>
+            <li><span><%= content_tag("a"," #{caption["text"]}", data: { start_seconds: caption["start_seconds"], end_seconds: caption["end_seconds"]}, class: "timecode") %></span></li>
         <% end %>
+      </div>
+      <div id="searchResults">
+      </div>
       <% end %>
  
 </div>
-
