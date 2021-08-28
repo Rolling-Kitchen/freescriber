@@ -29,25 +29,7 @@ class YoutubeApi
     @service.authorization = authorize
   end
 
-  
-  def channels_list_by_username(part, **params)
-    # Initialize the API
-    # @service = Google::Apis::YoutubeV3::YouTubeService.new
-    # @service.client_options.application_name = @application_name
-    # @service.authorization = authorize
-
-    response = @service.list_channels(part, params).to_json
-    item = JSON.parse(response).fetch("items")[0]
-  
-    puts ("This channel's ID is #{item.fetch("id")}. " +
-          "Its title is '#{item.fetch("snippet").fetch("title")}', and it has " +
-          "#{item.fetch("statistics").fetch("viewCount")} views.")
-  end
-
   def upload_video(file, title, description)
-    @service = Google::Apis::YoutubeV3::YouTubeService.new
-    @service.client_options.application_name = @application_name
-    @service.authorization = authorize
     status = Google::Apis::YoutubeV3::VideoStatus.new(
       privacy_status: 'unlisted',
       selfDeclaredMadeForKids: false,
@@ -76,9 +58,6 @@ class YoutubeApi
   end
 
   def get_captions(video)
-    @service = Google::Apis::YoutubeV3::YouTubeService.new
-    @service.client_options.application_name = @application_name
-    @service.authorization = authorize
     # Check if the video has captions
     result = @service.list_captions("id", video.video_source)
     # if it has captions, try to fetch them and add them to the video model
@@ -106,11 +85,14 @@ class YoutubeApi
   end
   
   def get_thumbnail(video)
-    @service = Google::Apis::YoutubeV3::YouTubeService.new
-    @service.client_options.application_name = @application_name
-    @service.authorization = authorize
+    result = @service.list_videos('snippet', id: video.video_source)
+    return result.items[0].snippet.thumbnails.high.url
+  end
+
+  def get_duration(video)
     result = @service.list_videos('snippet', id: video.video_source)
     p result.items[0].snippet.thumbnails.high.url
+    raise
     return result.items[0].snippet.thumbnails.high.url
   end
 
