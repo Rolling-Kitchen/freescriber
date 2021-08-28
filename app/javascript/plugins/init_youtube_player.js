@@ -3,7 +3,7 @@ export function init_youtube_player() {
   if (caption_container) {
     var YouTubeIframeLoader = require('youtube-iframe');
     var player;
-    const container_div_source = document.getElementById("player").dataset['videoSource'];
+    const container_div_source = ${ @video.video_source };
     const all_captions = document.getElementsByClassName("timecode");
     YouTubeIframeLoader.load(function (YT) {
       player = new YT.Player("player", {
@@ -31,7 +31,7 @@ export function init_youtube_player() {
     });
     function onPlayerError(event) {
         // window.location.reload(true);
-      }
+      };
     // 4. The API will call this function when the video player is ready.
     function onPlayerReady(event) {
         // event.target.playVideo();
@@ -42,7 +42,7 @@ export function init_youtube_player() {
           console.log (skim_value);
           player.seekTo(skim_value, true);            
         }
-      }
+      };
 
     // https://stackoverflow.com/questions/37904499/sync-embedded-youtube-video-time-stamp-to-custom-progress-bar
     function get_subtitle(current_time) {
