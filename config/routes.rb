@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   member do
     post 'toggle_favorite', to: "videos#toggle_favorite"
   end
-end
+  resources :bookmarks, only: [:create, :destroy]
+  end
   resources :lists
   namespace :api, defaults: {format: :json} do
     get 'videos/:id/search', to: 'videos#search'

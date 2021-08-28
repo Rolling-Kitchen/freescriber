@@ -38,6 +38,7 @@ class VideosController < ApplicationController
   end
 
   def show
+    @bookmark = Bookmark.new
     @video = Video.find(params[:id])
     unless @video.photo.attached?
       yt = YoutubeApi.new
