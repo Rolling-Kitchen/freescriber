@@ -9,7 +9,7 @@ class VideosController < ApplicationController
       @videos = Video.search_by_title_or_transcript(params[:query])
       @search_query = params["query"]
       @caption_results = []
-      @videos.each_with_index.map do |video, _index|
+      @videos.each_with_index.map do |video, index|
         video_captions = []
         video.captions.each_with_index.map do |caption, index|
           next unless caption["text"].include? @search_query
