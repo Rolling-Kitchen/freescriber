@@ -90,10 +90,10 @@ class YoutubeApi
   end
 
   def get_duration(video)
-    result = @service.list_videos('snippet', id: video.video_source)
-    p result.items[0].snippet.thumbnails.high.url
+    result = @service.list_videos('contentDetails', id: video.video_source)
+    p result.items[0].content_details.duration
+    return ActiveSupport::Duration.parse(result.items[0].content_details.duration).in_minutes
     raise
-    return result.items[0].snippet.thumbnails.high.url
   end
 
   def translate(video, language)

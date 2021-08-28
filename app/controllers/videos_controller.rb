@@ -39,8 +39,8 @@ class VideosController < ApplicationController
 
   def show
     @video = Video.find(params[:id])
-    # yt = YoutubeApi.new
-    # yt.get_thumbnail(@video)
+    yt = YoutubeApi.new
+    yt.get_duration(@video)
     unless @video.description?
       if  @video_captions != nil
       @video_captions = @video.captions[0..5]
