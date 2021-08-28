@@ -10,9 +10,12 @@ export function init_youtube_player() {
         height: "490",
         width: "800",
         videoId: container_div_source,
-        enablejsapi: 1,
-        modestbranding: 1,
-        rel: 0,
+        enablejsapi: "1",
+        modestbranding: "1",
+        controls: "0",
+        rel: "0",
+        fs: "0",
+        loop: "0",
         events: {
           onReady: onPlayerReady,
           onStateChange: onPlayerStateChange,
@@ -34,9 +37,11 @@ export function init_youtube_player() {
         // event.target.playVideo();
         const urlParams = new URLSearchParams(window.location.search);
         const skim_value = urlParams.get("start_skim")
-        console.log ("skim value");
-        console.log (skim_value);
-        player.seekTo(skim_value, true);
+        if (skim_value != null) {
+          console.log ("skim value");
+          console.log (skim_value);
+          player.seekTo(skim_value, true);            
+        }
       }
 
     // https://stackoverflow.com/questions/37904499/sync-embedded-youtube-video-time-stamp-to-custom-progress-bar
@@ -96,7 +101,7 @@ export function init_youtube_player() {
         captionText.style.display = "none"
         jsonResponse.forEach((caption) => {
           console.log(caption, "hello")
-          captionSearch.insertAdjacentHTML("beforeend", `<a data-start-seconds=${caption.start_seconds} data-end-seconds=${caption.end_seconds} class=timecode>${caption.text}</a><br>`)
+          captionSearch.insertAdjacentHTML("beforeend", `<li><a data-start-seconds=${caption.start_seconds} data-end-seconds=${caption.end_seconds} class=timecode>${caption.start} - ${caption.text}</a></li>`)
         })
 
       }

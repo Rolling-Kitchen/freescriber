@@ -1,35 +1,33 @@
-class VideosController < ApplicationController
+lass VideosController < ApplicationController
   include ActionView::Helpers::UrlHelper
   require "open-uri"
   before_action :set_video, only: %i[show edit update destroy]
 
   def index
-    @videos = policy_scope(Video)
     if params[:query].present?
-      @videos = Video.search_by_title_or_transcript(params[:query])
+      @videos = policy_scope(Video).search_by_title_or_transcript(params[:query])
       @search_query = params["query"]
       @caption_results = []
-      @videos.each_with_index.map{|video, index|
+      @videos.map.with_index{|video, index|
         video_captions = []
-        video.captions.each_with_index.map{|caption, index| 
+        video.captions.map.with_index{|caption, index| 
           if caption["text"].include? @search_query
             # create for last index or first index
             case index
               when 0 
                 video_captions.push([video.captions[index]["start_seconds"],(video.captions[index]["start"] + " " + caption["text"] + " " + video.captions[index+1]["text"] + "...")])
-              when video.captions.length-1 
-                video_captions.push([video.captions[index-1]["start_seconds"],(video.captions[index-1]["start"] + " ..." + video.captions[index-1]["text"] + " " + caption["text"] + " " + video.captions[index+1]["text"] + "...")])
+              when video.captions.length - 1 
+                video_captions.push([video.captions[index-1]["start_seconds"],(video.captions[index-1]["start"] + " ..." + video.captions[index-1]["text"] + " " + caption["text"] + " ")])
               else
                 video_captions.push([video.captions[index-1]["start_seconds"], (video.captions[index-1]["start"] + " ..." + video.captions[index-1]["text"] + " " + caption["text"] + " " + video.captions[index+1]["text"] + "...")])
             end
           end
         }
-        p video_captions
         @caption_results.push(video_captions)
       }
       
     else
-      @videos = Video.all
+      @videos = policy_scope(Video)
     end
     unless current_page?(videos_path)
       redirect_to videos_path
@@ -38,6 +36,16 @@ class VideosController < ApplicationController
 
   def show
     @video = Video.find(params[:id])
+    unless @video.description?
+      @video_captions = @video.captions[0..7]
+      @new_description = ""
+      @video_captions.each do |caption|  
+        @new_description.concat(caption["text"]+" ")
+      end
+      @new_description.concat("...") 
+      @video.description = @new_description
+      @video.save
+    end
     unless @video.photo.attached?
       yt = YoutubeApi.new
       @thumbnail = yt.get_thumbnail(@video)
