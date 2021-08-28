@@ -38,11 +38,21 @@ class VideosController < ApplicationController
 
   def show
     @video = Video.find(params[:id])
-    unless @video.photo.attached?
+    unless @video.photo.attached? || @video.photo.filename.to_s = "default_thumbnail.png"
       yt = YoutubeApi.new
-      @thumbnail = yt.get_thumbnail(@video)
-      file = URI.open(@thumbnail)
-      @video.photo.attach(io: file, filename: 'thumbnail.png', content_type: 'image/png')
+      begin 
+        @thumbnail = yt.get_thumbnail(@video)
+        file = URI.open(@thumbnail)
+        rescue OpenURI::HTTPError
+          unless @video.photo.filename.to_s = "default_thumbnail.png"
+            p "attach alternate default thumbnail"
+            p file = URI.open("https://picsum.photos/200")
+            @video.photo.attach(io: file, filename: 'default_thumbnail.png', content_type: 'image/png')  
+          end
+        else
+          p "attach the thumbnail found"
+          @video.photo.attach(io: file, filename: 'thumbnail.png', content_type: 'image/png')
+        end
     end
     authorize @video
     if @video.captions == {}
@@ -118,22 +128,5 @@ class VideosController < ApplicationController
   def video_params
     params.require(:video).permit(:title, :description)
   end
-
-
-#   before_action :get_youtube_thumbnail
-
-# def get_youtube_thumbnail
-#   url = extract_url_from_body
-
-#   unless url.blank?
-#     client   = YouTubeIt::Client.new
-#     response = client.video_by(url)
-#     self.thumbnail = response.thumbnails.first.url
-#   end
-# end
-
-# def extract_url_from_body
-#   URI.extract(body).first
-# end
 
 end
