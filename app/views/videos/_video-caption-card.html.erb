@@ -51,7 +51,7 @@
     </div>
   </div>
 
-  <div class="card card-body" style="overflow: auto;max-height: 420px;" id="caption_container">
+  <div class="card card-body" style="overflow: auto;max-height: 420px;" id="caption_container" data-video-source="<%= @video.video_source %>">
 
     <% if @video.captions.length == 0 %>
     "Sorry! Transcript not available yet"

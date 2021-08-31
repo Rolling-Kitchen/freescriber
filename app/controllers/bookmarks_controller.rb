@@ -1,5 +1,5 @@
 class BookmarksController < ApplicationController
-  before_action :set_video, only: :create
+  before_action :set_video, only: :create, :destroy
 
   def create
     @bookmark = Bookmark.new(bookmark_params)
