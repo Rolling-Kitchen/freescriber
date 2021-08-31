@@ -20,7 +20,7 @@ class YoutubeApi
     # MAKE SURE TO MAKE THIS PRIVATE LATER
     @client_secrets_path = './client_secrets.json'
     # REPLACE FINAL ARGUMENT WITH FILE WHERE CREDENTIALS WILL BE STORED
-    @credentials_path = Rails.root.join("public", "asd")
+    @credentials_path = Rails.root.join("public", "youtube-credentials.yaml")
 
     # @scope FOR WHICH THIS SCRIPT REQUESTS AUTHORIZATION
     @scope = 'https://www.googleapis.com/auth/youtube.force-ssl'
