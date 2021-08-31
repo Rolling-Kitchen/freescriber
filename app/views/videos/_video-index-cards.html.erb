@@ -1,4 +1,4 @@
-<div class="container py-2">
+
   <% if  @search_query === nil %>
     <div class="h1 text-center text-dark" id="pageHeaderTitle">My Videos (<%= @videos.count%>)</div>
   <% else %>
@@ -52,7 +52,7 @@
     <% end %>
   </article>
 <% end %>
-</div>
+
 <style>
   .search_term_highlight{
   	background: yellow;

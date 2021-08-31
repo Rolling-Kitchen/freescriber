@@ -1,74 +1,70 @@
-<div id="wrapper">
-     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-            <div class="sidebar-brand-text mx-3">
-              <%= link_to root_path, class: "navbar-brand" do %>
-                <%= image_tag "pscriber-logo-lime.png", class: "navbar-logo" %>     
-                <% end %>
-            </div>
-        </a>
-       
-
-<%= render 'shared/divider/horizontal' %>
-
-<!-- Menu -->
-
-<!-- Heading-01 -->
-<div class="sidebar-heading mt-2">Dashboard</div>
-       
-    <li class="nav-item active">
-        <%= link_to videos_path, class: "nav-link" do %>
-        <%= image_tag "video.svg", class: "nav-icon" %> Show Videos
-        <% end %>
-    </li>  
-
-    <li class="nav-item active">
-        <%= link_to new_video_path, class: "nav-link" do %>
-        <%= image_tag "upload.svg", class: "nav-icon" %> Upload a Video
-        <% end %>
-    </li>  
-
-    <li class="nav-item active">
-        <%= link_to new_video_path, class: "nav-link" do %>
-         <%= image_tag "record.svg", class: "nav-icon" %>Record a Video
-          <% end %>
-    </li>  
-            
-<%= render 'shared/divider/horizontal' %>          
-
-
-<!-- Heading-02 -->         
-
-<%# <div class="sidebar-heading mt-2">My Workspace</div> %>
-
-    <li class="nav-item">
-       <%= link_to "", class: "nav-link" do %>
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-            aria-expanded="true" aria-controls="collapseTwo">
-             <%= image_tag "bookmark.svg", class: "nav-icon" %>Bookmarks
-              <% end %>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Categories:</h6>
-                <a class="collapse-item" href="buttons.html">Programming</a>
-                <a class="collapse-item" href="cards.html">Business</a>
-            </div>
-        </div>
-    </li>
-
-
-
-<!-- Heading-03 -->    
-
-<div class="sidebar-card d-none d-lg-flex mt-5">
-        <img class="sidebar-card-illustration mb-2" src="" alt="">
-        <p class="text-center mb-2"><strong>FREESCRIBER Pro</strong> is packed with premium features, components, and more!</p>
-        <a class="btn btn-success btn-sm" href="">See Members</a>
+<!-- SIDE-->
+<div class="row">
+    <div class="col-6 bg-warning">
+        <nav id="sidebar">
+            <ul class="list-unstyled components">
+            <!-- MENU -->
+                <li class="nav-item active">
+                    <%= link_to videos_path, class: "nav-link" do %>
+                            <%= image_tag "video.svg", class: "nav-icon" %><span class="nav-item"> Show Videos</span>
+                    <% end %>
+                </li>  
+                <li class="nav-item active">
+                    <%= link_to new_video_path, class: "nav-link" do %>
+                            <%= image_tag "upload.svg", class: "nav-icon" %><span class="nav-item">  Upload a Video</span>
+                    <% end %>
+                </li> 
+                <li class="nav-item active">
+                    <%= link_to new_video_path, class: "nav-link" do %>
+                            <%= image_tag "record.svg", class: "nav-icon" %><span class="nav-item"> Record a Video</span>
+                    <% end %>
+                </li>  
+            <hr>
+                <li class="nav-item active">
+                    <%= link_to "", class: "nav-link" do %>
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                            aria-expanded="true" aria-controls="collapseTwo">
+                            <%= image_tag "bookmark.svg", class: "nav-icon" %><span class="nav-item">Bookmarks</span>
+                    <% end %>
+                </li>
+            </ul>
+            <hr>
+            <ul class="list-unstyled CTAs">
+                <li class="nav-item active">
+                <a href="" class="article">Members</a>
+                </li>
+            </ul>    
+        </nav>
+    </div>
 </div>
 
-<!-- Social Media Here - To follow-->    
+ <div class="row">
+        <div class="col-md-2">
+        <!-- TOGGLE-->
+                
+                    <button class="menu" id="sidebarCollapse" onclick="this.classList.toggle('opened');this.setAttribute('aria-expanded', this.classList.contains('opened'))" aria-label="Main Menu">
+                            <svg width="50" height="50" viewBox="0 0 100 100">
+                            <path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058" />
+                            <path class="line line2" d="M 20,50 H 80" />
+                            <path class="line line3" d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942" />
+                        </svg>
+                    </button>
+               
+        
+    </div>
+  </div>
+ 
 
 
 
-</ul>
+  <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+              
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>

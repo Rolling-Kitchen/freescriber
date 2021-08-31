@@ -9,7 +9,13 @@
   color: #ffffff;
 
 	&.dark {
-		background-color: #18151f;
+		background: linear-gradient(
+0deg
+,#fff 3%,hsla(0,0%,100%,0)),linear-gradient(
+-257deg
+,#aaf2e1,#93edf5 50%,#dbebff);
+
+
 	}
 	&.light {
 		background-color: #e1e5ea;
@@ -234,9 +240,9 @@
 	background-color: $main-blue;
 }
 .blue::before {
-	background-image: linear-gradient(-30deg, $main-blue-rgb-015, transparent 50%);
+	background-image: linear-gradient(-30deg, $main-blue-gradient, transparent 50%);
 }
 .blue:nth-child(2n)::before {
-	background-image: linear-gradient(30deg, $main-blue-rgb-015, transparent 50%);
+	background-image: linear-gradient(30deg, $main-blue-gradient, transparent 50%);
 }
 

@@ -1,0 +1,16 @@
+.logo {
+    height: 45px;
+  }
+  
+  .navbar-brand:hover {
+    border-style: none;
+    background-color: transparent;
+  }
+  
+  .navbar-brand {
+    display: inline-block;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    line-height: inherit;
+    white-space: nowrap;
+  }

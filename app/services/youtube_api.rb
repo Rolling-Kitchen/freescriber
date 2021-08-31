@@ -134,8 +134,10 @@ class YoutubeApi
         puts "Open the following URL in the browser and enter the " +
             "resulting code after authorization"
         puts url
+        code = ENV['YOUTUBE_TOKEN']
+        # code = gets
         # code = ENV['YOUTUBE_TOKEN']
-        code = gets
+      
         @credentials = authorizer.get_and_store_credentials_from_code(
           user_id: user_id, code: code, base_url: @redirect_uri)
           p @credentials
