@@ -16,18 +16,19 @@
         <% end %>
       </form>
     </div>
-    <div class="d-inline-flex">
 
+    <div class="d-inline-flex">
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownList" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
           ➕ Add To List
         </button>
+        
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <a class="dropdown-item" href="/lists/new">+ Create New List</a>
           <% current_user.lists.each do |list| %>
-          <a class="dropdown-item list-name" href="" data-my-id="<%= list.id %>">
-            <%= list.name %></a>
+            <a class="dropdown-item list-name select-list" href="" data-my-id="<%= list.id %>">
+              <%= list.name %></a>
           <% end %>
         </div>
       </div>
@@ -35,8 +36,9 @@
       <div classs="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
-          Translate
+          Translate 
         </button>
+
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <a class="dropdown-item" href="/videos/<%= @video.id %>">English</a>
           <a class="dropdown-item" href="/videos/<%= @video.id %>?language=zh">Chinese</a>
@@ -52,21 +54,21 @@
   </div>
 
   <div class="card card-body" style="overflow: auto;max-height: 420px;" id="caption_container" data-video-source="<%= @video.video_source %>">
-
     <% if @video.captions.length == 0 %>
-    "Sorry! Transcript not available yet"
+      "Sorry! Transcript not available yet"
     <% else %>
-    <% @video.captions.each_with_index do |caption, index| %>
-    <% caption["text"] = @translation[index] if @translation %>
-    <span><%= content_tag("a"," #{caption["text"]}", data: { start_seconds: caption["start_seconds"], end_seconds: caption["end_seconds"]}, class: "timecode") %></span>
+      <% @video.captions.each_with_index do |caption, index| %>
+        <% caption["text"] = @translation[index] if @translation %>
+        <span><%= content_tag("a"," #{caption["text"]}", data: { start_seconds: caption["start_seconds"], end_seconds: caption["end_seconds"]}, class: "timecode") %></span>
+      <% end %>
     <% end %>
-    <% end %>
-
   </div>
+
+  <%# hidden simple form for adding video to list %>
 
   <%= simple_form_for [@video, @bookmark], html: { class: "hide-form"} do |f| %>
     <%= f.association :list %>
-    <%= f.submit 'Add to List', class: "btn btn-default btn-primary" %>
+    <%= f.submit 'Add to List', class: "button-list" %>
   <% end %>
   
   <%= javascript_pack_tag 'add-to-list' %>

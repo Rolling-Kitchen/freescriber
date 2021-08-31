@@ -10,6 +10,9 @@ class ListsController < ApplicationController
     @list = List.new
   end
 
+  def show
+  end
+
   def create
     @list = List.new(list_params)
     @list.user = current_user

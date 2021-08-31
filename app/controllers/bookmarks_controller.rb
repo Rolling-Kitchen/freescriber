@@ -1,14 +1,14 @@
 class BookmarksController < ApplicationController
-  before_action :set_video, only: :create, :destroy
+  before_action :set_video, only: :create
 
   def create
-    @bookmark = Bookmark.new(bookmark_params)
-    @bookmark.video = @video
+    @bookmark = @video.bookmarks.find_or_initialize_by(bookmark_params)
     @bookmark.save
     redirect_to video_path(@video)
   end
 
   def destroy
+    @bookmark = Bookmark.find(params[:id])
     @bookmark.destroy
     redirect_to list_path(@bookmark.list)
   end

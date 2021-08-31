@@ -2,7 +2,7 @@
     <% @videos = @list.videos %>
     <h1><%= @list.name %></h1>
     <p><%= @list.description %></p>
-    <%= render 'videos/video-index-cards'%>
+    <%= render 'videos/video-index-cards', list: @list %>
   <% else %> 
     <h1><%= @list.name %></h1>
     <p><%= @list.description %></p>

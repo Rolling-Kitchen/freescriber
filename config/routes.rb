@@ -7,12 +7,13 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resources :videos do
-  member do
-    post 'toggle_favorite', to: "videos#toggle_favorite"
+    member do
+      post 'toggle_favorite', to: "videos#toggle_favorite"
+    end
+    resources :bookmarks, only: [:create]
   end
 
-  resources :bookmarks, only: [:create, :destroy]
-  end
+  resources :bookmarks, only: [:destroy]
 
   resources :lists
 
