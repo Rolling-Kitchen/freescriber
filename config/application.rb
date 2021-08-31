@@ -15,6 +15,7 @@ module Freescriber
     end
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
+    config.exceptions_app = self.routes #for the error page
 
     # Configuration for the application, engines, and railties goes here.
     #
