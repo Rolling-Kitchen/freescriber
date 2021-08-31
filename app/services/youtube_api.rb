@@ -20,7 +20,7 @@ class YoutubeApi
     # MAKE SURE TO MAKE THIS PRIVATE LATER
     @client_secrets_path = './client_secrets.json'
     # REPLACE FINAL ARGUMENT WITH FILE WHERE CREDENTIALS WILL BE STORED
-    @credentials_path = Rails.root.join("public", "youtube-credentials.yaml")
+    @credentials_path = Rails.root.join("public", "asd")
 
     # @scope FOR WHICH THIS SCRIPT REQUESTS AUTHORIZATION
     @scope = 'https://www.googleapis.com/auth/youtube.force-ssl'
@@ -63,10 +63,10 @@ class YoutubeApi
     result = @service.list_captions("id", video.video_source)
     # if it has captions, try to fetch them and add them to the video model
     if result.items.length >0
-      caption_id = result.items[0].id      
+      caption_id = result.items[0].id
       captions_string = @service.download_caption(caption_id)
       captions_lines = captions_string.split("\n\n")
-      captions = captions_lines.map do |line| 
+      captions = captions_lines.map do |line|
         line_array = line.split("\n")
         {
           start: line_array[0].split(",")[0],
@@ -84,7 +84,7 @@ class YoutubeApi
       return {}
     end
   end
-  
+
   def get_thumbnail(video)
     result = @service.list_videos('snippet', id: video.video_source)
     return result.items[0].snippet.thumbnails.high.url
@@ -104,7 +104,7 @@ class YoutubeApi
     end
     @translation = @service.translate_text({
       "contents": video.captions.map{|caption| caption['text']},
-      "source_language_code": "en", 
+      "source_language_code": "en",
       "target_language_code": language,
       "parent": "projects/freescriber"
     })
@@ -112,7 +112,7 @@ class YoutubeApi
   end
 
   private
-    
+
     def authorize
       FileUtils.mkdir_p(File.dirname(@credentials_path))
 
