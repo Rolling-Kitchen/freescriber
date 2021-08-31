@@ -1,8 +1,8 @@
 <div class="container py-2">
-  <% if  @search_query === nil %>
-    <div class="h1 text-center text-dark" id="pageHeaderTitle">My Videos (<%= @videos.count%>)</div>
+  <% if  @search_query == nil %>
+    <div class="h1 text-center text-dark" id="pageHeaderTitle">My Videos (<%= @videos.count %>)</div>
   <% else %>
-    <div class="h1 text-center text-dark" id="pageHeaderTitle"> Results for "<%= @search_query %>" (<%= @videos.count%>)
+    <div class="h1 text-center text-dark" id="pageHeaderTitle"> Results for "<%= @search_query %>" (<%= @videos.count %>)
     </div>
   <% end %>
 
