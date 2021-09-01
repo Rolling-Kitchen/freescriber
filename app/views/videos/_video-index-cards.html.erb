@@ -1,41 +1,41 @@
-
-  <% if  @search_query === nil %>
-    <div class="h1 text-center text-dark" id="pageHeaderTitle">My Videos (<%= @videos.count%>)</div>
-  <% else %>
-    <div class="h1 text-center text-dark" id="pageHeaderTitle"> Results for "<%= @search_query %>" (<%= @videos.count%>) </div>
+<!-- VIDEOHEADER-->  
+<% if  @search_query === nil %>
+  <div class="pageHeaderTitle">My Videos (<%= @videos.count%>)</div>
+<% else %>
+  <div class="pageHeaderTitle"> Results for "<%= @search_query %>" (<%= @videos.count%>) </div>
   <% end %>
   <% @videos.each_with_index do |video, index| %>
     <%= link_to video_path(video) do %>
+    <!-- VIDEO-CARD-->  
       <article>
-        <div class="videocard light blue">
+        <div class="videocard">
+        <!-- VIDEO-THUMBNAIL-->  
           <div class="videocard-thumbnail">
-            <%= cl_image_tag video.photo.key%>
+            <%= cl_image_tag video.photo.key, :aspect_ratio=>"16:9", :width=>500, :crop=>"fill" %>
           </div>
-          <div class="videocard-text t-dark">
-            <h1 class="videocard-title yellow">
-              <%= video.title %></h1>
-            <div class="videocard-subtitle small">
-              <time datetime="2020-05-25 12:00:00">
+          <!-- VIDEO INFO -->  
+          <div class="videocard-info">
+            <h1 class="videocard-title"><%= video.title %></h1>
+            <!-- SUB-INFO -->  
+            <div class="videocard-info">
                 <i class="fas fa-calendar-alt mr-2"></i><%= video.created_at %>
                 <% if video.captions? %>
                   <span class="badge badge-success" id="status-completed">Search Completed</span>
                 <% else %>
                   <span class="badge badge-warning" id="status-pending">Pending</span>
                 <% end %>
-              </time>
             </div>
-            <div class="videocard-bar"></div>
-            <div class="videocard-preview-txt"><%= video.description %></div>
-          <% end %>
-          <ul class="videocard-tagbox">
-            <li class="tag-item"><i class="fas fa-tag mr-2"></i>Business</li>
-                            <% if video.duration? %>
-            <li class="tag-item"><i class="fas fa-clock mr-2"></i><%= video.duration %> minutes</li>
-            <% end %>
-          </li>
-        </ul>
+            <%# <div class="videocard-bar"></div> %>
+            <div class="videocard-description"><%= video.description %></div>
+      <% end %>
+            <ul class="videocard-tagbox">
+              <li class="tag-item"><i class="fas fa-tag mr-2"></i>Business</li>
+                <% if video.duration? %>
+              <li class="tag-item"><i class="fas fa-clock mr-2"></i><%= video.duration %> minutes</li>
+                <% end %>
+             </ul>
       </div>
-    </div>
+  </div>
     <% if @caption_results != nil %>
       <div class="temp_styling">
           <% if @caption_results[index] != [] %>
