@@ -1,0 +1,11 @@
+<% if @list.videos.any? %>
+    <% @videos = @list.videos %>
+    <h1><%= @list.name %></h1>
+    <p><%= @list.description %></p>
+    <%= render 'videos/video-index-cards', list: @list %>
+  <% else %> 
+    <h1><%= @list.name %></h1>
+    <p><%= @list.description %></p>
+    <br>
+	  <div class="h1 text-center text-dark" id="pageHeaderTitle">Nothing here... add some videos!</div>
+<% end %>

@@ -1,24 +1,33 @@
 <div class="caption-text">
   <h5 class="video-description">Transcription</h5>
-    <div class="d-flex justify-content-between pb-3 pt-2">
-      <div class="d-inline-flex">
-        <form class="form-inline flex-nowrap mx-0 mx-lg-auto rounded">
-            <%= form_tag text_search_path, method: :get, class: 'form-text', remote: true do %>
-              <%= text_field_tag :text_query,
+  <div class="d-flex justify-content-between pb-3 pt-2">
+    <div class="d-inline-flex">
+      <form class="form-inline flex-nowrap mx-0 mx-lg-auto rounded">
+        <%= form_tag text_search_path, method: :get, class: 'form-text', remote: true do %>
+        <%= text_field_tag :text_query,
               params[:text_query],
-              class: "form-control form-color form-radius",
+              class: "form-control form-color form-radius ",
               placeholder: "Search",
               data: {
               search_target: "input"
               }
               %>
-              <%#= submit_tag "Search", class: "btn btn-primary btn-border btn-radius btn-font-color", id: "btn-caption-search", data: { search_target: 'button' } %>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="/lists/new">+ Create New List</a>
+          <% current_user.lists.each do |list| %>
+            <a class="dropdown-item list-name select-list" href="" data-my-id="<%= list.id %>">
+              <%= list.name %></a>
           <% end %>
-        </form>
+        </div>
+      </div>
+
+              <%= submit_tag "Search", class: "btn btn-primary btn-border btn-radius btn-font-color", id: "btn-caption-search", data: { search_target: 'button' } %>
+          <% end %>
+
       </div>
       <div class="d-inline-flex">
         <div classs="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+          <button class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false"> 
             Translate
           </button>
@@ -35,17 +44,31 @@
         </div>
       </div>
     </div>
+  </div>
+
 
     <div class="card card-body" style="overflow: auto;max-height: 420px;" id="caption_container">
     
       <% if @video.captions.length === 0 %>
         "Sorry! Transcript not available yet"
       <% else %>
+      <div id="fullTranscript">
         <% @video.captions.each_with_index do |caption, index| %>
         <% caption["text"] = @translation[index] if @translation %>
-            <%= content_tag("a"," #{caption["text"]}", data: { start_seconds: caption["start_seconds"], end_seconds: caption["end_seconds"]}, class: "timecode") %>
+            <li><span><%= content_tag("a"," #{caption["text"]}", data: { start_seconds: caption["start_seconds"], end_seconds: caption["end_seconds"]}, class: "timecode") %></span></li>
         <% end %>
+      </div>
+      <div id="searchResults">
+      </div>
       <% end %>
  
 </div>
 
+  <%# hidden simple form for adding video to list %>
+
+  <%= simple_form_for [@video, @bookmark], html: { class: "hide-form"} do |f| %>
+    <%= f.association :list %>
+    <%= f.submit 'Add to List', class: "button-list" %>
+  <% end %>
+  
+  <%= javascript_pack_tag 'add-to-list' %>

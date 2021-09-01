@@ -1,9 +1,10 @@
 class VideosController < ApplicationController
   include ActionView::Helpers::UrlHelper
   require "open-uri"
-  before_action :set_video, only: %i[show edit update destroy]
+  before_action :set_video, only: %i[show edit update destroy toggle_favorite]
 
   def index
+    @favorite_videos = current_user.favorited_by_type('Video')
     if params[:query].present?
       @videos = policy_scope(Video).search_by_title_or_transcript(params[:query])
       @search_query = params["query"]
@@ -36,10 +37,12 @@ class VideosController < ApplicationController
   end
 
   def show
+    @bookmark = Bookmark.new
     @video = Video.find(params[:id])
     yt = YoutubeApi.new
     unless @video.description?
-      if  @video_captions != nil
+      p "get captions"
+      if  @video.captions != {}
       @video_captions = @video.captions[0..5]
       @new_description = ""
       @video_captions.each do |caption|
@@ -50,6 +53,7 @@ class VideosController < ApplicationController
       @video.save
     end
     end
+    
     unless @video.photo.attached?
       yt = YoutubeApi.new
       begin
@@ -62,6 +66,7 @@ class VideosController < ApplicationController
         @video.photo.attach(io: file, filename: 'thumbnail.png', content_type: 'image/png')
       end
     end
+
     unless @video.duration?
       yt = YoutubeApi.new
       @video.duration = yt.get_duration(@video)
@@ -127,6 +132,17 @@ class VideosController < ApplicationController
       array_of_text << hash if hash["text"].include? params[:text_query]
     end
     render json: array_of_text
+  end
+
+  def toggle_favorite
+    current_user.favorited?(@video) ? current_user.unfavorite(@video) : current_user.favorite(@video)
+    respond_to do |format|
+      format.js {render inline: "location.reload();" }
+    end
+  end
+
+  def show_favorites
+    @favorites = current_user.all_favorited
   end
 
   private
