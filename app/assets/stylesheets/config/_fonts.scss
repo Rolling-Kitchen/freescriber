@@ -11,6 +11,7 @@ $special-font: JetBrains Mono, monospace;
 @font-face {
   font-family: 'CircularStd';
   src: url('app/assets/fonts/CircularStd-Black.otf');
+  src: url('app/assets/fonts/CircularStd-Medium.otf');
 }
 
 h1 {
@@ -61,6 +62,10 @@ h1 {
     letter-spacing: -0.02em;
   }
 
+  button {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+  }
 
 //   a, a:hover, a.timecode {
 //     margin-top: 0px;
@@ -111,5 +116,4 @@ p {
     font-family: Inter, sans-serif;
     font-size: 17px;
 }
-
 
