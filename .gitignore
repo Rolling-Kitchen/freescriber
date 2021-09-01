@@ -41,7 +41,6 @@ yarn-debug.log*
 .DS_Store
 
 # ignore
-.client_secrets.json
 client_secrets.json
 credential.json
 youtube-credentials.yaml
