@@ -1,74 +1,80 @@
 <div id="wrapper">
-     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-            <div class="sidebar-brand-text mx-3">
-              <%= link_to root_path, class: "navbar-brand" do %>
-                <%= image_tag "pscriber-logo-lime.png", class: "navbar-logo" %>     
-                <% end %>
-            </div>
-        </a>
-       
+  <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <div class="sidebar-brand-text mx-3">
+      <%= link_to root_path, class: "navbar-brand" do %>
+      <%= image_tag "pscriber-logo-lime.png", class: "navbar-logo" %>
+      <% end %>
+    </div>
+    </a>
 
-<%= render 'shared/divider/horizontal' %>
+    <%= render 'shared/divider/horizontal' %>
 
-<!-- Menu -->
+    <!-- Menu -->
 
-<!-- Heading-01 -->
-<div class="sidebar-heading mt-2">Dashboard</div>
-       
-    <li class="nav-item active">
-        <%= link_to videos_path, class: "nav-link" do %>
-        <%= image_tag "video.svg", class: "nav-icon" %> Show Videos
-        <% end %>
-    </li>  
+    <!-- Heading-01 -->
+    <div class="sidebar-heading mt-2">Dashboard</div>
 
     <li class="nav-item active">
-        <%= link_to new_video_path, class: "nav-link" do %>
-        <%= image_tag "upload.svg", class: "nav-icon" %> Upload a Video
-        <% end %>
-    </li>  
-
-    <li class="nav-item active">
-        <%= link_to new_video_path, class: "nav-link" do %>
-         <%= image_tag "record.svg", class: "nav-icon" %>Record a Video
-          <% end %>
-    </li>  
-            
-<%= render 'shared/divider/horizontal' %>          
-
-
-<!-- Heading-02 -->         
-
-<%# <div class="sidebar-heading mt-2">My Workspace</div> %>
-
-    <li class="nav-item">
-       <%= link_to "", class: "nav-link" do %>
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-            aria-expanded="true" aria-controls="collapseTwo">
-             <%= image_tag "bookmark.svg", class: "nav-icon" %>Bookmarks
-              <% end %>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Categories:</h6>
-                <a class="collapse-item" href="buttons.html">Programming</a>
-                <a class="collapse-item" href="cards.html">Business</a>
-            </div>
-        </div>
+      <%= link_to videos_path, class: "nav-link" do %>
+      <%= image_tag "video.svg", class: "nav-icon" %> Show Videos
+      <% end %>
     </li>
 
+    <li class="nav-item active">
+      <%= link_to new_video_path, class: "nav-link" do %>
+      <%= image_tag "upload.svg", class: "nav-icon" %> Upload a Video
+      <% end %>
+    </li>
+
+    <li class="nav-item active">
+      <%= link_to new_video_path, class: "nav-link" do %>
+      <%= image_tag "record.svg", class: "nav-icon" %>Record a Video
+      <% end %>
+    </li>
+
+    <%= render 'shared/divider/horizontal' %>
 
 
-<!-- Heading-03 -->    
+    <%= render 'shared/divider/horizontal' %>
 
-<div class="sidebar-card d-none d-lg-flex mt-5">
-        <img class="sidebar-card-illustration mb-2" src="" alt="">
-        <p class="text-center mb-2"><strong>FREESCRIBER Pro</strong> is packed with premium features, components, and more!</p>
-        <a class="btn btn-success btn-sm" href="">See Members</a>
-</div>
+    <%# <div class="sidebar-heading mt-2">My Workspace</div> %>
 
-<!-- Social Media Here - To follow-->    
+    <li class="nav-item">
+      <%= link_to "🤍 Favorites", favorites_path, class: "nav-link" %>
+    </li>
 
+    <li class="nav-item">
+      <%= link_to "", class: "nav-link" do %>
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+        aria-controls="collapseTwo">
+        <%= image_tag "bookmark.svg", class: "nav-icon" %>Bookmarks
+        <% end %></a>
+        
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <h6 class="collapse-header">Categories:</h6>
+          <a class="dropdown-item" href="/lists/new">+ Create new</a>
+          <% if current_user.present? %>
+          <% current_user.lists.each do |list| %>
+          <a class="collapse-item list-name" href="/lists/<%=list.id%>" data-my-id="<%= list.id %>">
+            <%= list.name %></a>
+          <% end %>
+          <% end %>
+        </div>
+      </div>
+    </li>
 
+    <!-- Heading-03 -->
 
-</ul>
+    <div class="sidebar-card d-none d-lg-flex mt-5">
+      <img class="sidebar-card-illustration mb-2" src="" alt="">
+      <p class="text-center mb-2"><strong>FREESCRIBER Pro</strong> is packed with premium features, components,
+        and more!</p>
+      <a class="btn btn-success btn-sm" href="">See Members</a>
+    </div>
 
+    <!-- Social Media Here - To follow-->
+
+    <!-- Social Media Here - To follow-->
+
+  </ul>

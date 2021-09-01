@@ -1,9 +1,10 @@
 <div class="caption-text">
   <h5 class="video-description">Transcription</h5>
-    <div class="d-flex justify-content-between pb-3 pt-2">
-      <div class="d-inline-flex">
-            <%= form_tag text_search_path, method: :get, class: 'form-text', id: 'video_search' ,remote: true do %>
-              <%= text_field_tag :text_query,
+  <div class="d-flex justify-content-between pb-3 pt-2">
+    <div class="d-inline-flex">
+      <form class="form-inline flex-nowrap mx-0 mx-lg-auto rounded">
+        <%= form_tag text_search_path, method: :get, class: 'form-text', remote: true do %>
+        <%= text_field_tag :text_query,
               params[:text_query],
               class: "form-control form-color form-radius ",
               placeholder: "Search",
@@ -11,6 +12,15 @@
               search_target: "input"
               }
               %>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="/lists/new">+ Create New List</a>
+          <% current_user.lists.each do |list| %>
+            <a class="dropdown-item list-name select-list" href="" data-my-id="<%= list.id %>">
+              <%= list.name %></a>
+          <% end %>
+        </div>
+      </div>
+
               <%= submit_tag "Search", class: "btn btn-primary btn-border btn-radius btn-font-color", id: "btn-caption-search", data: { search_target: 'button' } %>
           <% end %>
 
@@ -34,6 +44,8 @@
         </div>
       </div>
     </div>
+  </div>
+
 
     <div class="card card-body" style="overflow: auto;max-height: 420px;" id="caption_container">
     
@@ -51,3 +63,12 @@
       <% end %>
  
 </div>
+
+  <%# hidden simple form for adding video to list %>
+
+  <%= simple_form_for [@video, @bookmark], html: { class: "hide-form"} do |f| %>
+    <%= f.association :list %>
+    <%= f.submit 'Add to List', class: "button-list" %>
+  <% end %>
+  
+  <%= javascript_pack_tag 'add-to-list' %>
