@@ -1,5 +1,5 @@
 <div class="embed-responsive embed-responsive-16by9">
-    <div id="player"></div>
+    <%= content_tag("div","", data: { video_source: @video.video_source}, id: "player") %>
 </div>
 <div class="video-description-card"> 
     <h2 class="video-title"><%= @video.title %></h2>
