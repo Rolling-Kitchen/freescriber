@@ -1,13 +1,11 @@
   <% if  @search_query === nil %>
-    <div class="h1 text-center text-dark" id="pageHeaderTitle">My Videos (<%= @videos.count%>)</div>
-
-  <% else %>
-    <div class="h1 text-center text-dark" id="pageHeaderTitle"> Results for "<%= @search_query %>" (<%= @videos.count %>)
-    </div>
-  <% end %>
-
-  <% @videos.each_with_index do |video, index| %>
-    <%= link_to video_path(video) do %>
+  <div class="h1 text-center text-dark" id="pageHeaderTitle">My Videos (<%= @videos.count%>)</div>
+<% else %>
+  <div class="h1 text-center text-dark" id="pageHeaderTitle"> Results for "<%= @search_query %>" (<%= @videos.count %>)
+  </div>
+<% end %>
+<% @videos.each_with_index do |video, index| %>
+  <%= link_to video_path(video) do %>
     <article>
       <div class="videocard light blue">
         <div class="videocard-thumbnail">
@@ -26,7 +24,6 @@
               <% end %>
             </time>
           </div>
-
           <%= link_to toggle_favorite_video_path(video), remote: true, method: :post do %>
             <div class="like-icon mx-2" data-id="<%= video.id %>">
               <% if current_user.favorited?(video) %>
@@ -36,48 +33,46 @@
               <% end %>
             </div>
           <% end %>
-
           <div class="videocard-bar"></div>
           <div class="videocard-preview-txt"> <%= video.description %> </div>
-          <% end %>
-          <div class="d-flex justify-content-between">
-            <ul class="videocard-tagbox">
-              <li class="tag-item"><i class="fas fa-tag mr-2"></i>Business</li>
-              <% if video.duration? %>
-                <li class="tag-item"><i class="fas fa-clock mr-2"></i><%= video.duration %> minutes</li>
-              <% end %>
-              </li>
-            </ul>          
-            <% if local_assigns[:list] %>
-              <%= button_to "Delete", bookmark_path(list.bookmarks.find_by(video: video)), :method => :get, class: "btn btn-primary",
+        <% end %>
+        <div class="d-flex justify-content-between">
+          <ul class="videocard-tagbox">
+            <li class="tag-item"><i class="fas fa-tag mr-2"></i>Business</li>
+            <% if video.duration? %>
+              <li class="tag-item"><i class="fas fa-clock mr-2"></i><%= video.duration %> minutes</li>
+            <% end %>
+          </li>
+        </ul>
+        <% if local_assigns[:list] %>
+          <%= button_to "Delete", bookmark_path(list.bookmarks.find_by(video: video)), :method => :get, class: "btn btn-primary",
                     method: :delete,
                     data: { confirm: "Are you sure?" } %>
-            <% end %>
-          </div>
-        </div>
+        <% end %>
       </div>
-
-      <% if @caption_results != nil %>
-        <div class="temp_styling">
-          <% if @caption_results[index] != [] %>
-            <h3>Results from Transcript </h3>
-            <ul>
-              <% @caption_results[index].each_with_index do |caption, index| %>
-                <%= link_to video_path(video, :start_skim => caption[0]) do %>
-                  <li>
-                    <%= caption[1].gsub!(/#{@search_query}\w*\b/, '<span class = "search_term_highlight">\0</span>').html_safe %>
-                  </li>
+    </div>
+  </div>
+    <% if @caption_results != nil %>
+      <div class="temp_styling">
+        <% if @caption_results[index] != [] %>
+          <h3>Results from Transcript </h3>
+          <ul>
+            <% @caption_results[index].each_with_index do |caption, index| %>
+              <%= link_to video_path(video, :start_skim => caption[0]) do %>
+                <li>
+                  <%= caption[1].gsub!(/#{@search_query}\w*\b/, '<span class = "search_term_highlight">\0</span>').html_safe %>
+                </li>
               <% end %>
-          <% end %>
-
+            <% end %>
+          </ul>
+        <% end %>
       </div>
     <% end %>
   </article>
 <% end %>
-
-         
+  <%#          
 <style>
   .search_term_highlight {
     background: yellow;
   }
-</style>
+</style> %>
