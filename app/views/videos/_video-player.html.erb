@@ -1,13 +1,10 @@
 <div class="embed-responsive embed-responsive-16by9">
-    <div id="player"></div>
+    <%= content_tag("div","", data: { video_source: @video.video_source}, id: "player") %>
 </div>
 <div class="video-description-card"> 
     <h2 class="video-title"><%= @video.title %></h2>
     <h5 class="video-description">Description</h5>
-    <h5><%= @video.description %></h5>
-        <p>Laoreet semper eu massa suspendisse dis dolor at. Facilisis aliquam quisque blandit egestas class phasellus, 
-        Laoreet semper eu massa suspendisse dis dolor at. Facilisis aliquam quisque blandit egestas class phasellus,
-        </p>
+        <p><%= @video.description %></p>
 
     <div class="d-flex justify-content-end pb-4">
     <!-- Edit -->
@@ -83,5 +80,18 @@
 
 
 
+  <style>
+    .current_caption {
+      background-color: yellow;
+      color: black;
+    }
+
+
+
+
+
+
+
+  </style>
 
 

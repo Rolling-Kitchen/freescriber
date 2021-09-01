@@ -27,6 +27,8 @@ gem 'turbolinks_render'
 
 gem 'pg_search', '~> 2.3.0'
 
+gem 'acts_as_favoritor'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

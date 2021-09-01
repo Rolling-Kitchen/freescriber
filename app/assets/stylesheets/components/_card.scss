@@ -179,4 +179,25 @@
   }
 }
 
+.hide-form {
+  display: none;
+}
+
+/* COLORS */
+
+.videocard .videocard-tagbox .blue.play:hover {
+	background: $main-blue;
+}
+.blue .videocard-title:hover {
+	color: $main-blue;
+}
+.blue .videocard-bar {
+	background-color: $main-blue;
+}
+.blue::before {
+	background-image: linear-gradient(-30deg, $main-blue-gradient, transparent 50%);
+}
+.blue:nth-child(2n)::before {
+	background-image: linear-gradient(30deg, $main-blue-gradient, transparent 50%);
+}
 

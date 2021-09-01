@@ -1,0 +1,6 @@
+<% if current_user.present? && current_user.all_favorited.present? %>
+  <% @videos = current_user.all_favorited %>
+    <%= render 'videos/video-index-cards'%>
+  <% else %>
+	  <div class="h1 text-center text-dark" id="pageHeaderTitle">It's empty here... add some favorites!</div>
+<% end %>
