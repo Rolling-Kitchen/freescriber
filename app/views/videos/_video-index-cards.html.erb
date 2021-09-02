@@ -10,14 +10,19 @@
     <!-- VIDEO-CARD-->  
       <article>
         <div class="videocard">
+    
+
         <!-- VIDEO-THUMBNAIL-->  
           <div class="videocard-thumbnail">
             <%= cl_image_tag video.photo.key, :aspect_ratio=>"16:9", :width=>500, :crop=>"fill" %>
           </div>
+          
           <!-- VIDEO INFO -->  
           <div class="videocard-info">
             <h2 class="videocard-title"><%= video.title %></h2>
             <%= link_to toggle_favorite_video_path(video), remote: true, method: :post do %>
+            
+            <!-- VIDEO FAVORITE -->  
             <div class="like-icon mx-2" data-id="<%= video.id %>">
               <% if current_user.favorited?(video) %>
                 <i class="fas fa-heart"></i>
@@ -25,17 +30,21 @@
                 <i class="far fa-heart"></i>
               <% end %>
             </div>
-          <% end %>
+               <% end %>
+
+
             <!-- SUB-INFO -->  
             <div class="videocard-info">
-                <i class="fas fa-calendar-alt mr-2"></i><%= video.created_at %>
                 <% if video.captions? %>
                   <span class="badge badge-success" id="status-completed">Search Completed</span>
                 <% else %>
                   <span class="badge badge-warning" id="status-pending">Pending</span>
                 <% end %>
+                 <span><i class="fas fa-calendar-alt mr-2"></i><%= video.created_at %> <span>
             </div>
             <%# <div class="videocard-bar"></div> %>
+
+            
             <div class="videocard-description"><%= video.description %></div>
       <% end %>
             <ul class="videocard-tagbox">
@@ -51,14 +60,15 @@
             <% end %>
       </div>
   </div>
-      <% if @caption_results != nil %>
+
+  <% if @caption_results != nil %>
         <div class="temp_styling">
           <% if @caption_results[index] != [] %>
             <h3>Results from Transcript </h3>
             <ul>
               <% @caption_results[index].each_with_index do |caption, index| %>
                 <%= link_to video_path(video, :start_skim => caption[0]) do %>
-                  <li>
+                  <li class="timecode">
                     <%= caption[1].gsub!(/#{@search_query}\w*\b/, '<span class = "search_term_highlight">\0</span>').html_safe %>
                   </li>
                 <% end %>
@@ -68,4 +78,7 @@
       </div>
     <% end %>
    <% end %>
-  </article>
+   </div>
+   </div>
+  </div>
+</article>
