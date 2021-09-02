@@ -1,5 +1,5 @@
   <%= simple_form_for @list, remote: true do |f| %>
-    <%= f.input :name, label: 'Title', error: 'title is mandatory, please specify one' %>
-    <%= f.input :description, as: :text, :input_html => { :rows => 6 }, label: 'Description' %>
-    <%= f.button :submit, class: "btn-primary" %>
+    <%= f.input :name, label: 'List name', error: 'title is mandatory, please specify one' %>
+    <%= f.input :description, as: :text, :input_html => { :rows => 6 }, label: 'Description', placeholder: "optional" %>
+    <%= f.submit "submit", class: "btn btn-primary form-button", value: "Create List" %>
   <% end %>
