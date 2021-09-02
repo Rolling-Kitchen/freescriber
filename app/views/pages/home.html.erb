@@ -1,0 +1,172 @@
+<header class="header">
+    <nav class="nav">
+         <!-- LOGO-->
+            <div class="logo m-0">
+                <%= link_to root_path, class: "navbar-brand" do %> 
+                <%= image_tag "pscriber-logo-lime", class: "logo" %> 
+                <span class="logo-notext"></span>
+                <%#= cl_image_tag("https://res.cloudinary.com/elyse/image/upload/v1627701049/logo-foodtruck_syuqn2.png", class: 'navbar-img' ) %>  
+            <% end %>
+            </div>
+        
+        <% if user_signed_in? %>
+        <%= link_to "Login", new_user_session_path, class: "nav__btn btn" %>
+           <% end %>
+    </nav>
+    <!-- WHAT IS FREESCRIBER -->
+    <div class="header__content">
+        <div class="header__texts">
+            <h3 class="header__heading">
+                Turn your videos into  <br>
+                interactive transcripts for free <br>
+            </h3>
+            <p class="header__text">
+                Save time transcribing your lectures or meetings<br>and generate searchable texts in your personal dashboard.
+            </p>
+            <div class="header__btn-box">
+                <a href="#" class="header__btn-1 btn">See More</a>
+                <a href="#" class="header__btn-2 btn">Get Started</a>
+            </div>
+        </div>
+       
+    </div>
+</header>
+
+<div class="container">
+<!--TARGET USER -->
+    <section class="about">
+        <div class="about__img-box">
+        <%# WILL ADD GRAPHICS %>
+            <img src="https://picsum.photos/200/300?random=1"  class="about__img-1">
+            <img src="https://picsum.photos/200/300?random=1"  class="about__img-2">
+            <img src="https://picsum.photos/200/300?random=1"  class="about__img-3">
+            <img src="https://picsum.photos/200/300?random=1"  class="about__img-4"> 
+            <img src="https://picsum.photos/200/300?random=1"  class="about__img-5">
+        </div>
+        <div class="about__text-box">
+            <h3 class="about__hding">With our uploader,<br> you can import any video file to our platform.<br> </h3>
+            <p class="about__text">
+                We’ll notify you in the app when your transcript is ready!
+            </p>
+        </div>
+    </section>
+
+    <!--FEATURE-->
+    <section class="features">
+        <h3 class="features__heading">Features</h3>
+        <p class="features__text">
+            What makes our app so amazing
+        </p>
+        <div class="features__cards">
+            <div class="features__card">
+                <svg class="features__card-icon">
+                    <use xlink:href="./img/sprite.svg#web-programming"></use>
+                </svg>
+                <h3 class="features__card-name">Search</h3>
+                <p class="features__card-text">
+                    Filter and click on sentences or keywords in your transcripts to find those specific parts in your video.
+                </p>
+                <div class="arrow__box">
+                    <a href="#" class="arrow">&rarr;</a>
+                </div>
+            </div>
+            <div class="features__card">
+                <svg class="features__card-icon">
+                    <use xlink:href="./img/sprite.svg#website"></use>
+                </svg>
+                <h3 class="features__card-name">Translate</h3>
+                <p class="features__card-text">
+                    Automatically translate your texts into seven supported languages.
+                </p>
+                <div class="arrow__box">
+                    <a href="#" class="arrow">&rarr;</a>
+                </div>
+            </div>
+            <div class="features__card">
+                <svg class="features__card-icon">
+                    <use xlink:href="./img/sprite.svg#ui"></use>
+                </svg>
+                <h3 class="features__card-name">Bookmark</h3>
+                <p class="features__card-text">
+                    Add transcripts to your favorites and organize them in lists.
+                </p>
+                <div class="arrow__box">
+                    <a href="#" class="arrow">&rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!--FOOTER-->
+<footer class="footer">
+    <div class="fs">
+        <div class="fs__content">
+        <%# //add graphics %>
+            <img src="./img/Logo-2.png" alt="fs logo" class="fs__logo">
+            <div class="fs__texts">
+                <h4 class="fs__heading">Video Search</h4>
+                <p class="fs__text">Make the world’s videos more accessible through Interactive Transcripts</p>
+            </div>
+            <a href="#" class="fs__btn btn">View Product</a>
+        </div>
+    </div>
+    <div class="footer__content">
+    <div class="footer__company">
+         <div class="logo m-0">
+                <%= link_to root_path, class: "navbar-brand" do %> 
+                <%= image_tag "pscriber-logo-lime", class: "logo" %> 
+                <span class="logo-notext"></span>
+                <%#= cl_image_tag("https://res.cloudinary.com/elyse/image/upload/v1627701049/logo-foodtruck_syuqn2.png", class: 'navbar-img' ) %>  
+            <% end %>
+            </div>
+        <hr mb-5><br>
+        <p class="footer__text">Make the world’s videos more accessible <br> through Interactive Transcripts</p>
+        <div class="footer__social">
+            <svg class="footer__icon">
+                <use xlink:href="./img/sprite.svg#facebook"></use>
+            </svg>
+            <svg class="footer__icon">
+                <use xlink:href="./img/sprite.svg#twitter"></use>
+            </svg>
+            <svg class="footer__icon">
+                <use xlink:href="./img/sprite.svg#instagram"></use>
+            </svg>
+            <svg class="footer__icon">
+                <use xlink:href="./img/sprite.svg#instagram"></use>
+            </svg>
+        </div>
+    </div>
+    <div class="footer__account account">
+        <h3 class="footer__name">About</h3>
+        <ul class="footer__list">
+            <li class="footer__item"><a href="#" class="footer__link">Services</a></li>
+            <li class="footer__item"><a href="#" class="footer__link">Featured</a></li>
+            <li class="footer__item"><a href="#" class="footer__link">News</a></li>
+            <li class="footer__item"><a href="#" class="footer__link">Careers</a></li>
+        </ul>
+    </div>
+    
+    <div class="footer__about ab">
+        <h3 class="footer__name">Services</h3>
+        <ul class="footer__list">
+            <li class="footer__item"><a href="#" class="footer__link">Search</a></li>
+            <li class="footer__item"><a href="#" class="footer__link">Translate</a></li>
+            <li class="footer__item"><a href="#" class="footer__link">Bookmark</a></li>
+        </ul>
+    </div>
+    
+    <div class="footer__company company">
+        <h3 class="footer__name">Connect</h3>
+        <ul class="footer__list">
+            <li class="footer__item"><a href="#" class="footer__link">Community</a></li>
+            <li class="footer__item"><a href="#" class="footer__link">Help Center</a></li>
+            <li class="footer__item"><a href="#" class="footer__link">Support</a></li>
+        </ul>
+    </div>
+    </div>
+    
+    <div class="copyright">
+        <p class="copyright__text"><span>&copy; 2021 </span> Freescriber</p>
+    </div>
+</footer>

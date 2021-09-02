@@ -2,46 +2,50 @@
 <div class="row">
     <div class="col-6 bg-warning">
         <nav id="sidebar">
-            <ul class="list-unstyled components">
-            <!-- MENU -->
-                <li class="nav-item active">
-                    <%= link_to videos_path, class: "nav-link" do %>
-                            <%= image_tag "video.svg", class: "nav-icon" %><span class="nav-item"> Show Videos</span>
+            <div class="sidenav-header">
+            <!-- LOGO-->
+                 <div class="logo m-0">
+                      <%= link_to root_path, class: "navbar-brand" do %> 
+                     <%= image_tag "pscriber-logo-lime", class: "logo" %> 
+                      <span class="logo-notext"></span>
+                     <%#= cl_image_tag("https://res.cloudinary.com/elyse/image/upload/v1627701049/logo-foodtruck_syuqn2.png", class: 'navbar-img' ) %>  
                     <% end %>
-                </li>  
+                 </div>
+            </div>
+      
+        <hr class="horizontal light mt-3 mb-5">
+                      
+            <!-- MENU -->
+
+        <ul class="navbar-nav accordion" id="accordionSidebar">
+    
                 <li class="nav-item active">
                     <%= link_to new_video_path, class: "nav-link" do %>
-                            <%= image_tag "upload.svg", class: "nav-icon" %><span class="nav-item">  Upload a Video</span>
+                             <%= image_tag "video.svg", class: "nav-icon" %><span class="nav-item"> Show Video</span>
                     <% end %>
                 </li> 
-                <li class="nav-item active">
-                    <%= link_to new_video_path, class: "nav-link" do %>
-                            <%= image_tag "record.svg", class: "nav-icon" %><span class="nav-item"> Record a Video</span>
+          
+             <hr class="horizontal light mt-3 mb-1">
+
+            
+                  <li class="nav-item active">
+                   <%= link_to favorites_path, class: "nav-link" do %>
+                          <%= image_tag "upload.svg", class: "nav-icon" %><span class="nav-item">  Upload a Video</span>
+                    <%#= link_to "🤍 Favorites", favorites_path, class: "nav-link" %>
                     <% end %>
-                </li>  
-            <hr>
-                <li class="nav-item active">
-                    <%= link_to "", class: "nav-link" do %>
-                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                            aria-expanded="true" aria-controls="collapseTwo">
-                            <%= image_tag "bookmark.svg", class: "nav-icon" %><span class="nav-item">Bookmarks</span>
-                    <% end %>
-                </li>
-                  
-                  <li class="nav-item">
-                    <%= link_to "🤍 Favorites", favorites_path, class: "nav-link" %>
                   </li>
               
-                  <li class="nav-item">
+                  <li class="nav-item active">
                     <%= link_to "", class: "nav-link" do %>
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
-                      aria-controls="collapseTwo">
-                      <%= image_tag "bookmark.svg", class: "nav-icon" %>Bookmarks
-                      <% end %></a>
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+                         aria-controls="collapseTwo">
+                         <%= image_tag "bookmark.svg", class: "nav-icon" %><span class="nav-item">  Bookmarks</span>
+                        </a>
+                    <% end %>
 
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                       <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Categories:</h6>
+                        <h4 class="collapse-header">Categories:</h4>
                         <a class="dropdown-item" href="/lists/new">+ Create new</a>
                         <% if current_user.present? %>
                         <% current_user.lists.each do |list| %>
@@ -63,7 +67,7 @@
     </div>
 </div>
 
- <div class="row">
+ <%# <% <div class="row">
         <div class="col-md-2">
         <!-- TOGGLE-->
                 
@@ -74,14 +78,9 @@
                             <path class="line line3" d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942" />
                         </svg>
                     </button>
-               
-        
     </div>
-  </div>
+  </div> %> 
  
-
-
-
   <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 

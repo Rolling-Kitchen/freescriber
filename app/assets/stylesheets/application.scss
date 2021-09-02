@@ -12,6 +12,11 @@
 @import "components/index";
 @import "pages/index";
 
+/*
+*= require material_icons_unicode
+*/
+
+
 a, a:hover {
 	text-decoration: none;
 	transition: color 0.3s ease-in-out;
