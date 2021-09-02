@@ -39,9 +39,13 @@
             <div class="videocard-description"><%= video.description %></div>
       <% end %>
             <ul class="videocard-tagbox">
-              <li class="tag-item"><i class="fas fa-tag mr-2"></i>Business</li>
+              <% if video.lists.exists? %>
+                <% video.lists.each do |tag| %>
+                  <li class="tag-item"><i class="fas fa-tag mr-2"></i><%= link_to tag.name, list_path(tag) %></li>
+                <% end %>
+              <% end %>
                 <% if video.duration? %>
-              <li class="tag-item"><i class="fas fa-clock mr-2"></i><%= video.duration %> minutes</li>
+                  <li class="tag-item"><i class="fas fa-clock mr-2"></i><%= video.duration %> minutes</li>
                 <% end %>
              </ul>
              <% if local_assigns[:list] %>

@@ -8,10 +8,12 @@
                 <%#= cl_image_tag("https://res.cloudinary.com/elyse/image/upload/v1627701049/logo-foodtruck_syuqn2.png", class: 'navbar-img' ) %>  
             <% end %>
             </div>
-        
+
         <% if user_signed_in? %>
-        <%= link_to "Login", new_user_session_path, class: "nav__btn btn" %>
-           <% end %>
+            <%= link_to "My Dashboard", videos_path, class: "nav__btn btn" %>
+        <% else %>
+            <%= link_to "Login", new_user_session_path, class: "nav__btn btn" %>
+        <% end %>
     </nav>
     <!-- WHAT IS FREESCRIBER -->
     <div class="header__content">
