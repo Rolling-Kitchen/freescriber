@@ -107,15 +107,22 @@
 }
 
 // SIDEBAR
-#sidebar {
+html, body {
+  height: 100%;
+}
+.container-fluid {
+  height: 100%;
+}
+.navbar-background{
   background: $main-blue-dark03;
+}
+#sidebar {
   color: $main-blue-dark01;
-  width: 100%;
-  max-width: 18%;
   overflow-y: auto;
+  overflow-x:hidden;
+  min-height: 100vh;
   height: 100%;
   transition: all 0.3s;
-  z-index: 1;
   top: 0;
   left:0;
   position: fixed;
