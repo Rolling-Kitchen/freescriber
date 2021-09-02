@@ -3,7 +3,8 @@ export function init_youtube_player() {
   if (caption_container) {
     var YouTubeIframeLoader = require("youtube-iframe");
     var player;
-    const container_div_source = caption_container.dataset.videoSource;
+    const container_div_source =
+      document.getElementById("player").dataset["videoSource"];
     const all_captions = document.getElementsByClassName("timecode");
     YouTubeIframeLoader.load(function (YT) {
       player = new YT.Player("player", {

@@ -142,17 +142,7 @@
 
 // TOGGLE
 button:not(:disabled), [type="button"]:not(:disabled), [type="reset"]:not(:disabled), [type="submit"]:not(:disabled) {
-  cursor: pointer;
-  z-index: 2;
-  top: 0;
-  left: 0;
-  margin-top: 90px;
-  margin-left: 16%;
-  background: white;
-  position: fixed;
-  border-radius: 10px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26)
+
 }
 
 // SIDEBAR-MENU
