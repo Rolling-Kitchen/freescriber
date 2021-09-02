@@ -1,73 +1,48 @@
 <!-- SIDE-->
-<div class="row">
-    <div class="col-6 bg-warning">
-        <nav id="sidebar">
-            <div class="sidenav-header">
-            <!-- LOGO-->
-                 <div class="logo m-0">
-                      <%= link_to root_path, class: "navbar-brand" do %> 
-                     <%= image_tag "pscriber-logo-lime", class: "logo" %> 
-                      <span class="logo-notext"></span>
-                     <%#= cl_image_tag("https://res.cloudinary.com/elyse/image/upload/v1627701049/logo-foodtruck_syuqn2.png", class: 'navbar-img' ) %>  
-                    <% end %>
-                 </div>
-            </div>
-      
-        <hr class="horizontal light mt-3 mb-5">
-                      
-            <!-- MENU -->
-
-        <ul class="navbar-nav accordion" id="accordionSidebar">
-    
-                <li class="nav-item active">
-                    <%= link_to videos_path, class: "nav-link" do %>
-                             <%= image_tag "video.svg", class: "nav-icon" %><span class="nav-item"> Show Video</span>
-                    <% end %>
-                </li> 
-          
-             <hr class="horizontal light mt-3 mb-1">
-
-            
-                  <li class="nav-item active">
-                   <%= link_to new_video_path, class: "nav-link" do %>
-                          <%= image_tag "upload.svg", class: "nav-icon" %><span class="nav-item">  Upload a Video</span>
-                    <%#= link_to "🤍 Favorites", favorites_path, class: "nav-link" %>
-                    <% end %>
-                  </li>
-              
-                  <li class="nav-item active">
-                    <%= link_to favorites_path, class: "nav-link" do %>
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
-                         aria-controls="collapseTwo">
-                         <%= image_tag "bookmark.svg", class: "nav-icon" %><span class="nav-item">  Bookmarks</span>
-                        </a>
-                    <% end %>
-
-                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                      <div class="bg-white py-2 collapse-inner rounded">
-                        <h4 class="collapse-header">Categories:</h4>
+<nav id="sidebar">
+  <%# <div class="flex-items"><%= render 'shared/navbar/search' %></#div> %>
+  <div class="flex-items"><%= render 'shared/navbar/user' %></div>
+    <!-- LOGO-->
+      <%= link_to root_path, class: "navbar-brand" do %>
+        <%= image_tag "pscriber-logo-lime", class: "logo" %>
+        <%#= cl_image_tag("https://res.cloudinary.com/elyse/image/upload/v1627701049/logo-foodtruck_syuqn2.png", class: 'navbar-img' ) %>
+      <% end %>
+  <!-- MENU -->
+  <ul class="navbar-nav accordion" id="accordionSidebar">
+    <li class="nav-item active">
+      <%= link_to videos_path, class: "nav-link" do %>
+        <%= image_tag "video.svg", class: "nav-icon" %><span class="nav-item"> My Videos</span>
+      <% end %>
+    </li>
+    <li class="nav-item active">
+      <%= link_to new_video_path, class: "nav-link" do %>
+        <%= image_tag "upload.svg", class: "nav-icon" %><span class="nav-item">  Upload a Video</span>
+        <%#= link_to "🤍 Favorites", favorites_path, class: "nav-link" %>
+      <% end %>
+    </li>
+    <li class="nav-item active">
+      <%= link_to "", class: "nav-link" do %>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          <%= image_tag "bookmark.svg", class: "nav-icon" %><span class="nav-item">  Bookmarks</span>
+        </a>
+      <% end %>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <h4 class="collapse-header">Categories:</h4>
+          <% if current_user.present? %>
+            <% current_user.lists.each do |list| %>
+              <a class="collapse-item list-name" href="/lists/<%=list.id%>" data-my-id="<%= list.id %>">
+                <%= list.name %></a>
+            <% end %>
                         <a class="dropdown-item" href="/lists/new">+ Create new</a>
-                        <% if current_user.present? %>
-                        <% current_user.lists.each do |list| %>
-                        <a class="collapse-item list-name" href="/lists/<%=list.id%>" data-my-id="<%= list.id %>">
-                          <%= list.name %></a>
-                        <% end %>
-                        <% end %>
-                      </div>
-                    </div>
-                  </li>
-            </ul>
-            <hr>
-            <ul class="list-unstyled CTAs">
-                <li class="nav-item active">
-                <a href="" class="article">Members</a>
-                </li>
-            </ul>    
-        </nav>
-    </div>
-</div>
 
- <%# <% <div class="row">
+          <% end %>
+        </div>
+      </div>
+    </li>
+  </ul>
+</nav>
+<%# <% <div class="row">
         <div class="col-md-2">
         <!-- TOGGLE-->
                 
@@ -79,16 +54,14 @@
                         </svg>
                     </button>
     </div>
-  </div> %> 
- 
-  <!-- jQuery CDN - Slim version (=without AJAX) -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#sidebarCollapse').on('click', function () {
-              
-                $('#sidebar').toggleClass('active');
-            });
-        });
-    </script>
+  </div> %>
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script type="text/javascript">
+  $(document).ready(function () {
+      $('#sidebarCollapse').on('click', function () {
+  
+          $('#sidebar').toggleClass('active');
+      });
+  });
+</script>
