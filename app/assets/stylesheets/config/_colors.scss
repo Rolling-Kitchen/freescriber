@@ -19,11 +19,14 @@ $main-blue-gradient: linear-gradient(12deg, rgba(45,69,194,1) 0%, rgba(48,73,206
 $main-blue-dark03: #01135f;
 $main-blue-dark02:#122e9d;
 $main-blue-dark01: #2044c5;
+$main-blue-dark: #2a4cb2;
 
 // Blue light
 $main-blue-light03: #94c5f3;
 $main-blue-light02: #6aa4d5;
-$main-blue-light01: #4e70f6;
+$main-blue-light01: #167FFB;
+
+$main-btn-light:#e2e8ff;
 
 
 // Purple
@@ -35,34 +38,13 @@ $main-purple-light01:#5250d6;
 $main-pending-dark: #d93b38;
 $main-pending-light: #fe5959;
 
-$main-success-dark:#158241;
+$main-success-dark:#00a25a;
 $main-success-light: #1EDD88;
 
+// Neutral
+$main-gray:#858585;
+$main-black: #2b2a2a; 
 
+//Hightlighter
+$main-highlight-text:#bacfe4;
 
-$main-blue-dark: #2a4cb2;
-
-
-// // Pscriber
-// $main-blue-dark: #2a4cb2;
-// $main-blue: #1775e1;
-// $main-blue-light: #daebfe;
-// $main-blue-rgb-015: rgba(0, 118, 189, 0.1) !default;
-$main-green-regular:#50d071; 
-// $main-green-light: #abede4;
-// $main-yellow-dark: #efdc7d;
-// $main-yellow-regular: #f7e483;
-// $main-yellow-light: #fffae7;
-// $main-purple-dark: #283589;
-// $main-purple-regular: #8682dd;
-// $main-purple-light: #d2cef4;
-// $main-pink-dark: #ff4070;
-// $main-pink-light: #ffdbe4;
-// $main-lime: #82fca5;
-$main-black: #131417;
-// $main-gray-regular: #262830;
-// $main-gray: #d5d7de;
-
-$main-card-dark: #1e1f26;
-// $main-pending: #f7e79f;
-// $main-success: #1cdd87;

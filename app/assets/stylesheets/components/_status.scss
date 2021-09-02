@@ -7,9 +7,14 @@
 }
 
 #status-completed {
-    display: inline-block;
-    height: 20px;
-    padding: 5px;
-    background-color: $main-success-light;
-    color: $main-success-dark;
- }
+      display: inline;
+      padding: 6px;
+      background-color: $main-success-dark;
+      color: white;
+      font-family: $body-font;
+      letter-spacing: 1px;
+      font-weight: 300;
+      border-radius: 5px;
+      margin-left: 13;
+      right: 0;
+   }
