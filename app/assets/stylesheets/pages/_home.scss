@@ -171,10 +171,10 @@
       font-weight: 400;
       margin-bottom: 6rem; }
    
-// PSCRIBER SERVICES
-  .service {
+// PSCRIBER FEATURES
+  .features {
     margin-bottom: 10rem; }
-    .service__heading {
+    .features__heading {
       display: block;
       text-align: center;
       font-size: 4rem;
@@ -182,24 +182,24 @@
       font-weight: 700;
       margin-bottom: 1rem; }
       @media only screen and (max-width: 37.5em) {
-        .service__heading {
+        .features__heading {
           margin: 2rem; } }
-    .service__text {
+    .features__text {
       display: block;
       text-align: center;
       font-size: 1.6rem;
       font-weight: 400;
       margin-bottom: 5rem; }
       @media only screen and (max-width: 37.5em) {
-        .service__text {
+        .features__text {
           margin: 2rem; } }
-    .service__cards {
+    .features__cards {
       display: flex;
       gap: 3.5rem;
       justify-content: center;
       align-items: center;
       flex-wrap: wrap; }
-    .service__card {
+    .features__card {
       flex: 0 1 25.5rem;
       padding: 7rem 4rem;
       background-color: #01135f;
@@ -212,26 +212,26 @@
       border-radius: 1rem;
       transition: all .6s;
       position: relative; }
-      .service__card:hover {
+      .features__card:hover {
         transform: translateY(-2rem);
         background-color: #031e92;
         box-shadow: 0 1.2rem 3rem rgba(118, 226, 104, 0.274); }
-        .service__card:hover > * {
+        .features__card:hover > * {
           color: #fff;
           fill: #fff; }
-      .service__card-icon {
+      .features__card-icon {
         width: 5rem;
         height: 5rem;
         margin-top: -3rem;
         fill: #82fca5; }
-      .service__card-name {
+      .features__card-name {
         font-size: 1.8rem;
         font-family: "Roboto", sans-serif;
         font-weight: 700;
         margin-top: 2rem;
         margin-bottom: 3rem;
         color: #82fca5; }
-      .service__card-text {
+      .features__card-text {
         font-size: 1.2rem;
         font-weight: 400; }
   
@@ -258,7 +258,7 @@
       transform: translate(-50%, -50%);
       text-align: center; }
   
-  .service__card:hover .arrow__box {
+  .features__card:hover .arrow__box {
     display: block;
     color: #82fca5; }
   
@@ -490,7 +490,7 @@
       font-weight: 600;
       color: #707070; }
   
-  .solution {
+  .fs {
     min-width: 84%;
     border-radius: 1rem;
     background-color: #fff;
@@ -503,32 +503,32 @@
     z-index: 1;
     text-align: center; }
     @media only screen and (max-width: 70rem) {
-      .solution {
+      .fs {
         top: -11rem; } }
     @media only screen and (max-width: 37.5em) {
-      .solution {
+      .fs {
         padding: 3rem; } }
     @media only screen and (max-width: 37.4rem) {
-      .solution {
+      .fs {
         padding: 1rem; } }
     @media only screen and (min-device-width: 456px) and (max-device-width: 600px) {
-      .solution {
+      .fs {
         top: -8rem; } }
     @media only screen and (max-width: 320px) {
-      .solution {
+      .fs {
         top: -13rem; } }
-    .solution__content {
+    .fs__content {
       display: flex;
       justify-content: center;
       align-items: center;
       text-align: center;
       flex-wrap: wrap;
       gap: 2rem; }
-    .solution__logo {
+    .fs__logo {
       width: 6.5rem; }
-    .solution__texts {
+    .fs__texts {
       margin-right: auto; }
-    .solution__heading {
+    .fs__heading {
       color: #000;
       text-align: start;
       font-size: 2.5rem;
@@ -536,13 +536,13 @@
       font-weight: 700;
       margin-bottom: 1rem; }
       @media only screen and (max-width: 335px) {
-        .solution__heading {
+        .fs__heading {
           text-align: center; } }
-    .solution__text {
+    .fs__text {
       font-size: 1.4rem;
       font-weight: 400;
       color: #95A1B5; }
-    .solution__btn {
+    .fs__btn {
       background-color: #358AFF;
       color: #fff; }
   
@@ -890,11 +890,11 @@
         transform-origin: center left;
     }
 
-    .service-one .block-title {
+    .features-one .block-title {
         margin-bottom: 10px;
     }
 
-    .service-one__single {
+    .features-one__single {
         margin-top: 50px;
     }
 
@@ -1161,21 +1161,21 @@
         padding-left: 30px;
         padding-right: 30px;
     }
-    .service-one__single {
+    .features-one__single {
         padding-left: 30px;
         padding-right: 30px;
     }
 }
 
-.single-service-items img {
+.single-features-items img {
     height: 55px;
     margin: 0px 0px 30px 0px;
 }
-.single-service-items h4 {
+.single-features-items h4 {
     text-transform: uppercase;
     margin: 0px 0px 25px 0px;
 }
-.single-service-items {
+.single-features-items {
     background-color: rgb(255, 255, 255);
 
     padding: 40px 50px;
