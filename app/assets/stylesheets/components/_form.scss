@@ -1,0 +1,23 @@
+.form-container {
+  width: 70%;
+  margin: 0 auto;
+  background-color: white;
+  padding: 35px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.form-title {
+  padding-bottom: 10px;
+  text-align: center;
+  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.form-button {
+  display: block;
+  margin: 0 auto;
+}
+
+input, description, :focus::placeholder {
+  color: transparent; 
+}

@@ -18,13 +18,14 @@
   display: flex;
   height: 350px;
   padding: 2%;
-  margin: 0 0 2rem 0;
   overflow: hidden;
   position: relative;
   color: black;
   border-radius: 20px;
-  background-color: white;
+  background-color: #edf3f9;
+  margin-bottom: 20px;
 }
+
 
 // VIDEO THUMBNAIL  
   .videocard-thumbnail {
@@ -34,26 +35,27 @@
   }
 
 // VIDEO INFO
-  .videocard-title {
-    font-family: 'CircularStd-Black';
-    color: #01135f;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    font-size: 50px;
-    line-height: 112px;
-    font-weight: 800;
-    padding: 5px;
-    line-height: 1.2;
-  }
+.videocard-title {
+  font-family:  $headers-font;
+  font-weight: 600;
+  color: $main-blue-dark03;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 50px;
+  line-height: 112px;
+  line-height: 1.2;
+  letter-spacing: -0.8px;
+}
 
   .videocard-info {
-    font-family: 'CircularStd-Black';
+    font-family: $body-font;
+    color: $main-gray;
     margin-top: 0px;
     margin-bottom: 0px;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 112px;
-    font-weight: 800;
-    padding: 5px;
+    font-weight: 300;
+    padding-right: 5px;
     line-height: 1.2;
   }
 
@@ -66,46 +68,49 @@
   }
 
   .videocard-description {
+    font-family: $body-font;
+    color: $main-black;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 16px;
+    line-height: 112px;
+    font-weight: 300;
+    padding-right: 5px;
+    padding-top: 5px;
+    line-height: 1.2;
     overflow: auto;
-    max-height: 100px;
+    max-height: 130px;
     text-overflow: ellipsis;
     text-align: justify;
     height: 100%;
-    font-family: 'Roboto';
-    font-weight: 300;
-    color: gray;
   }
 
-  .videocard-tagbox {
-    display: flex;
-    flex-flow: row wrap;
-    font-size: 14px;
-    margin: 20px 0 0 0;
-		padding: 0;
-    justify-content: center;
-
-    .tag-item {
-      display: inline-block;
-      background: #e2e8ff;
-      border-style: solid;
-      border-color: #243599;
-      border-radius: 50px;
-      padding: 2.5px 10px;
-      margin: 0 5px 5px 0;
-      cursor: default;
-      user-select: none;
-      transition: background-color 0.3s;
-
-      &:hover {
-        background: #cfd7fa;
-      }
-    }
-  }
+  .videocard-tagbox .tag-item {
+    display: inline;
+    padding: 6px;
+    background: $main-btn-light;
+    color: $main-black;
+    border-style: solid;
+    border-color: #243599;
+    border-radius: 50px;
+    margin: 0 5px 5px 0;
+    cursor: default;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    transition: background-color 0.3s;
+}
 
 // RESPONSIVE
 @media screen and (min-width: 800px) {
   .videocard {
     flex-wrap: inherit;
+
+    .videocard .videocard-tagbox {
+        display: contents;
+        margin: 50px;
+    }
 
     .videocard-title {
       font-size: 30px;
@@ -113,6 +118,7 @@
 
     .videocard-tagbox {
       justify-content: start;
+      display: contents;
     }
 
     .videocard-img {
@@ -299,4 +305,24 @@
 .blog-card:hover .blog-text-area span {
   top: -8px;
   background-color: var(--mainColor)
+}
+
+
+//Search Transcript view text
+
+span.search_term_highlight {
+  font-family: $body-font;
+  font-size: 16px;
+  font-weight: 500;
+  background: $main-highlight-text;
+  color: $main-blue-dark03;
+  padding: 2px;
+  border-style: none;
+}
+
+li {
+  font-family: $body-font;
+  font-size: 16px;
+  font-weight: 300;
+  color: $main-black;
 }
