@@ -21,7 +21,9 @@
     
                 <li class="nav-item active">
                     <%= link_to videos_path, class: "nav-link" do %>
-                             <%= image_tag "video.svg", class: "nav-icon" %><span class="nav-item"> My Videos</span>
+                   
+                    <%= image_tag "video.svg", class: "nav-icon" %><span class="nav-item"> My Videos</span>
+
                     <% end %>
                 </li> 
           
@@ -30,13 +32,15 @@
             
                   <li class="nav-item active">
                    <%= link_to new_video_path, class: "nav-link" do %>
-                          <%= image_tag "upload.svg", class: "nav-icon" %><span class="nav-item">  Upload Video</span>
+
+                    <%= image_tag "upload.svg", class: "nav-icon" %><span class="nav-item">  Upload Video</span>
+
                     <%#= link_to "🤍 Favorites", favorites_path, class: "nav-link" %>
                     <% end %>
                   </li>
               
                   <li class="nav-item active">
-                    <%= link_to "", class: "nav-link" do %>
+                    <%= link_to favorites_path, class: "nav-link" do %>
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
                          aria-controls="collapseTwo">
                          <%= image_tag "bookmark.svg", class: "nav-icon" %><span class="nav-item">  Bookmarks</span>
