@@ -26,15 +26,9 @@
                     <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_kwljzgsc.json"  background="transparent" loop autoplay></lottie-player>
                     </div>
                     <div class="col-md-6">
-                    <%= simple_form_for @video, remote: true do |f| %>
-                    <%= f.input :title, label: 'Your title please', error: 'title is mandatory, please specify one' %>
-                    <%= f.input :description, as: :text, :input_html => { :rows => 6 }, label: 'Your description please', error: 'description is mandatory, please specify one' %>
+                      <%= render "form-edit", video: @video %>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <%= f.button :submit, class: "btn-primary" %>
-                <% end %>
             </div>
             </div>
         </div>
@@ -66,9 +60,7 @@
             </div>
             <div class="modal-footer">
                  <%= button_to "Delete", video_path(@video), :method => :get, class: "btn btn-primary",
-                method: :delete,
-                data: { confirm: "Are you sure?" } %>
-       
+                method: :delete %> 
             </div>
             </div>
         </div>

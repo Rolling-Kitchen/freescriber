@@ -20,8 +20,8 @@
         <ul class="navbar-nav accordion" id="accordionSidebar">
     
                 <li class="nav-item active">
-                    <%= link_to new_video_path, class: "nav-link" do %>
-                             <%= image_tag "video.svg", class: "nav-icon" %><span class="nav-item"> Show Video</span>
+                    <%= link_to videos_path, class: "nav-link" do %>
+                             <%= image_tag "video.svg", class: "nav-icon" %><span class="nav-item"> My Videos</span>
                     <% end %>
                 </li> 
           
@@ -29,8 +29,8 @@
 
             
                   <li class="nav-item active">
-                   <%= link_to favorites_path, class: "nav-link" do %>
-                          <%= image_tag "upload.svg", class: "nav-icon" %><span class="nav-item">  Upload a Video</span>
+                   <%= link_to new_video_path, class: "nav-link" do %>
+                          <%= image_tag "upload.svg", class: "nav-icon" %><span class="nav-item">  Upload Video</span>
                     <%#= link_to "🤍 Favorites", favorites_path, class: "nav-link" %>
                     <% end %>
                   </li>
