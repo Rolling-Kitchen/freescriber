@@ -11,29 +11,29 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
     <%= favicon_link_tag asset_path('favicon-blue.png') %>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
   </head>
 
   <body>
   <div class="container-fluid">
     <% if action_name == "home" %>
       <%= render 'shared/navbar/navbar-top' %> 
+      <%= yield %>
     <% else %>
      <%= render 'shared/navbar/navbar-main' %> 
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2">
+          </div>
+         <div class="col-md-10"><%= yield %></div>
+        </div>
+       </div>
     <% end %>
   </div>
 
-  <div class="container">
-    <div class="row">
-        <div class="col-12" id="placeholder-navtop"></div>
-    </div>
-    <div class="row">
-        <div class="col-md-2">
-        <!-- TOGGLE-->
-             
-        </div>
-         <div class="col-md-10"><%= yield %></div>
-    </div>
-  </div>
+ 
     <%# Animation %>
 
     <%# Highlighter %>

@@ -1,4 +1,97 @@
+.btn {
+    text-decoration: none;
+    padding: .8rem 3rem;
+    background-color: #fff !important;;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #01135f;
+    border-radius: 5px; }
+
+
+// .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+//     background-color:  #01135f !important;
+// }
+
 .btn-primary {
-    color: red;
-    background-color: black;
+    cursor: pointer;
+    border-radius: 50px;
+    border-color: #01135f  !important;
+    background: #01135f !important;
+    color: #82fca5 !important;
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 14px;
 }
+
+.btn-primary:hover {
+    cursor: pointer;
+    border-radius: 50px;
+    border-color: #1132c5  !important;
+    background: #1132c5  !important;
+    color: #82fca5 !important;
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.btn-secondary{
+    text-decoration: none;
+    background-color: #e5e9fc !important;
+    font-family: 'Roboto';
+    font-size: 14px;
+    font-weight: 400;
+    color: #01135f !important;
+    border-radius: 50px;
+    border-style: solid;
+    border-color:#95a5e9!important;
+}
+
+.btn-secondary:hover {
+    text-decoration: none;
+    background-color: #bac5fc !important;
+    font-family: 'Roboto';
+    font-size: 14px;
+    font-weight: 400;
+    color: #01135f !important;
+    border-radius: 50px;
+    border-color: #95a5e9 !important;
+}
+
+
+// BTN-MAIN
+button:not(:disabled), [type="button"]:not(:disabled), [type="reset"]:not(:disabled), [type="submit"]:not(:disabled) {
+    cursor: pointer;
+    border-radius: 50px;
+    background: #01135f;
+    color: white;
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 14px;
+  }
+  
+
+.header__btn-1 {
+    font-size: 1.6rem;
+    background-color: #fff;
+    color:  #01135f;
+    margin-right: 1rem;
+    font-weight: 600;
+    padding: 1.1rem 3rem;
+}
+
+.header__btn-2 {
+    background-color: #82fca5;
+    font-size: 1.6rem;
+    color: #01135f;
+    font-weight: 600;
+    padding: 1.1rem 3rem;
+}
+
+.about__btn {
+    text-decoration: none;
+    padding: 1.8rem 3.5rem;
+    background-color: #01135f;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #fff;
+    border-radius: 8px; }

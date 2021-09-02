@@ -11,16 +11,33 @@ $light-gray: #F4F4F4;
 
 
 // Pscriber
-$main-container: #f1f5f8;
+$main-primary: #00ffcc;
+$main-container: #dbe8f7;
+
+// Blue dark
 $main-blue-gradient: linear-gradient(12deg, rgba(45,69,194,1) 0%, rgba(48,73,206,1) 40%, rgba(46,73,210,1) 100%);
-$main-blue: #2d45c2;
-$main-blue-light: #a8c2f4;
+$main-blue-dark03: #01135f;
+$main-blue-dark02:#122e9d;
+$main-blue-dark01: #2044c5;
+
+// Blue light
+$main-blue-light03: #94c5f3;
+$main-blue-light02: #6aa4d5;
+$main-blue-light01: #4e70f6;
 
 
+// Purple
+$main-purple-light03:#412da7;
+$main-purple-light02:#513fbd;
+$main-purple-light01:#5250d6;
 
+// Status
+$main-pending-dark: #d93b38;
+$main-pending-light: #fe5959;
 
-$main-pending: #f7e79f;
-$main-success: #1cdd87;
+$main-success-dark:#158241;
+$main-success-light: #1EDD88;
+
 
 
 $main-blue-dark: #2a4cb2;

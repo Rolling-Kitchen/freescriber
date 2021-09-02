@@ -1,12 +1,14 @@
 //VIDEOHEADER
 .pageHeaderTitle {
-  font-family: 'CircularStd-Black';
+  font-family: 'Roboto';
+  color: #01135f;
   margin-top: 0px;
   margin-bottom: 0px;
-  font-size: 50px;
+  font-size: 40px;
+  font-weight: 300;
   line-height: 112px;
-  font-weight: 800;
   padding: 5px;
+  padding-bottom: 3%;
   line-height: 1.2;
 }
 
@@ -14,13 +16,14 @@
 .videocard {
   flex-wrap: wrap;
   display: flex;
+  height: 350px;
+  padding: 2%;
   margin: 0 0 2rem 0;
   overflow: hidden;
   position: relative;
-  color: #3048ca;
+  color: black;
   border-radius: 20px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  background-color: white;
 }
 
 // VIDEO THUMBNAIL  
@@ -33,6 +36,7 @@
 // VIDEO INFO
   .videocard-title {
     font-family: 'CircularStd-Black';
+    color: #01135f;
     margin-top: 0px;
     margin-bottom: 0px;
     font-size: 50px;
@@ -67,6 +71,9 @@
     text-overflow: ellipsis;
     text-align: justify;
     height: 100%;
+    font-family: 'Roboto';
+    font-weight: 300;
+    color: gray;
   }
 
   .videocard-tagbox {
@@ -101,7 +108,7 @@
     flex-wrap: inherit;
 
     .videocard-title {
-      font-size: 2rem;
+      font-size: 30px;
     }
 
     .videocard-tagbox {
@@ -185,19 +192,111 @@
 
 /* COLORS */
 
-.videocard .videocard-tagbox .blue.play:hover {
-	background: $main-blue;
-}
-.blue .videocard-title:hover {
-	color: $main-blue;
-}
-.blue .videocard-bar {
-	background-color: $main-blue;
-}
-.blue::before {
-	background-image: linear-gradient(-30deg, $main-blue-gradient, transparent 50%);
-}
-.blue:nth-child(2n)::before {
-	background-image: linear-gradient(30deg, $main-blue-gradient, transparent 50%);
+// .videocard .videocard-tagbox .blue.play:hover {
+// 	background: $main-blue;
+// }
+// .blue .videocard-title:hover {
+// 	color: $main-blue;
+// }
+// .blue .videocard-bar {
+// 	background-color: $main-blue;
+// }
+// .blue::before {
+// 	background-image: linear-gradient(-30deg, $main-blue-gradient, transparent 50%);
+// }
+// .blue:nth-child(2n)::before {
+// 	background-image: linear-gradient(30deg, $main-blue-gradient, transparent 50%);
+// }
+
+
+
+
+
+.blog-card {
+  -webkit-box-shadow: 0 0 15px -5px #ccc;
+  box-shadow: 0 0 15px -5px #ccc;
+  margin-top: 30px
 }
 
+.blog-card .blog-img {
+  overflow: hidden
+}
+
+.blog-card .blog-img img {
+  -webkit-transition: .5s ease;
+  transition: .5s ease
+}
+
+.blog-card .blog-text-area {
+  padding: 0 30px 25px
+}
+
+.blog-card .blog-text-area span {
+  border-radius: 5px;
+  padding: 5px 15px;
+  color: var(--whiteColor);
+  background-color: var(--secondColor);
+  -webkit-transition: .5s ease;
+  transition: .5s ease;
+  position: relative;
+  top: -12px;
+  font-size: 14px;
+  font-weight: 500
+}
+
+.blog-card .blog-text-area .blog-date {
+  margin-top: 10px
+}
+
+.blog-card .blog-text-area .blog-date ul {
+  margin: 0;
+  padding: 0;
+  list-style: none
+}
+
+.blog-card .blog-text-area .blog-date ul li {
+  display: inline-block;
+  margin-right: 15px;
+  position: relative;
+  color: #2e2e2e;
+  font-size: 14px;
+  font-family: var(--fontFamily2)
+}
+
+.blog-card .blog-text-area .blog-date ul li i {
+  font-size: 14px;
+  margin-right: 3px;
+  color: var(--mainColor)
+}
+
+.blog-card .blog-text-area .blog-date ul li::after {
+  content: '/';
+  position: absolute;
+  right: -12px;
+  top: 0
+}
+
+.blog-card .blog-text-area .blog-date ul li:last-child {
+  margin-right: 0
+}
+
+.blog-card .blog-text-area .blog-date ul li:last-child::after {
+  display: none
+}
+
+.blog-card .blog-text-area h4 {
+  font-size: var(--card-title-fontSize);
+  line-height: 1.4;
+  margin-top: 15px;
+  margin-bottom: 0
+}
+
+.blog-card:hover .blog-img img {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1)
+}
+
+.blog-card:hover .blog-text-area span {
+  top: -8px;
+  background-color: var(--mainColor)
+}
