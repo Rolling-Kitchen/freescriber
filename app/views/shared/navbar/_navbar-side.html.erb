@@ -2,16 +2,11 @@
 <nav id="sidebar">
   <div class="flex-items"><%= render 'shared/navbar/search' %></div>
   <div class="flex-items"><%= render 'shared/navbar/user' %> </div>
-  <div class="sidenav-header">
     <!-- LOGO-->
-    <div class="logo m-0">
       <%= link_to root_path, class: "navbar-brand" do %>
         <%= image_tag "pscriber-logo-lime", class: "logo" %>
-        <span class="logo-notext"></span>
         <%#= cl_image_tag("https://res.cloudinary.com/elyse/image/upload/v1627701049/logo-foodtruck_syuqn2.png", class: 'navbar-img' ) %>
       <% end %>
-    </div>
-  </div>
   <!-- MENU -->
   <ul class="navbar-nav accordion" id="accordionSidebar">
     <li class="nav-item active">
@@ -44,11 +39,6 @@
           <% end %>
         </div>
       </div>
-    </li>
-  </ul>
-  <ul class="list-unstyled CTAs">
-    <li class="nav-item active">
-      <a href="" class="article">Members</a>
     </li>
   </ul>
 </nav>
