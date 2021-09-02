@@ -1,9 +1,9 @@
 <div class="caption-text">
   <h5 class="video-description">Transcription</h5>
-    <div class="d-flex justify-content-between pb-3 pt-2">
-      <div class="d-inline-flex">
-            <%= form_tag text_search_path, method: :get, class: 'form-text', id: 'video_search' ,remote: true do %>
-              <%= text_field_tag :text_query,
+  <div class="d-flex justify-content-between pb-3 pt-2">
+    <div class="d-inline-flex">
+      <%= form_tag text_search_path, method: :get, class: 'form-text', id: 'video_search' ,remote: true do %>
+        <%= text_field_tag :text_query,
               params[:text_query],
               class: "form-control form-color form-radius ",
               placeholder: "Search",
@@ -11,8 +11,13 @@
               search_target: "input"
               }
               %>
-              <%= submit_tag "Search", class: "btn btn-primary btn-border btn-radius btn-font-color", id: "btn-caption-search", data: { search_target: 'button' } %>
-          <% end %>
+        <%= submit_tag "Search", class: "btn btn-primary btn-border btn-radius btn-font-color", id: "btn-caption-search", data: { search_target: 'button' } %>
+      <% end %>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownList" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+          :heavy_plus_sign: Add To List
+        </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <a class="dropdown-item" href="/lists/new">+ Create New List</a>
           <% current_user.lists.each do |list| %>
@@ -21,39 +26,37 @@
           <% end %>
         </div>
       </div>
-      <div class="d-inline-flex">
-        <div classs="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false"> 
-            Translate
-          </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="/videos/<%= @video.id %>">English</a>
-              <a class="dropdown-item" href="/videos/<%= @video.id %>?language=zh">Chinese</a>
-              <a class="dropdown-item" href="/videos/<%= @video.id %>?language=ja">Japanese</a>
-              <a class="dropdown-item" href="/videos/<%= @video.id %>?language=ar">Arabic</a>
-              <a class="dropdown-item" href="/videos/<%= @video.id %>?language=id">Indonesian</a>
-              <a class="dropdown-item" href="/videos/<%= @video.id %>?language=tl">Tagalog</a>
-              <a class="dropdown-item" href="/videos/<%= @video.id %>?language=nl">Dutch</a>
-              <a class="dropdown-item" href="/videos/<%= @video.id %>?language=de">German</a>
-            </div>
+    </div>
+    <div class="d-inline-flex">
+      <div classs="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+          Translate
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="/videos/<%= @video.id %>">English</a>
+          <a class="dropdown-item" href="/videos/<%= @video.id %>?language=zh">Chinese</a>
+          <a class="dropdown-item" href="/videos/<%= @video.id %>?language=ja">Japanese</a>
+          <a class="dropdown-item" href="/videos/<%= @video.id %>?language=ar">Arabic</a>
+          <a class="dropdown-item" href="/videos/<%= @video.id %>?language=id">Indonesian</a>
+          <a class="dropdown-item" href="/videos/<%= @video.id %>?language=tl">Tagalog</a>
+          <a class="dropdown-item" href="/videos/<%= @video.id %>?language=nl">Dutch</a>
+          <a class="dropdown-item" href="/videos/<%= @video.id %>?language=de">German</a>
         </div>
       </div>
     </div>
-
-    <div class="card card-body" style="overflow: auto;max-height: 420px;" id="caption_container">
-    
-      <% if @video.captions.length === 0 %>
-        "Sorry! Transcript not available yet"
-      <% else %>
+  </div>
+  <div class="card card-body" style="overflow: auto;max-height: 420px;" id="caption_container">
+    <% if @video.captions.length === 0 %>
+      "Sorry! Transcript not available yet"
+    <% else %>
       <div id="fullTranscript">
         <% @video.captions.each_with_index do |caption, index| %>
-        <% caption["text"] = @translation[index] if @translation %>
-            <li><span><%= content_tag("a"," #{caption["text"]}", data: { start_seconds: caption["start_seconds"], end_seconds: caption["end_seconds"]}, class: "timecode") %></span></li>
+          <% caption["text"] = @translation[index] if @translation %>
+          <li><span><%= content_tag("a"," #{caption["text"]}", data: { start_seconds: caption["start_seconds"], end_seconds: caption["end_seconds"]}, class: "timecode") %></span></li>
         <% end %>
       </div>
       <div id="searchResults">
       </div>
-      <% end %>
- 
-</div>
+    <% end %>
+  </div>
