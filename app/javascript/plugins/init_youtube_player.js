@@ -3,7 +3,7 @@ export function init_youtube_player() {
   if (caption_container) {
     var YouTubeIframeLoader = require("youtube-iframe");
     var player;
-    const container_div_source = caption_container.dataset.videoSource;
+    const container_div_source = document.getElementById("player").dataset.videoSource;
     const all_captions = document.getElementsByClassName("timecode");
     YouTubeIframeLoader.load(function (YT) {
       player = new YT.Player("player", {
@@ -88,10 +88,11 @@ export function init_youtube_player() {
     }
 
     const textSearch = document.querySelector(".form-text");
-    console.log(textSearch);
     textSearch.addEventListener("ajax:success", (event, data) => {
-      console.log("event and data")
-      console.log(event, data);
+      console.log("event")
+      console.log(event);
+      console.log("data")
+      console.log(data);
       const jsonResponse = event.detail[0];
       console.log("json")
       console.log(jsonResponse);
@@ -101,9 +102,9 @@ export function init_youtube_player() {
       if (jsonResponse.length !== 0) {
         // captionSearch.innerHTML = "";
         fullTranscript.style.display = "none";
+        searchResults.innerHTML = "";
         jsonResponse.forEach((caption) => {
           console.log(caption, "hello");
-          searchResults.innerHTML = "";
           searchResults.insertAdjacentHTML(
             "beforeend",
             `<li><a data-start-seconds=${caption.start_seconds} data-end-seconds=${caption.end_seconds} class=timecode>${caption.start} - ${caption.text}</a></li>`
@@ -119,7 +120,6 @@ export function init_youtube_player() {
         });
       });
     });
-    console.log("textsearch")
     console.log(textSearch);
   }
   return player;
