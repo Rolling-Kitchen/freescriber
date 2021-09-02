@@ -1,6 +1,6 @@
   <%= simple_form_for @video, remote: true do |f| %>
-    <%= f.input :title, label: 'Your title please', error: 'title is mandatory, please specify one' %>
-    <%= f.input :description, as: :text, :input_html => { :rows => 6 }, label: 'Your description please', error: 'description is mandatory, please specify one' %>
-    <%= f.input :video_file, as: :file, label: 'Select a video to upload to youtube', error: 'must have file' %>
-    <%= f.button :submit, class: "btn-primary" %>
+    <%= f.input :title, label: 'Title', error: 'title is mandatory, please specify one' %>
+    <%= f.input :description, as: :text, :input_html => { :rows => 6 }, label: 'Description', error: 'description is mandatory, please specify one' %>
+    <%= f.input :video_file, as: :file, label: 'Select video file', error: 'must have file' %>
+    <%= f.button :submit, class: "btn btn-primary form-button", value: 'Upload' %>
   <% end %>
