@@ -1,47 +1,64 @@
 <!-- SIDE-->
-<nav id="sidebar">
-  <%# <div class="flex-items"><%= render 'shared/navbar/search' %></#div> %>
-  <div class="flex-items"><%= render 'shared/navbar/user' %></div>
-    <!-- LOGO-->
-      <%= link_to root_path, class: "navbar-brand" do %>
-      <%= cl_image_tag("https://res.cloudinary.com/elyse/image/upload/v1630588994/pscriber-logo-lime_ouqxjs.png", class: 'logo' ) %> 
-        <%#= cl_image_tag("https://res.cloudinary.com/elyse/image/upload/v1627701049/logo-foodtruck_syuqn2.png", class: 'navbar-img' ) %>
-      <% end %>
-  <!-- MENU -->
-  <ul class="navbar-nav accordion" id="accordionSidebar">
-    <li class="nav-item active">
-      <%= link_to videos_path, class: "nav-link" do %>
-        <%= image_tag "video.svg", class: "nav-icon" %><span class="nav-item"> My Videos</span>
-      <% end %>
-    </li>
-    <li class="nav-item active">
-      <%= link_to new_video_path, class: "nav-link" do %>
-        <%= image_tag "upload.svg", class: "nav-icon" %><span class="nav-item">  Upload a Video</span>
-        <%#= link_to "🤍 Favorites", favorites_path, class: "nav-link" %>
-      <% end %>
-    </li>
-    <li class="nav-item active">
-      <%= link_to "", class: "nav-link" do %>
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <%= image_tag "bookmark.svg", class: "nav-icon" %><span class="nav-item">  Bookmarks</span>
-        </a>
-      <% end %>
-      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-          <h4 class="collapse-header">Categories:</h4>
-          <% if current_user.present? %>
-            <% current_user.lists.each do |list| %>
-              <a class="collapse-item list-name" href="/lists/<%=list.id%>" data-my-id="<%= list.id %>">
-                <%= list.name %></a>
+<div class="wrapper">
+    <nav id="sidebar">
+        <!-- LOGO-->
+        <div class="sidebar-header">
+            <%= link_to root_path, class: "navbar-brand" do %>
+                <%= cl_image_tag("https://res.cloudinary.com/elyse/image/upload/v1630588994/pscriber-logo-lime_ouqxjs.png", class: 'logo' ) %> 
             <% end %>
-                        <a class="dropdown-item" href="/lists/new">+ Create new</a>
-
-          <% end %>
         </div>
-      </div>
-    </li>
-  </ul>
-</nav>
+         
+        <div class="sidebar-search">
+        
+        <form accept-charset="UTF-8" action="/videos" method="get"
+                              class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-600 navbar-search">
+            <input type="query" name="query" type="text" class="form-control form-control-lg" placeholder="Search a keyword"> 
+        </div>
+
+        <!-- MENU -->
+        <ul class="navbar-nav accordion" id="accordionSidebar">
+            
+            <li class="nav-item active">
+            <%= link_to videos_path, class: "nav-link" do %>
+                <%= image_tag "video.svg", class: "nav-icon" %><span class="nav-item"> My Videos</span>
+            <% end %>
+            </li>
+            <li class="nav-item active">
+            <%= link_to new_video_path, class: "nav-link" do %>
+                <%= image_tag "upload.svg", class: "nav-icon" %><span class="nav-item">  Upload a Video</span>
+            <% end %>
+            </li>
+
+            <li class="nav-item active">
+             <%= link_to favorites_path, class: "nav-link" do %>
+                <%= image_tag "heart.svg", class: "nav-icon" %><span class="nav-item">  Favorites</span>
+            <% end %>
+            </li>
+
+            <li class="nav-item active">
+            <%= link_to "", class: "nav-link" do %>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                <%= image_tag "bookmark.svg", class: "nav-icon" %><span class="nav-item">  Bookmarks</span>
+                </a>
+            <% end %>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-1 collapse-inner rounded" id="bookmark-drop">
+                <%# <h4 class="collapse-header">Categories:</h4> %>
+                <% if current_user.present? %>
+                    <% current_user.lists.each do |list| %>
+                    <a class="collapse-item list-name" href="/lists/<%=list.id%>" data-my-id="<%= list.id %>">
+                        <%= list.name %></a>
+                    <% end %>
+                                <a class="dropdown-item" href="/lists/new"> + Create new</a>
+
+                <% end %>
+                </div>
+            </div>
+            </li>
+        </ul>
+    </nav>
+</div>
+
 <%# <% <div class="row">
         <div class="col-md-2">
         <!-- TOGGLE-->

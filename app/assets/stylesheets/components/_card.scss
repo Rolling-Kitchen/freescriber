@@ -325,8 +325,10 @@ span.search_term_highlight {
 }
 
 li {
-  font-family: $body-font;
+  font-family: $headers-font;
   font-size: 16px;
   font-weight: 300;
   color: $main-black;
+  list-style: none;
 }
+
