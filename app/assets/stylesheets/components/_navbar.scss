@@ -30,7 +30,7 @@
 // }
 
 .sidebar-header {
-  margin-bottom: 50px;
+  margin-bottom: 10px;
 }
 
 .navbar ul {
@@ -117,7 +117,6 @@ html, body {
 }
 
 .navbar-nav {
-  padding-top: 20px;
     padding-bottom: 20px;
     margin: 0 1rem;
     margin-bottom: 10px;
@@ -138,6 +137,12 @@ html, body {
   opacity: 70%;
   letter-spacing: 0.1pt;
   padding-left: 1.6rem;
+}
+
+.bookmark-link {
+  color: white;
+  font-weight: 300;
+  text-align: left;
 }
 
 .nav-link {
@@ -201,6 +206,10 @@ li.nav-item.active:hover {
   /* Reappearing the sidebar on toggle button click */
   #sidebar {
       margin-left: 0; 
+  }
+
+  .bookmarks-list a {
+    color: white !important;
   }
 
 
@@ -319,11 +328,12 @@ div#bookmark-drop {
   padding: 0.25rem 1.5rem;
   clear: both;
   font-weight: 300;
-  color: white;
+  color: rgb(39, 39, 39);
   text-align: inherit;
   white-space: nowrap;
-  background-color: #2a4cb2 !important;
+  background-color: #ffffff !important;
   border: 0;
+  border-radius: 5px;
   font-size: 16px;
 }
 
