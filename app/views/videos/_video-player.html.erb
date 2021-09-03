@@ -2,73 +2,36 @@
   <%= content_tag("div","", data: { video_source: @video.video_source}, id: "player") %>
 </div>
 <div class="video-description-card m-4">
-  <h1 ><%= @video.title %></h1>
-  <ul class="videoplayer-tagbox">
-    <% if @video.duration? %>
-      <li class="tag-item"><i class="fas fa-clock mr-2"></i><%= @video.duration %> minutes</li>
-    <% end %>
-    <li class="tag-item"><i class="fas fa-tag mr-2"></i>Business</li>
-  </ul>
-  <hr>
-  <p><%= @video.description %></p>
-  <div class="d-flex justify-content-end pb-4">
-    <!-- Edit -->
-    <div class="p-1 bd-highlight">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#form-edit">Edit</button>
-      <!-- Edit-Modal -->
-      <div class="modal fade" id="form-edit" tabindex="-1" role="dialog" aria-labelledby="form-edit" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" style="max-width: 800px!important;" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-            <div class="row">
-                    <div class="col-md-6">
-                    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-                    <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_kwljzgsc.json"  background="transparent" loop autoplay></lottie-player>
-                    </div>
-                    <div class="col-md-6">
-                      <%= render "form-edit", video: @video %>
-                    </div>
-                </div>
-            </div>
-            </div>
-        </div>
+  <div class="video-description-card-title d-flex align-items-center">
+    <h1 ><%= @video.title %></h1>
+    <div class="dropdown ml-4">
+      <a id="dropdownList" data-toggle="dropdown"
+    aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-ellipsis-h" style="font-size:15px; color:#2b2a2a;"></i>
+      </a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#" data-toggle="modal">
+          <a class="dropdown-item" data-toggle="modal" data-target="#form-edit">
+            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+            Edit
+          </a>
+          <a class="dropdown-item" data-toggle="modal" data-target="#form-delete">
+            <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+            Delete
+          </a>
         </div>
       </div>
     </div>
-    <!-- Delete -->
-    <div class="p-1 bd-highlight">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#form-delete">Delete</button>
-      <!-- Delete-Modal -->
-      <div class="modal fade" id="form-delete" tabindex="-1" role="dialog" aria-labelledby="form-delete" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" style="max-width: 500px!important;" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <div class="row">
-                <div class="col-md-6">
-                  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-                  <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_dsqblnrv.json"  background="transparent" loop autoplay></lottie-player>
-                </div>
-                <div class="col-md-6">
-                  <p>Are you sure?</p>
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-                 <%= button_to "Delete", video_path(@video), :method => :get, class: "btn btn-primary",
-                method: :delete %> 
-            </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <ul class="videoplayer-tagbox d-flex">
+      <% if @video.lists.exists? %>
+        <% @video.lists.each do |tag| %>
+          <li class="tag-item"><i class="fas fa-tag mr-2"></i><%= link_to tag.name, list_path(tag) %></li>
+        <% end %>
+      <% end %>
+      <% if @video.duration? %>
+        <li class="tag-item"><i class="fas fa-clock mr-2"></i><%= @video.duration %> minutes</li>
+      <% end %>
+    </ul>
+    <hr>
+    <p><%= @video.description %></p>
+  </div>
