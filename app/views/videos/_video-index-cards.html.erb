@@ -14,13 +14,13 @@
         <!-- VIDEO-THUMBNAIL-->
           <div class="videocard-thumbnail">
             <% if video.photo.attached? %>
-              <%= cl_image_tag video.photo.key, :aspect_ratio=>"16:9", :width=>500, :crop=>"fill" %>
+              <%= cl_image_tag video.photo.key, :aspect_ratio=>"16:9", :width=>500, :crop=>"fill", class: 'rounded' %>
             <% else %>
-              <%= image_tag "video-default.png", :aspect_ratio=>"16:9", :width=>500, :crop=>"fill"  %>
+              <%= image_tag "video-default.png", :aspect_ratio=>"16:9", :width=>500, :crop=>"fill", class: 'rounded'  %>
             <% end %>
           </div>
           <!-- VIDEO INFO -->
-          <div class="videocard-info">
+          <div class="videocard-info flex-grow-1">
             <h2 class="videocard-title"><%= video.title %></h2>
             <%= link_to toggle_favorite_video_path(video), remote: true, method: :post do %>
             
@@ -36,7 +36,7 @@
             <!-- SUB-INFO -->
             <div class="videocard-info">
                 <% if video.captions? %>
-                  <span class="badge badge-success" id="status-completed">Search Completed</span>
+                  <span class="badge badge-success" id="status-completed">Processed</span>
                 <% else %>
                   <span class="badge badge-warning" id="status-pending">Pending</span>
                 <% end %>
@@ -56,12 +56,12 @@
                 <% if video.duration? %>
                   <li class="tag-item"><i class="fas fa-clock mr-2"></i><%= video.duration %> minutes</li>
                 <% end %>
-             </ul>
              <% if local_assigns[:list] %>
               <%= button_to "Delete", bookmark_path(list.bookmarks.find_by(video: video)), :method => :get, class: "btn btn-primary",
                     method: :delete,
                     data: { confirm: "Are you sure?" } %>
             <% end %>
+            </ul>
       </div>
   </div>
 
