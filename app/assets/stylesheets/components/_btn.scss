@@ -77,18 +77,20 @@ button:not(:disabled), [type="button"]:not(:disabled), [type="reset"]:not(:disab
   
 
 .header__btn-1 {
+    font-family: $headers-font;
     font-size: 1.6rem;
-    background-color: #fff;
-    color:  #01135f;
+    background-color: #fff !important;;
+    color:  #01135f !important;;
     margin-right: 1rem;
     font-weight: 600;
     padding: 1.1rem 3rem;
 }
 
 .header__btn-2 {
-    background-color: #82fca5;
+    font-family: $headers-font;
+    background-color: #82fca5 !important;
     font-size: 1.6rem;
-    color: #01135f;
+    color: #01135f !important;;
     font-weight: 600;
     padding: 1.1rem 3rem;
 }

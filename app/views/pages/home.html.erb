@@ -28,21 +28,19 @@
                 <a href="#" class="header__btn-2 btn">Get Started</a>
             </div>
         </div>
-          <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-          <lottie-player src="https://assets1.lottiefiles.com/private_files/lf30_s6fbx79g.json"  background="transparent" loop autoplay></lottie-player>
+            <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+            <lottie-player src="https://assets3.lottiefiles.com/private_files/lf30_bg2xknem.json"  background="transparent" loop autoplay></lottie-player>
     </div>
 </header>
 
-<div class="container">
-<!--TARGET USER -->
+
+<!--SERVICES -->
+
+    
     <section class="about">
         <div class="about__img-box">
-        <%# WILL ADD GRAPHICS %>
-            <%# <img src="https://picsum.photos/200/300?random=1"  class="about__img-1">
-            <img src="https://picsum.photos/200/300?random=1"  class="about__img-2">
-            <img src="https://picsum.photos/200/300?random=1"  class="about__img-3">
-            <img src="https://picsum.photos/200/300?random=1"  class="about__img-4"> 
-            <img src="https://picsum.photos/200/300?random=1"  class="about__img-5"> %>
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+          <lottie-player src="https://assets5.lottiefiles.com/private_files/lf30_lhwo3hj9.json"  background="transparent" loop autoplay></lottie-player>
         </div>
         <div class="about__text-box">
             <h3 class="about__hding"> Import any video file to <br> our platform<br> </h3>
@@ -52,6 +50,9 @@
         </div>
     </section>
 
+
+<div class="container">    
+    
     <!--FEATURE-->
     <section class="features">
         <h3 class="features__heading">Features</h3>
@@ -61,7 +62,6 @@
         <div class="features__cards">
             <div class="features__card">
                 <svg class="features__card-icon">
-                    <%# <use xlink:href="./img/sprite.svg#web-programming"></use> %>
                 </svg>
                 <h3 class="features__card-name">Search</h3>
                 <p class="features__card-text">
@@ -73,7 +73,7 @@
             </div>
             <div class="features__card">
                 <svg class="features__card-icon">
-                    <%# <use xlink:href="./img/sprite.svg#website"></use> %>
+                   
                 </svg>
                 <h3 class="features__card-name">Translate</h3>
                 <p class="features__card-text">
@@ -86,7 +86,7 @@
             <div class="features__card">
             
                 <svg class="features__card-icon">
-                    <%# <use xlink:href="./img/sprite.svg#ui"></use> %>
+                    
                 </svg>
                 <h3 class="features__card-name">Bookmark</h3>
                 <p class="features__card-text">
@@ -100,9 +100,76 @@
     </section>
 </div>
 
+   <!--TEAM-->
+ <div class="team-grid">
+    <div class="container" id="team-section">
+         <div class="intro">
+             <h3 class="features__heading">Meet the Developer Team</h3>
+             <p class="text-center"></p>
+         </div>
+         <div class="row people d-flex justify-content-center">
+             <div class="col-md-3 col-lg-3 item">
+              <div class="box">
+                  <%= image_tag "team/riley.jpeg", class: "box" %>
+                     <div class="cover">
+                         <h3 class="name">Riley Masunaga</h3>
+                         <div class="social">
+                                 <a href="https://www.creativemoron.com/"><i class="fas fa-globe"></i></i></a>
+                                <a href="https://github.com/rileymasunaga"><i class="fab fa-github"></i></i></a>
+                                <a href="https://www.linkedin.com/in/rileymasu/"><i class="fab fa-linkedin-in"></i></i></a>
+                          
+                         </div>
+                     </div>
+                 </div>
+             </div>
+             <div class="col-md-3 col-lg-3 item">
+              <div class="box">
+                  <%= image_tag "team/michelle.png", class: "box" %>
+                     <div class="cover">
+                         <h3 class="name">Michelle Basco</h3>
+                         <div class="social">
+                             <a href="https://mbasco.com/"><i class="fas fa-globe"></i></i></a>
+                                <a href="https://github.com/mbasco"><i class="fab fa-github"></i></i></a>
+                                <a href="https://www.linkedin.com/in/mbasco/"><i class="fab fa-linkedin-in"></i></i></a>
+                    
+                         </div>
+                     </div>
+                 </div>
+             </div>
+             <div class="col-md-3 col-lg-3 item">
+                 <div class="box">
+                 <%= image_tag "team/elyse.jpeg", class: "box" %>
+                      <div class="cover">
+                         <h3 class="name">Elyse Groenendaal</h3>
+                         <div class="social">
+                                <a href="https://github.com/Elysemelissa"><i class="fab fa-github"></i></i></a>
+                                <a href="linkedin.com/in/elysemelissa/"><i class="fab fa-linkedin-in"></i></i></a>
+                               
+                         </div>
+                     </div>
+                 </div>
+             </div>
+             <div class="col-md-3 col-lg-3 item">
+              <div class="box">
+                <%= image_tag "team/fauzan.jpeg", class: "box" %>
+                      <div class="cover">
+                         <h3 class="name">Fauzan Zulfickry</h3>
+                         <div class="social">
+                                <a href="https://github.com/Fauzan621"><i class="fab fa-github"></i></i></a>
+                                <a href="https://www.linkedin.com/in/fauzan-zulfickry-895642102/"><i class="fab fa-linkedin-in"></i></i></a>
+                                <a href="#"><i class="far fa-envelope"></i></i></a>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>
+
+
 <!--FOOTER-->
 <footer class="footer">
-    <div class="fs">
+    <%# <div class="fs">
         <div class="fs__content">
         <%# //add graphics %>
             <%# <img src="./img/Logo-2.png" alt="fs logo" class="fs__logo"> %>
@@ -112,7 +179,7 @@
             </div>
             <a href="#" class="fs__btn btn">View Product</a>
         </div>
-    </div>
+    </div> %>
     <div class="footer__content">
     <div class="footer__company">
          <div class="logo m-0">
