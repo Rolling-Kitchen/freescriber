@@ -1,27 +1,24 @@
-    <div class="row no-gutters">
-      <div class="col-lg-6">
-        <div class="show-container">
-          <%= render 'videos/video-player' %>
-        </div>
-      </div>   
-      <div class="col-lg-6">
-        <div class="show-container">
-          <%= render 'videos/video-caption-card' %>
-        </div>  
-      </div>
+    
+  <div class="row no-gutters">
+    <div class="col-lg-6">
+      <%= render 'videos/video-player' %>
     </div>
+    <div class="col-lg-5">
+      <%= render 'videos/video-caption-card' %>
+    </div>
+  </div>
 
 <style>
-
-.current_caption{
-  background-color:yellow;
-  color:black;
-}
-#caption_container {
-    list-style-type: none;}
-
-#caption_container{
-  min-height:50vh;
-  max-height:80vh;
-}
+  .current_caption{
+    background-color:yellow;
+    color:black;
+  }
+  #caption_container {
+      list-style-type: none;
+      overflow: auto;
+          min-height:40vh;
+    max-height:70vh;}
+  p{
+      color:black;
+  }
 </style>

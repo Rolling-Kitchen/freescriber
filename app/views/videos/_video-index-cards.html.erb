@@ -40,7 +40,7 @@
                 <% else %>
                   <span class="badge badge-warning" id="status-pending">Pending</span>
                 <% end %>
-                 <span><i class="fas fa-calendar-alt mr-2"></i><%= video.created_at %> <span>
+                 <span><i class="fas fa-calendar-alt mr-2"></i><%= video.created_at.to_date %> <span>
             </div>
             <%# <div class="videocard-bar"></div> %>
 
@@ -83,3 +83,5 @@
     <% end %>
    <% end %>
   </article>
+
+

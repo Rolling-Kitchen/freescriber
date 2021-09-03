@@ -1,35 +1,31 @@
 <li class="nav-item dropdown no-arrow">
-    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+  <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
         data-toggle="dropdown"  aria-expanded="false">
-        <%= image_tag "user", class: "nav-user" %> 
-  
-    </a>
-                <!-- Dropdown - User Information -->
-                
-                <div class="dropdown-menu"
+    <%= image_tag "user", class: "nav-user" %>
+  </a>
+  <!-- Dropdown - User Information -->
+  <div class="dropdown-menu"
                     aria-labelledby="userDropdown">
-                    
-                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                          
-                        <% if user_signed_in? %>
-                        <a class="dropdown-item" href="#">
-                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Profile
-                    </a>
-                    <a class="dropdown-item" href="#">
-                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Settings
-                    </a>
-                    <a class="dropdown-item" href="#">
-                        <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Activity Log
-                    </a>
-                    <a class="dropdown-item" href="#">
-                    <div class="dropdown-divider"></div>
-                        <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
-                        <% else %>
-                        <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-                    </a>
-                     <% end %>
-                </div>
-            </li>
+    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+      <% if user_signed_in? %>
+        <a class="dropdown-item" href="#">
+          <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+          Profile
+        </a>
+        <a class="dropdown-item" href="#">
+          <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+          Settings
+        </a>
+        <a class="dropdown-item" href="#">
+          <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+          Activity Log
+        </a>
+        <a class="dropdown-item" href="#">
+          <div class="dropdown-divider"></div>
+          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+        <% else %>
+          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+        </a>
+      <% end %>
+    </div>
+  </li>
