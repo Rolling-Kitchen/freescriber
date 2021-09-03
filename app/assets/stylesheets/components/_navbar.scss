@@ -30,7 +30,7 @@
 // }
 
 .sidebar-header {
-  margin-bottom: 50px;
+  margin-bottom: 10px;
 }
 
 .navbar ul {
@@ -55,26 +55,7 @@
   list-style: none;
 }
 
-.flex-container {
-  height: 64px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: flex-start;
-  align-content: flex-start;
-  width: 100%;
-  margin: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  right: 0;
-  background-color: $main-container;
-  // border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-  // border-bottom-right-radius: 20px;
-  // box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26)
-}
+
 
 .flex-items:nth-child(1) {
   display: block;
@@ -114,9 +95,7 @@
 html, body {
   height: 100%;
 }
-.container-fluid {
-  height: 100%;
-}
+
 .navbar-background{
   background: $main-blue-dark03;
 }
@@ -124,8 +103,6 @@ html, body {
   color: $main-blue-dark01;
   overflow-y: auto;
   overflow-x:hidden;
-  min-height: 100vh;
-  height: 100%;
   transition: all 0.3s;
   top: 0;
   left:0;
@@ -140,7 +117,6 @@ html, body {
 }
 
 .navbar-nav {
-  padding-top: 20px;
     padding-bottom: 20px;
     margin: 0 1rem;
     margin-bottom: 10px;
@@ -161,6 +137,12 @@ html, body {
   opacity: 70%;
   letter-spacing: 0.1pt;
   padding-left: 1.6rem;
+}
+
+.bookmark-link {
+  color: white;
+  font-weight: 300;
+  text-align: left;
 }
 
 .nav-link {
@@ -189,7 +171,6 @@ li.nav-item.active:hover {
 .col {
   flex-basis: 0;
   flex-grow: 1;
-  max-width: 100%;
   padding: 0;
 }
 
@@ -197,6 +178,7 @@ li.nav-item.active:hover {
 #sidebar.active {
   min-width: 80px;
   max-width: 80px;
+
   text-align: center;
 }
 
@@ -224,6 +206,10 @@ li.nav-item.active:hover {
   /* Reappearing the sidebar on toggle button click */
   #sidebar {
       margin-left: 0; 
+  }
+
+  .bookmarks-list a {
+    color: white !important;
   }
 
 
@@ -342,11 +328,12 @@ div#bookmark-drop {
   padding: 0.25rem 1.5rem;
   clear: both;
   font-weight: 300;
-  color: white;
+  color: rgb(39, 39, 39);
   text-align: inherit;
   white-space: nowrap;
-  background-color: #2a4cb2 !important;
+  background-color: #ffffff !important;
   border: 0;
+  border-radius: 5px;
   font-size: 16px;
 }
 

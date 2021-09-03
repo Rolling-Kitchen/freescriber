@@ -1,6 +1,58 @@
-<div class="caption-text">
-  <h5 class="video-description">Transcription</h5>
-  <div class="form-inline">
+<div class="caption-text m-4">
+  <h3 class="video-description">Transcription</h3>
+  <!-- Edit-Modal -->
+  <div class="modal fade" id="form-edit" tabindex="-1" role="dialog" aria-labelledby="form-edit" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 800px!important;" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6">
+              <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+              <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_kwljzgsc.json"  background="transparent" loop autoplay></lottie-player>
+            </div>
+            <div class="col-md-6">
+              <%= render "form-edit", video: @video %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Delete-Modal -->
+  <div class="modal fade" id="form-delete" tabindex="-1" role="dialog" aria-labelledby="form-delete" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 500px!important;" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6">
+              <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+              <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_dsqblnrv.json"  background="transparent" loop autoplay></lottie-player>
+            </div>
+            <div class="col-md-6">
+              <p>Are you sure?</p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <%= button_to "Delete", video_path(@video), :method => :get, class: "btn btn-primary",
+                method: :delete %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex">
+  <%# search %>
+  <div class="form-inline flex-grow-1">
     <%= form_tag text_search_path, method: :get, class: 'form-text', remote: true do %>
       <%= text_field_tag :text_query,
               params[:text_query],
@@ -13,61 +65,60 @@
       <%= submit_tag "Search", class: "btn btn-primary btn-border btn-radius btn-font-color", id: "btn-caption-search", data: { search_target: 'button' } %>
     <% end %>
   </div>
-  <%# List and Translate %>
-  <div class="d-flex justify-content-between pb-3 pt-2">
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownList" data-toggle="dropdown"
+  <%# add to list %>
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownList" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
-        Add To List
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <% current_user.lists.each do |list| %>
-          <a class="dropdown-item list-name select-list" href="" data-my-id="<%= list.id %>">
-            <%= list.name %></a>
-        <% end %>
-        <a class="dropdown-item" href="/lists/new">+ Create New List</a>
-      </div>
+      Add To List
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <% current_user.lists.each do |list| %>
+        <a class="dropdown-item list-name select-list" href="" data-my-id="<%= list.id %>">
+          <%= list.name %></a>
+      <% end %>
+      <a class="dropdown-item" href="/lists/new">+ Create New List</a>
     </div>
-    <div class="d-inline-flex">
-      <div classs="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
+  </div>
+  <%# translate %>
+  <div classs="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
-          Translate
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="/videos/<%= @video.id %>">English</a>
-          <a class="dropdown-item" href="/videos/<%= @video.id %>?language=zh">Chinese</a>
-          <a class="dropdown-item" href="/videos/<%= @video.id %>?language=ja">Japanese</a>
-          <a class="dropdown-item" href="/videos/<%= @video.id %>?language=ar">Arabic</a>
-          <a class="dropdown-item" href="/videos/<%= @video.id %>?language=id">Indonesian</a>
-          <a class="dropdown-item" href="/videos/<%= @video.id %>?language=tl">Tagalog</a>
-          <a class="dropdown-item" href="/videos/<%= @video.id %>?language=nl">Dutch</a>
-          <a class="dropdown-item" href="/videos/<%= @video.id %>?language=de">German</a>
-        </div>
-      </div>
+      Translate
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="/videos/<%= @video.id %>">English</a>
+      <a class="dropdown-item" href="/videos/<%= @video.id %>?language=zh">Chinese</a>
+      <a class="dropdown-item" href="/videos/<%= @video.id %>?language=ja">Japanese</a>
+      <a class="dropdown-item" href="/videos/<%= @video.id %>?language=ar">Arabic</a>
+      <a class="dropdown-item" href="/videos/<%= @video.id %>?language=id">Indonesian</a>
+      <a class="dropdown-item" href="/videos/<%= @video.id %>?language=tl">Tagalog</a>
+      <a class="dropdown-item" href="/videos/<%= @video.id %>?language=nl">Dutch</a>
+      <a class="dropdown-item" href="/videos/<%= @video.id %>?language=de">German</a>
     </div>
   </div>
-  <div class="card card-body" style="overflow: auto;max-height: 420px;" id="caption_container">
-    <% if @video.captions.length === 0 %>
-      "Sorry! Transcript not available yet"
-    <% else %>
-      <div id="fullTranscript">
-        <% @video.captions.each_with_index do |caption, index| %>
-          <% caption["text"] = @translation[index] if @translation %>
-          <% if index % 10 == 0 %>
-            <br>
-            <br>
-          <% end %>
-          <p><span><%= content_tag("a"," #{caption["text"]}", data: { start_seconds: caption["start_seconds"], end_seconds: caption["end_seconds"]}, class: "timecode") %></span></p>
-        <% end %>
-      </div>
-      <div id="searchResults">
-      </div>
-    <% end %>
   </div>
-  <%# hidden simple form for adding video to list %>
-  <%= simple_form_for [@video, @bookmark], html: { class: "hide-form"} do |f| %>
-    <%= f.association :list %>
-    <%= f.submit 'Add to List', class: "button-list" %>
+</div>
+<div class="card card-body m-4" id="caption_container">
+  <% if @video.captions.length === 0 %>
+    "Sorry! Transcript not available yet"
+  <% else %>
+    <div id="fullTranscript">
+      <% @video.captions.each_with_index do |caption, index| %>
+        <% caption["text"] = @translation[index] if @translation %>
+        <% if index % 10 == 0 %>
+          <br>
+          <br>
+        <% end %>
+        <span><%= content_tag("a"," #{caption["text"]}", data: { start_seconds: caption["start_seconds"], end_seconds: caption["end_seconds"]}, class: "timecode") %></span>
+      <% end %>
+    </div>
+    <div id="searchResults">
+    </div>
   <% end %>
-  <%= javascript_pack_tag 'add-to-list' %>
+</div>
+<%# hidden simple form for adding video to list %>
+<%= simple_form_for [@video, @bookmark], html: { class: "hide-form"} do |f| %>
+  <%= f.association :list %>
+  <%= f.submit 'Add to List', class: "button-list" %>
+<% end %>
+<%= javascript_pack_tag 'add-to-list' %>

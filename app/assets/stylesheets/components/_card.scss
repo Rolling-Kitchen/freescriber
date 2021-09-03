@@ -2,7 +2,7 @@
 .pageHeaderTitle {
   font-family: 'Roboto';
   color: #01135f;
-  margin-top: 0px;
+  margin-top: 20px;
   margin-bottom: 0px;
   font-size: 40px;
   font-weight: 300;
@@ -24,6 +24,7 @@
   border-radius: 20px;
   background-color: #edf3f9;
   margin-bottom: 20px;
+  box-shadow: 0 0 3px rgba(0,0,0,0.2);
 }
 
 
@@ -50,7 +51,8 @@
   .videocard-info {
     font-family: $body-font;
     color: $main-gray;
-    margin-top: 0px;
+    margin-top: 10px;
+    padding-left: 5px;
     margin-bottom: 0px;
     font-size: 14px;
     line-height: 112px;
@@ -75,7 +77,7 @@
     font-size: 16px;
     line-height: 112px;
     font-weight: 300;
-    padding-right: 5px;
+    padding-right: 100px;
     padding-top: 5px;
     line-height: 1.2;
     overflow: auto;
@@ -91,15 +93,20 @@
     background: $main-btn-light;
     color: $main-black;
     border-style: solid;
-    border-color: #243599;
+    border-color: #f5f0fa;
     border-radius: 50px;
     margin: 0 5px 5px 0;
+    padding: 8px;
     cursor: default;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
     transition: background-color 0.3s;
+    a{
+      color: #2b2a2a;
+    }
+
 }
 
 // RESPONSIVE
@@ -114,6 +121,7 @@
 
     .videocard-title {
       font-size: 30px;
+      font-weight: 400;
     }
 
     .videocard-tagbox {
@@ -305,6 +313,11 @@
 .blog-card:hover .blog-text-area span {
   top: -8px;
   background-color: var(--mainColor)
+}
+
+.content-div {
+  padding-right: 50px;
+  padding-left: 50px;
 }
 
 

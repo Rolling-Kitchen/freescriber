@@ -12,7 +12,10 @@
         
         <form accept-charset="UTF-8" action="/videos" method="get"
                               class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-600 navbar-search">
-            <input type="query" name="query" type="text" class="form-control form-control-lg" placeholder="Search a keyword"> 
+            <input type="query" name="query" type="text" class="form-control form-control-lg" placeholder="Search a keyword"><button type="submit" class="search-button">
+    <i class="fas fa-search"></i>
+  </button> 
+  </form>
         </div>
 
         <!-- MENU -->
@@ -37,21 +40,20 @@
 
             <li class="nav-item active">
             <%= link_to "", class: "nav-link" do %>
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                 <%= image_tag "bookmark.svg", class: "nav-icon" %><span class="nav-item">  Bookmarks</span>
                 </a>
             <% end %>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-1 collapse-inner rounded" id="bookmark-drop">
-                <%# <h4 class="collapse-header">Categories:</h4> %>
-                <% if current_user.present? %>
+            <% if current_user.present? %>
+                <ul>
                     <% current_user.lists.each do |list| %>
-                    <a class="collapse-item list-name" href="/lists/<%=list.id%>" data-my-id="<%= list.id %>">
-                        <%= list.name %></a>
+                    <li><a class= "bookmark-link" href="/lists/<%=list.id%>" data-my-id="<%= list.id %>">
+                        # <%= list.name %></a></li>
                     <% end %>
-                                <a class="dropdown-item" href="/lists/new"> + Create new</a>
-
+                    <a class="bookmark-link" href="/lists/new"> + Create new</a>
                 <% end %>
+                </ul>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-1 rounded" id="bookmark-drop">
                 </div>
             </div>
             </li>
